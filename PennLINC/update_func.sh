@@ -10,10 +10,10 @@ do
         
         python /storage/ttapera/RBC/PennLINC/download_bids.py $bblid $hash $fullid
         
-        for filename in /storage/ttapera/RBC/data/upload/sub-*/*/*/*.nii.gz; do
+        for filename in /storage/ttapera/RBC/data/upload/sub-*/*/*/*T1w.nii.gz; do
             
             base=$(basename "$filename")
-            echo Defacing...
+            echo Defacing $basename ...
             docker run --rm --user "$(id -u):$(id -g)" -v $filename:/data/$base pennbbl/mrideface /data/$base /opt/mrideface/talairach_mixed_with_skull.gca /opt/mrideface/face.gca /data/$base
         done
         
