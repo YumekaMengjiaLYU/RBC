@@ -8,21 +8,20 @@ do
         
         echo Downloading...
         
-        python /storage/ttapera/RBC/PennLINC/download_bids.py $bblid $hash $fullid
+        python /storage/ttapera/RBC/PennLINC/download_and_clean_bids.py $bblid $hash $fullid
         
-        for filename in /storage/ttapera/RBC/data/upload/sub-*/*/*/*T1w.nii.gz; do
+        for filename in /storage/ttapera/RBC/data/bids_dataset/sub-*/*/*/*T1w.nii.gz; do
             
             base=$(basename "$filename")
-            echo Defacing $basename ...
+            echo Defacing $base ...
             docker run --rm --user "$(id -u):$(id -g)" -v $filename:/data/$base pennbbl/mrideface /data/$base /opt/mrideface/talairach_mixed_with_skull.gca /opt/mrideface/face.gca /data/$base
         done
         
         echo uploading...
-        yes | fw import bids --project ReproBrainChart /storage/ttapera/RBC/data/upload/ bbl
+        yes | fw import bids --quiet --project ReproBrainChart /storage/ttapera/RBC/data/bids_dataset/ bbl
         
         echo removing...
-        rm -rf /storage/ttapera/RBC/data/upload/*
-        rm -rf /storage/ttapera/RBC/data/PNC*
+        rm -rf /storage/ttapera/RBC/data/bids_dataset/*
         
         echo "$bblid, $hash" >> /storage/ttapera/RBC/data/completed.txt
         

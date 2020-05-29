@@ -1,0 +1,1 @@
+seq 1 1601 | xargs -P 10 -n 1 /storage/ttapera/RBC/PennLINC/process_subject.sh
