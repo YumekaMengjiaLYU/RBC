@@ -4,110 +4,104 @@ import sys
 import os
 import glob
 import shutil
+import subprocess
 import nibabel as nb
 from fw_heudiconv.cli import export
 
+
 client = flywheel.Client()
 
-def download_bids(args):
+RBC_proj = client.projects.find_first('label="ReproBrainChart"')
 
-    sessions = None
-    
-    print("Gathering PNC CS BIDS...")
-    pnc1_data = export.gather_bids(client, "PNC_CS_810336", args[1], sessions)
-    print("\nDownloading BIDS...\n")
-    export.download_bids(
-        client, pnc1_data, 
-        '/storage/ttapera/RBC/data/', 
-        folders_to_download = ['anat', 'func', 'fmap'],
-        dry_run=False)
+RBC_subjects = RBC_proj.subjects()
 
-    #print("Gathering PNC LG BIDS...")
-    #try:
-    #    pnc2_data = export.gather_bids(client, "PNC_LG_810336", args[1], sessions)
+PNC_CS_proj = client.projects.find_first('label="PNC_CS_810336"')
+PNC_LG_proj = client.projects.find_first('label="PNC_LG_810336"')
 
-    #    export.download_bids(
-    #        client, pnc2_data, 
-    #        '/storage/ttapera/RBC/data/', 
-    #        folders_to_download = ['anat', 'func', 'fmap'],
-    #        dry_run=False,
-    #        name='PNC2')
-    #except:
-    #    print("no second session!")
-        
-    # merge any and all data
-    #print("n\Merging\n")
-    #os.system("cp -r -R /storage/ttapera/RBC/data/PNC*/* /storage/ttapera/RBC/data/upload/")
+#PNC_CS_subjects = PNC_CS_proj.subjects()
+#PNC_LG_subjects = PNC_LG_proj.subjects()
 
-    # rename the files:
-    #print("\nRenaming\n")
-    #for root, subdirs, files in os.walk("/storage/ttapera/RBC/data/bids_dataset/"):
 
-    #    for f in files:
-    #        if args[1] in f:
-    #            print("renaming file ", f)
-    #            new_name = f.replace(args[1], args[2])
-    #            os.rename(root + "/" + f, root + "/" + new_name)
+# function to remove a subject from the RBC project
+def remove_current_rbc_subject(args, RBC_subjects=RBC_subjects):
 
-    # rename the subject-level directory
-    #old_name = "/storage/ttapera/RBC/data/bids_dataset/sub-" + args[1]
-    #new_name = old_name.replace(args[1], args[2])
-    #shutil.move(old_name, new_name)        
-    #os.system("rm -rf /storage/ttapera/RBC/data/bids_dataset/sub*/sub*")
-    
+    target = [x for x in RBC_subjects if x.label == args[3]]
+    if len(target) == 1:
+        print('found subject to remove: ', args[3], target[0].id)
+        client.delete_subject(target[0].id)
+        return True
+    else:
+        return False
+
 
 def download_bids2(args):
+    
+    # use the fw export bids cli + subprocess to download the anat fmap and func folders
+    print("Gathering PNC BIDS...")
 
-    print("Gathering PNC CS BIDS...")
-    #pnc1_data = export.gather_bids(client, "PNC_CS_810336", args[1], sessions)
-    #print("\nDownloading BIDS...\n")
-    #export.download_bids(
-    #    client, pnc1_data,
-    #    '/storage/ttapera/RBC/data/',
-    #    folders_to_download = ['anat', 'func', 'fmap'],
-    #    dry_run=False,
-    #    name='PNC1')
-    os.system("mkdir /storage/ttapera/RBC/data/bids_dataset")
-    os.system("fw export bids /storage/ttapera/RBC/data/bids_dataset --project PNC_CS_810336 --subject {}".format(str(args[1]))) 
+    processes = []
+    
+    processes.append("fw export bids /storage/ttapera/RBC/data/{}/bids_dataset --project PNC_CS_810336 --subject {} --data-type anat".format(args[2], str(args[1])))
+    
+    processes.append("fw export bids /storage/ttapera/RBC/data/{}/bids_dataset --project PNC_CS_810336 --subject {} --data-type func".format(args[2], str(args[1])))
+    
+    processes.append("fw export bids /storage/ttapera/RBC/data/{}/bids_dataset --project PNC_CS_810336 --subject {} --data-type fmap".format(args[2], str(args[1])))
 
-    # rename the files:
-    print("\nRenaming\n")
-    for root, subdirs, files in os.walk("/storage/ttapera/RBC/data/bids_dataset/"):
+    # use subprocess just to see which download successfully; those without PNC_LG will fail with exit 1
+    statuses = []
+    
+    for i, process in enumerate(processes):
+        os.makedirs('/storage/ttapera/RBC/data/{}/bids_dataset'.format(args[2]), exist_ok=True)
+        stat = int(os.system(process))
+        statuses.append(stat)
+        if int(stat) != 0:
+            print("Failed export:\n", i)
+        else:
+            print("Process ", i, " complete with status ", stat)
+
+    return statuses
+
+def cleanup_bids(path):
+    
+    # Remove any files from PNC2/3 that are not 
+    paths = glob.glob(path)
+    paths = paths[1:]
+
+    for name in paths:
+
+        print(name)
+        pattern = re.compile("sub-[0-9]+_ses-PNC[^1]+_task-[^(rest)]")
+        if pattern.search(name):
+            print("removing file...")
+            os.system("rm {}".format(name))
+
+
+def rename_bids(args):
+    
+    for root, subdirs, files in os.walk("/storage/ttapera/RBC/data/{}/bids_dataset/".format(args[2])):
 
         for f in files:
             if args[1] in f:
                 print("renaming file ", f)
                 new_name = f.replace(args[1], args[2])
                 os.rename(root + "/" + f, root + "/" + new_name)
-
-    # rename the subject-level directory
-    old_name = "/storage/ttapera/RBC/data/bids_dataset/sub-" + args[1]
+    
+    old_name = "/storage/ttapera/RBC/data/{}/bids_dataset/sub-".format(args[2]) + args[1]
     new_name = old_name.replace(args[1], args[2])
     shutil.move(old_name, new_name)
 
 
-# function to remove a subject from the RBC project
-def remove_current_rbc_subject(args):
-    
-    RBC_proj = client.projects.find_first('label="ReproBrainChart"')
-    RBC_subjects = RBC_proj.subjects()
-
-    target = [x for x in RBC_subjects if x.label == args[3]]
-    if len(target) == 1:
-        print('found subject to remove: ', target[0].id)
-        client.delete_subject(target[0].id)
-        return True
-    else:
-        return False
-
-def check_download(path):
+def check_headers(path):
 
     print("Checking for successful download in ", path)
     
     paths = glob.glob(path)
     paths = paths[1:]
+    if len(paths) <= 1:
+        return False
     for name in paths:
-
+        if any([x in name for x in [".json", ".bvec", ".bval"]]):
+            continue
         print(name)
         try:
             img = nb.load(name)
@@ -116,30 +110,29 @@ def check_download(path):
             return False
 
     return True
-        
+
+
 def main():
     
-    subject_removed = remove_current_rbc_subject(sys.argv)
+    # args: bblid, hash, full-id, process
+
+    args = sys.argv
+    path = "/storage/ttapera/RBC/data/{}/bids_dataset/sub-*/ses-*/*/*".format(args[2])
+
+    subject_removed = remove_current_rbc_subject(args)
     if subject_removed:
         print("Removed subject.")
 
-    successful_download=False
-    tries = 1
-    max_tries = 25
-    while not successful_download:
-        
-        if tries == max_tries:
-            break
-        else:
-            tries += 1
-        os.system('rm -rf /storage/ttapera/RBC/data/bids_dataset/*')
-        download_bids2(sys.argv)
-
-        successful_download = check_download('/storage/ttapera/RBC/data/bids_dataset/sub-*/ses-*/*/*.nii.gz')
-    print("Downloading complete in " + str(tries) + " tries.")
-
-    if tries >= max_tries:
-        print("WARNING: Files may be corrupt!")
+    result = download_bids2(args)
+    #cleanup_bids(path)
+    #rename_bids(args)
+    #check = check_headers(path)
+    if all([x == 0 for x in result]):
+        print("Done!")
+        sys.exit(0)
+    else:
+        print("Warning: Download may not have completed successfully!")
+        sys.exit(1)
 
 
 if __name__ == '__main__':

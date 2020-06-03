@@ -9,29 +9,29 @@ import nibabel as nb
 from fw_heudiconv.cli import export
 
 
-client = flywheel.Client()
+#client = flywheel.Client()
 
-RBC_proj = client.projects.find_first('label="ReproBrainChart"')
+#RBC_proj = client.projects.find_first('label="ReproBrainChart"')
 
-RBC_subjects = RBC_proj.subjects()
+#RBC_subjects = RBC_proj.subjects()
 
-PNC_CS_proj = client.projects.find_first('label="PNC_CS_810336"')
-PNC_LG_proj = client.projects.find_first('label="PNC_LG_810336"')
+#PNC_CS_proj = client.projects.find_first('label="PNC_CS_810336"')
+#PNC_LG_proj = client.projects.find_first('label="PNC_LG_810336"')
 
 #PNC_CS_subjects = PNC_CS_proj.subjects()
 #PNC_LG_subjects = PNC_LG_proj.subjects()
 
 
 # function to remove a subject from the RBC project
-def remove_current_rbc_subject(args, RBC_subjects=RBC_subjects):
+#def remove_current_rbc_subject(args, RBC_subjects=RBC_subjects):
 
-    target = [x for x in RBC_subjects if x.label == args[3]]
-    if len(target) == 1:
-        print('found subject to remove: ', args[3], target[0].id)
-        client.delete_subject(target[0].id)
-        return True
-    else:
-        return False
+#    target = [x for x in RBC_subjects if x.label == args[3]]
+#    if len(target) == 1:
+#        print('found subject to remove: ', args[3], target[0].id)
+#        client.delete_subject(target[0].id)
+#        return True
+#    else:
+#        return False
 
 
 def download_bids2(args):
@@ -118,11 +118,11 @@ def main():
     args = sys.argv
     path = "/storage/ttapera/RBC/data/{}/bids_dataset/sub-*/ses-*/*/*".format(args[2])
 
-    subject_removed = remove_current_rbc_subject(args)
-    if subject_removed:
-        print("Removed subject.")
+    #subject_removed = remove_current_rbc_subject(args)
+    #if subject_removed:
+    #    print("Removed subject.")
 
-    download_bids2(args)
+    #download_bids2(args)
     #cleanup_bids(path)
     rename_bids(args)
     check = check_headers(path)
