@@ -4,7 +4,7 @@
 line=$1
 
 # parse this input row
-info=$(cat /storage/ttapera/RBC/data/bblids_3.csv | head -n $line | tail -n 1 | sed 's/,/ /g')
+info=$(cat /storage/ttapera/RBC/data/incomplete.csv | head -n $line | tail -n 1 | sed 's/,/ /g')
 
 echo $info
 
