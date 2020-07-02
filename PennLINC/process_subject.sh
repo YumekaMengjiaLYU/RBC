@@ -4,7 +4,7 @@
 line=$1
 
 # parse this input row
-info=$(cat /storage/ttapera/RBC/data/incomplete.csv | head -n $line | tail -n 1 | sed 's/,/ /g')
+info=$(cat /storage/ttapera/RBC/data/bblids_3.csv | head -n $line | tail -n 1 | sed 's/,/ /g')
 
 echo $info
 
@@ -35,10 +35,14 @@ for filename in $(ls /storage/ttapera/RBC/data/$subject/bids_dataset/sub-*/*/*/*
     sidecarDefaced=$(echo "$sidecarOriginal" | sed "s/$matchPNC/&$acq/g")
     
     echo Defacing $filename ... as $output with sidecar $sidecarDefaced
-    docker run --rm -v $dir:/data pennbbl/mrideface /data/$base /opt/mrideface/talairach_mixed_with_skull.gca /opt/mrideface/face.gca /data/$output
+    echo time @afni_refacer_run -input $filename -mode_deface -prefix $dir/$output
     
     # copy sidecar
     cp $sidecarOriginal $sidecarDefaced
+    
+    # clean deface data
+    #rm -rf $dir/*_QC
+    #rm $dir/*.face.nii.gz
 done
 
 # upload data
