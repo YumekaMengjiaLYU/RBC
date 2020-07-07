@@ -7,6 +7,7 @@ import os
 import warnings
 from pathlib import Path
 from bids import BIDSLayout
+from FlyBIDS.BIDSLayout import FlyBIDSLayout
 
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger('PennLINC-Refacer')
@@ -40,6 +41,14 @@ def find_t1_in_bids(root_path, subject, session):
     return p.parent, p.name
 
 
+def remove_prefix(label):
+
+    label = label.replace('sub-', '')
+    label = label.replace('ses-', '')
+
+    return label
+
+
 def process_subject(client, subject_label, project_label):
     '''
     get the subject object
@@ -47,7 +56,7 @@ def process_subject(client, subject_label, project_label):
 
     proj = client.projects.find_first('label="{}"'.format(project_label))
     subjects = proj.subjects()
-    subject_obj = [x for x in subjects if x.label == subject_label]
+    subject_obj = [x for x in subjects if remove_prefix(x.label) == remove_prefix(subject_label)]
     return subject_obj
 
 
@@ -77,10 +86,15 @@ def run_afni(path_to_file, filename, rec_label='refaced', dry_run=True, verbose=
     return refaced_filename, p.returncode, out
 
 
-def replace_t1w(acquisition_obj, original_filename, replacement_filename, replacement_path, rec_label, dry_run=True, verbose=True):
+def replace_t1w(client, local_bids, flywheel_bids, rec_label='refaced', dry_run=True, verbose=True):
     '''
     upload a refaced T1 to an acquisition to replace an original
     '''
+
+    acquisition_obj = client.get(flywheel_bids['id'])
+    original_filename = flywheel_bids['Filename']
+    replacement_filename = flywheel_bids['Filename'].replace("_T1w.nii.gz", "_rec-{}_T1w.nii.gz".format(rec_label))
+    replacement_path = local_bids['path'].replace("_T1w.nii.gz", "_rec-{}_T1w.nii.gz".format(rec_label))
 
     for f in acquisition_obj.files:
 
@@ -93,7 +107,7 @@ def replace_t1w(acquisition_obj, original_filename, replacement_filename, replac
     info['BIDS']['Rec'] = rec_label
 
     if not dry_run:
-        acquisition_obj.upload_file(replacement_path + replacement_filename)
+        acquisition_obj.upload_file(replacement_path)
 
         acquisition_obj = acquisition_obj.reload()
 
@@ -105,13 +119,13 @@ def replace_t1w(acquisition_obj, original_filename, replacement_filename, replac
         modified = acquisition_obj.delete_file(original_filename)
 
         if modified['modified'] != 1:
-            return 1
+            return False
         else:
-            return 0
+            return True
     else:
         if verbose:
             logger.info("New BIDS file:\n{}".format(info))
-        return 0
+        return True
 
 
 def get_parser():
@@ -123,14 +137,6 @@ def get_parser():
         help="The project on Flywheel",
         default='ReproBrainChart',
         required=False
-    )
-    parser.add_argument(
-        "--subject",
-        help="The subject label to upload the T1w to on Flywheel",
-        action='store',
-        required=True,
-        type=str,
-        default=None
     )
     parser.add_argument(
         "--directory",
@@ -170,6 +176,7 @@ def get_parser():
 
 def main():
 
+    # Init
     parser = get_parser()
     args = parser.parse_args()
 
@@ -181,66 +188,56 @@ def main():
     assert client, "Your Flywheel CLI credentials aren't set!"
 
     if args.verbose:
-        logger.info("Finding matching subject on Flywheel...")
-    subject_obj = process_subject(client, args.subject, args.project)
-    assert len(subject_obj) == 1 and subject_obj[0].label == args.subject, "Correct subject not found!"
+        logger.info("Scanning BIDS directory for data...")
 
-    subject_obj = subject_obj.pop()
-
-    if args.verbose:
-        logger.info("Subject found. Finding T1 scan...")
-
-    t1w = None
-
-    sessions = subject_obj.sessions()
-    for i, ses in enumerate(sessions):
-
-        if args.verbose:
-            logger.info("Processing session {} of {}".format(i+1, len(sessions)))
-
-        acquisitions = [client.get(a.id) for a in ses.acquisitions()]
-
-        for acq in acquisitions:
-
-            for f in acq.files:
-                if f.type != 'nifti':
-                    continue
-
-                mod = get_nested(f, 'info', 'BIDS', 'Modality')
-                flywheel_filename = get_nested(f, 'info', 'BIDS', 'Filename')
-                _, local_filename = find_t1_in_bids(args.directory, args.subject, ses.label)
-
-                if (mod == "T1w") and (str(flywheel_filename) == str(local_filename)):
-
-                    t1w = acq
-
-        assert t1w, "No T1w scans found in Flywheel subject!"
-
-        if args.verbose:
-            logger.info("Processing T1w...")
-
-        path_to_t1, input_filename = find_t1_in_bids(args.directory, args.subject, ses.label)
-
-        # run refacing
-        refaced_file, status, output = run_afni(
-
-            str(path_to_t1), str(input_filename), args.rec,
-            dry_run=args.dry_run, verbose=args.verbose
-
+    local_bids = BIDSLayout(args.directory)
+    local_bids_df = local_bids.to_df()
+    local_t1s = (local_bids_df.loc[(local_bids_df['suffix'] == 'T1w')
+        & (local_bids_df['extension'] == 'nii.gz')]
         )
 
-        print(input_filename, refaced_file, path_to_t1)
+    assert local_t1s.shape[0] >= 1, logger.error("No T1w files found in dataset!")
 
-        if status != 0:
-            logger.error("There was a problem running afni!")
-            if args.verbose:
-                logger.error(output.decode("utf-8"))
-            return 1
+    if args.verbose:
+        logger.info("Found the following subjects:\n{}".format(' '.join(local_t1s.subject.values)))
+    if args.verbose:
+        logger.info("Finding matching subjects on Flywheel...")
 
-        if args.verbose:
-            logger.info("Replacing T1w with newly refaced version...")
-        replace_t1w(t1w, input_filename, refaced_file, path_to_t1, args.rec, dry_run=True, verbose=args.verbose)
+    for i, row in local_t1s.iterrows():
+
+        row_processed = False
+
+        flywheel_bids = FlyBIDSLayout(args.project, str('sub-' + row['subject']))
+        flywheel_bids_df = flywheel_bids.to_df()
+        flywheel_t1s = (flywheel_bids_df.loc[ (flywheel_bids_df['Filename'].str.contains('T1w')) &
+            (flywheel_bids_df['Filename'].str.contains('.nii.gz'))]
+            )
+
+        for i, row2 in flywheel_t1s.iterrows():
+            if row['subject'] == row2['subject']:
+
+                if args.verbose:
+                    logger.info("Subject {} found. Refacing local T1w...".format(row['subject']))
+
+                path_to_t1 = Path(row['path']).resolve().parent
+                input_filename = Path(row['path']).resolve().name
+
+                refaced_file, status, output = run_afni(
+
+                    str(path_to_t1), str(input_filename), args.rec,
+                    dry_run=args.dry_run, verbose=args.verbose
+
+                )
+
+                if args.verbose:
+                    logger.info("Replacing T1w with newly refaced version...")
+                row_processed = replace_t1w(client, row, flywheel_t1s, args.rec, dry_run=True, verbose=args.verbose)
+
+
+        if not row_processed:
+
+            logger.error("Subject {} not processed!".format(row['subject']))
 
 if __name__ == '__main__':
-    logger.info("Done!")
+
     sys.exit(main())
