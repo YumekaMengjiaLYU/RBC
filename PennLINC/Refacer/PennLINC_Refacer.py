@@ -70,7 +70,7 @@ def run_afni(path_to_file, filename, rec_label='refaced', dry_run=True, verbose=
     assert Path(path_to_file, filename).exists()
 
     refaced_filename = filename.replace("_T1w.nii.gz", "_rec-{}_T1w.nii.gz".format(rec_label))
-    process = (['docker', 'run', '-ti', '--user $(id -u):$(id -g)', '-v', str(Path(path_to_file)) + ':' + '/home/',
+    process = (['docker', 'run', '--rm', '-t','--user', '$(id -u):$(id -g)', '-v', str(Path(path_to_file)) + ':' + '/home/',
                 'pennlinc/afni_refacer', '-input', str(Path('/home/', filename)),
                 '-mode_reface', '-prefix', str(Path('/home/', refaced_filename))])
 
@@ -80,13 +80,9 @@ def run_afni(path_to_file, filename, rec_label='refaced', dry_run=True, verbose=
     if verbose:
         print("Running:\n", " ".join(process))
 
-    p = subprocess.Popen(' '.join(process), stdout=subprocess.PIPE, stderr=subprocess.PIPE, shell=True)
-    p.wait()
-    out, err = p.communicate()
+    returncode = os.system(' '.join(process))
 
-    if out is None:
-        out = ''
-    return refaced_filename, p.returncode, out
+    return refaced_filename, returncode
 
 
 def replace_t1w(client, local_bids, flywheel_bids, rec_label='refaced', dry_run=True, verbose=True, delete=False):
@@ -94,9 +90,10 @@ def replace_t1w(client, local_bids, flywheel_bids, rec_label='refaced', dry_run=
     upload a refaced T1 to an acquisition to replace an original
     '''
 
-    acquisition_obj = client.get(flywheel_bids['id'])
-    original_filename = flywheel_bids['Filename']
-    replacement_filename = flywheel_bids['Filename'].replace("_T1w.nii.gz", "_rec-{}_T1w.nii.gz".format(rec_label))
+    id_str = str(flywheel_bids['id'].values[0])
+    acquisition_obj = client.get(id_str)
+    original_filename = flywheel_bids['Filename'].values[0]
+    replacement_filename = original_filename.replace("_T1w.nii.gz", "_rec-{}_T1w.nii.gz".format(rec_label))
     replacement_path = local_bids['path'].replace("_T1w.nii.gz", "_rec-{}_T1w.nii.gz".format(rec_label))
 
     for f in acquisition_obj.files:
@@ -116,9 +113,9 @@ def replace_t1w(client, local_bids, flywheel_bids, rec_label='refaced', dry_run=
 
         modified = acquisition_obj.update_file_info(replacement_filename, info)
 
-        if verbose:
+        if verbose and delete:
             logger.info("deleting existing T1")
-        
+
         if delete:
             modified = acquisition_obj.delete_file(original_filename)
 
@@ -214,7 +211,7 @@ def main():
         logger.info("Finding matching subjects on Flywheel...")
 
     for i, row in local_t1s.iterrows():
-        
+
         print("\n")
 
         row_processed = False
@@ -225,25 +222,30 @@ def main():
             (flywheel_bids_df['Filename'].str.contains('.nii.gz'))]
             )
 
-        for i, row2 in flywheel_t1s.iterrows():
-            if row['subject'] == row2['subject']:
+        target_filename = Path(row['path']).name
 
-                if args.verbose:
-                    logger.info("Subject {} found. Refacing local T1w...".format(row['subject']))
+        mask = flywheel_t1s['Filename'].str.contains(target_filename)
 
-                path_to_t1 = Path(row['path']).resolve().parent
-                input_filename = Path(row['path']).resolve().name
+        file_exists = mask.any()
 
-                refaced_file, status, output = run_afni(
+        if file_exists:
 
-                    str(path_to_t1), str(input_filename), args.rec,
-                    dry_run=args.dry_run, verbose=args.verbose
+            if args.verbose:
+                logger.info("Matching file {} found on Flywheel. Refacing local T1w...".format(row['path']))
 
-                )
+            path_to_t1 = Path(row['path']).resolve().parent
+            input_filename = Path(row['path']).resolve().name
 
-                if args.verbose:
-                    logger.info("Replacing T1w with newly refaced version...")
-                row_processed = replace_t1w(client, row, row2, args.rec, dry_run=True, verbose=args.verbose, delete=args.delete)
+            refaced_file, status = run_afni(
+
+                str(path_to_t1), str(input_filename), args.rec,
+                dry_run=args.dry_run, verbose=args.verbose
+
+            )
+
+            if args.verbose:
+                logger.info("Replacing T1w with newly refaced version...")
+            row_processed = replace_t1w(client, row, flywheel_t1s[mask], args.rec, dry_run=args.dry_run, verbose=args.verbose, delete=args.delete)
 
 
         if not row_processed:
