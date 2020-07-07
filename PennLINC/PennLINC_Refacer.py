@@ -216,6 +216,7 @@ def main():
     for i, row in local_t1s.iterrows():
         
         print("\n")
+
         row_processed = False
 
         flywheel_bids = FlyBIDSLayout(args.project, str('sub-' + row['subject']))
