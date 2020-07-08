@@ -172,7 +172,7 @@ If you'd prefer to use the `afni_refacer` tool in isolation and just re-upload a
 docker run -t --rm --user $(id -u):$(id -g) \
     -v /FULL/PATH/TO/BIDS/ANAT/FOLDER/:/home/ \
     pennlinc/afni_refacer \
-    -input sub-<SUBJECT>_ses-<SESSION>_T1w.nii.gz \
+    -input /home/sub-<SUBJECT>_ses-<SESSION>_T1w.nii.gz \
     -mode_reface \
-    -prefix sub-<SUBJECT>_ses-<SESSION>_rec-refaced_T1w.nii.gz
+    -prefix /home/sub-<SUBJECT>_ses-<SESSION>_rec-refaced_T1w.nii.gz
 ```
