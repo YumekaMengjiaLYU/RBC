@@ -161,3 +161,18 @@ your BIDS directory from the refacing:
         │       ├── sub-2216595430_ses-PNC1_rec-refaced_T1w.face.sag.png
         │       └── sub-2216595430_ses-PNC1_rec-refaced_T1w.sag.png
 ```
+
+---
+
+# Alternative: Replacing BIDS Data
+
+If you'd prefer to use the `afni_refacer` tool in isolation and just re-upload all of your data, you can also do that with the docker image:
+
+```
+docker run -t --rm --user $(id -u):$(id -g) \
+    -v /FULL/PATH/TO/BIDS/ANAT/FOLDER/:/home/ \
+    pennlinc/afni_refacer \
+    -input sub-<SUBJECT>_ses-<SESSION>_T1w.nii.gz \
+    -mode_reface \
+    -prefix sub-<SUBJECT>_ses-<SESSION>_rec-refaced_T1w.nii.gz
+```
