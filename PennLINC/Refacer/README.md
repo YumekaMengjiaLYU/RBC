@@ -166,7 +166,7 @@ your BIDS directory from the refacing:
 
 # Alternative: Replacing BIDS Data
 
-If you'd prefer to use the `afni_refacer` tool in isolation and just re-upload all of your data, you can also do that with the docker image:
+If you prefer to use the `afni_refacer` tool in isolation and just re-upload all of your data, you can also do that with the docker image:
 
 ```
 docker run -t --rm --user $(id -u):$(id -g) \
