@@ -18,11 +18,12 @@ Python script in this repo helps to accomplish that.
 checks to see if this data exists in the RBC project, and then, on disk, preps
 and refaces a T1w image and uploads it to the target acquisition on Flywheel.
 
-**Methods**: This script introduces FlyBIDS, a lightweight and easy-to-use BIDS
+**Methods**: This script introduces [FlyBIDS](https://github.com/PennLINC/FlyBIDS),
+a lightweight and easy-to-use BIDS
 tool for quickly building and inspecting Flywheel BIDS data. The functionality
 introduced by FlyBIDS is intended to be identical to that of PyBIDS. By comparing
 the output of a FlyBIDS dataset on Flywheel to a PyBIDS dataset on disk, we're
-able to quickly navigate and operate on two disparete datasets with ease.
+able to quickly navigate and operate on two disparete datasets at the same time.
 Additionally, we use Docker to wrap `afni_refacer` for version stability across
 sites.
 
