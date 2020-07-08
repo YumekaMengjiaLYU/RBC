@@ -176,3 +176,4 @@ docker run -t --rm --user $(id -u):$(id -g) \
     -mode_reface \
     -prefix /home/sub-<SUBJECT>_ses-<SESSION>_rec-refaced_T1w.nii.gz
 ```
+You can use the SDK to then remove the existing subject on Flywheel and re-upload them.
