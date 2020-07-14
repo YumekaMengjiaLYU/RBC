@@ -18,11 +18,12 @@ Python script in this repo helps to accomplish that.
 checks to see if this data exists in the RBC project, and then, on disk, preps
 and refaces a T1w image and uploads it to the target acquisition on Flywheel.
 
-**Methods**: This script introduces FlyBIDS, a lightweight and easy-to-use BIDS
+**Methods**: This script introduces [FlyBIDS](https://github.com/PennLINC/FlyBIDS),
+a lightweight and easy-to-use BIDS
 tool for quickly building and inspecting Flywheel BIDS data. The functionality
 introduced by FlyBIDS is intended to be identical to that of PyBIDS. By comparing
 the output of a FlyBIDS dataset on Flywheel to a PyBIDS dataset on disk, we're
-able to quickly navigate and operate on two disparete datasets with ease.
+able to quickly navigate and operate on two disparete datasets at the same time.
 Additionally, we use Docker to wrap `afni_refacer` for version stability across
 sites.
 
@@ -161,3 +162,19 @@ your BIDS directory from the refacing:
         │       ├── sub-2216595430_ses-PNC1_rec-refaced_T1w.face.sag.png
         │       └── sub-2216595430_ses-PNC1_rec-refaced_T1w.sag.png
 ```
+
+---
+
+# Alternative: Replacing BIDS Data
+
+If you prefer to use the `afni_refacer` tool in isolation and just re-upload all of your data, you can also do that with the docker image:
+
+```
+docker run -t --rm --user $(id -u):$(id -g) \
+    -v /FULL/PATH/TO/BIDS/ANAT/FOLDER/:/home/ \
+    pennlinc/afni_refacer \
+    -input /home/sub-<SUBJECT>_ses-<SESSION>_T1w.nii.gz \
+    -mode_reface \
+    -prefix /home/sub-<SUBJECT>_ses-<SESSION>_rec-refaced_T1w.nii.gz
+```
+You can use the SDK to then remove the existing subject on Flywheel and re-upload them.
