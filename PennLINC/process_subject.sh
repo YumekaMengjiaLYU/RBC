@@ -24,7 +24,7 @@ for filename in $(ls /storage/ttapera/RBC/data/$subject/bids_dataset/sub-*/*/*/*
     base=$(basename "$filename")
     dir=$(dirname "$filename")
     matchPNC="PNC1_"
-    acq="acq-defaced_"
+    acq="acq-refaced_"
     
     output=$(echo "$base" | sed "s/$matchPNC/&$acq/g")
     
@@ -35,14 +35,22 @@ for filename in $(ls /storage/ttapera/RBC/data/$subject/bids_dataset/sub-*/*/*/*
     sidecarDefaced=$(echo "$sidecarOriginal" | sed "s/$matchPNC/&$acq/g")
     
     echo Defacing $filename ... as $output with sidecar $sidecarDefaced
-    echo time @afni_refacer_run -input $filename -mode_deface -prefix $dir/$output
-    
+    #echo time @afni_refacer_run -input $filename -mode_deface -prefix $dir/$output
+    time docker run -t --rm --user $(id -u):$(id -g) \
+        -v $dir/:/home/ \
+        pennlinc/afni_refacer \
+        -input /home/$base \
+        -mode_reface \
+        -prefix /home/$output
     # copy sidecar
     cp $sidecarOriginal $sidecarDefaced
     
     # clean deface data
-    #rm -rf $dir/*_QC
-    #rm $dir/*.face.nii.gz
+    rm -rf $dir/*_QC
+    rm $dir/*.face.nii.gz
+    rm $dir/$base
+    rm $sidecarOriginal
+
 done
 
 # upload data
@@ -54,4 +62,4 @@ echo removing...
 rm -rf /storage/ttapera/RBC/data/$subject
     
 # save progress
-echo "$subject,$download_status,$check_status,$(date)" >> /storage/ttapera/RBC/data/completed.txt
+echo "$subject,$download_status,$check_status,$(date)" >> /storage/ttapera/RBC/data/completed_2020-07-14.txt
