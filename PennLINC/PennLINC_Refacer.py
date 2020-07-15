@@ -70,7 +70,9 @@ def run_afni(path_to_file, filename, rec_label='refaced', dry_run=True, verbose=
     assert Path(path_to_file, filename).exists()
 
     refaced_filename = filename.replace("_T1w.nii.gz", "_rec-{}_T1w.nii.gz".format(rec_label))
-    process = ['@afni_refacer_run', '-input', str(Path(path_to_file, filename)),'-mode_reface', '-prefix', str(Path(path_to_file, refaced_filename))]
+    process = (['docker', 'run', '-ti', '--user $(id -u):$(id -g)', '-v', str(Path(path_to_file)) + ':' + '/home/',
+                'pennlinc/afni_refacer', '-input', str(Path('/home/', filename)),
+                '-mode_reface', '-prefix', str(Path('/home/', refaced_filename))])
 
     if dry_run:
         process.insert(0, 'echo')
@@ -86,7 +88,7 @@ def run_afni(path_to_file, filename, rec_label='refaced', dry_run=True, verbose=
     return refaced_filename, p.returncode, out
 
 
-def replace_t1w(client, local_bids, flywheel_bids, rec_label='refaced', dry_run=True, verbose=True):
+def replace_t1w(client, local_bids, flywheel_bids, rec_label='refaced', dry_run=True, verbose=True, delete=False):
     '''
     upload a refaced T1 to an acquisition to replace an original
     '''
@@ -111,12 +113,13 @@ def replace_t1w(client, local_bids, flywheel_bids, rec_label='refaced', dry_run=
 
         acquisition_obj = acquisition_obj.reload()
 
-        acquisition_obj.update_file_info(replacement_filename, info)
+        modified = acquisition_obj.update_file_info(replacement_filename, info)
 
         if verbose:
             logger.info("deleting existing T1")
 
-        modified = acquisition_obj.delete_file(original_filename)
+        if delete:
+            modified = acquisition_obj.delete_file(original_filename)
 
         if modified['modified'] != 1:
             return False
@@ -124,7 +127,7 @@ def replace_t1w(client, local_bids, flywheel_bids, rec_label='refaced', dry_run=
             return True
     else:
         if verbose:
-            logger.info("New BIDS file:\n{}".format(info))
+            logger.info("New BIDS file:\n{}".format(info['BIDS']['Filename']))
         return True
 
 
@@ -161,6 +164,12 @@ def get_parser():
     parser.add_argument(
         "--dry-run",
         help="Don't apply changes",
+        action='store_true',
+        default=False
+    )
+    parser.add_argument(
+        "--delete",
+        help="Delete original file on Flywheel.",
         action='store_true',
         default=False
     )
@@ -205,6 +214,7 @@ def main():
 
     for i, row in local_t1s.iterrows():
 
+        print("\n")
         row_processed = False
 
         flywheel_bids = FlyBIDSLayout(args.project, str('sub-' + row['subject']))
@@ -231,7 +241,7 @@ def main():
 
                 if args.verbose:
                     logger.info("Replacing T1w with newly refaced version...")
-                row_processed = replace_t1w(client, row, flywheel_t1s, args.rec, dry_run=True, verbose=args.verbose)
+                row_processed = replace_t1w(client, row, row2, args.rec, dry_run=True, verbose=args.verbose, delete=args.delete)
 
 
         if not row_processed:
