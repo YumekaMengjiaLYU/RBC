@@ -55,11 +55,11 @@ done
 
 # upload data
 echo uploading...
-yes | fw import bids --quiet --project ReproBrainChart /storage/ttapera/RBC/data/$subject/bids_dataset/ bbl
+yes | fw import bids --quiet --project RBC_PNC /storage/ttapera/RBC/data/$subject/bids_dataset/ bbl
 
 # remove dir
 echo removing...
 rm -rf /storage/ttapera/RBC/data/$subject
     
 # save progress
-echo "$subject,$download_status,$check_status,$(date)" >> /storage/ttapera/RBC/data/completed_2020-07-14.txt
+echo "$subject,$download_status,$check_status,$(date)" >> /storage/ttapera/RBC/data/reuploaded_2020-08-14.txt
