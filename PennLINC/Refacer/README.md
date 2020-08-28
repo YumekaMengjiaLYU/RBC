@@ -165,7 +165,7 @@ your BIDS directory from the refacing:
 
 ---
 
-# Alternative: Replacing BIDS Data
+# Alternative: Replacing BIDS Data Manually
 
 If you prefer to use the `afni_refacer` tool in isolation and just re-upload all of your data, you can also do that with the docker image:
 
@@ -178,3 +178,34 @@ docker run -t --rm --user $(id -u):$(id -g) \
     -prefix /home/sub-<SUBJECT>_ses-<SESSION>_rec-refaced_T1w.nii.gz
 ```
 You can use the SDK to then remove the existing subject on Flywheel and re-upload them.
+
+For example, in the following directory `/Users/ttapera/BBL/Projects/sandbox/bids_dir`:
+
+```
+├── dataset_description.json
+└── sub-1832999514
+    └── ses-PNC1
+        ├── anat
+        │   ├── sub-1832999514_ses-PNC1_T1w.json
+        │   └── sub-1832999514_ses-PNC1_T1w.nii.gz
+        │   
+        └── func
+            ├── sub-1832999514_ses-PNC1_task-rest_acq-singleband_bold.json
+            └── sub-1832999514_ses-PNC1_task-rest_acq-singleband_bold.nii.gz
+```
+Just run the refacer as above (you could write a shell script that loops over your whole BIDS directory and does this first):
+```
+docker run -t --rm --user $(id -u):$(id -g)  \
+    -v /Users/ttapera/BBL/Projects/sandbox/bids_dir/sub-1867827374/ses-PNC1/anat/:/home/  \
+    pennlinc/afni_refacer  \
+    -input /home/sub-1867827374_ses-PNC1_T1w.nii.gz  \
+    -mode_reface \
+    -prefix /home/sub-1867827374_ses-PNC1_rec-refaced_T1w.nii.gz
+```
+And then upload the data to the project with the Flywheel CLI:
+```
+fw import bids --debug --project ReproBrainChart bids_dir/ bbl
+```
+This method *does* replace existing NIfTI's that have the same name.
+
+You'll then need to delete the old face-on data manually, for e.g. with the Flywheel SDK.
