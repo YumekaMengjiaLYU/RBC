@@ -80,3 +80,7 @@ validation_df.to_csv('./PennLINC/Validation/PNC/validation.csv')
 ```
 
 The data can be viewed in any CSV viewer; the end goal is to keep working until all issues are attended to. Each dataset's adjustment scripts are kept in their respective directories.
+
+---
+
+To run the BIDS validator in parallel on Flywheel, you can use the following script:
