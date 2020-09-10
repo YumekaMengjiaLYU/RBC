@@ -83,4 +83,11 @@ The data can be viewed in any CSV viewer; the end goal is to keep working until 
 
 ---
 
-To run the BIDS validator in parallel on Flywheel, you can use the following script:
+To run the BIDS validator in parallel on Flywheel, you can use something like the following script:
+
+```
+import flywheel
+import datetime
+
+
+```
