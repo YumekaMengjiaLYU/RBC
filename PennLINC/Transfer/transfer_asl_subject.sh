@@ -4,7 +4,7 @@
 line=$1
 
 # parse this input row
-info=$(cat /storage/ttapera/RBC/data/bblids_3.csv | head -n $line | tail -n 1 | sed 's/,/ /g')
+info=$(cat /storage/ttapera/RBC/data/remaining_asl.csv | head -n $line | tail -n 1 | sed 's/,/ /g')
 
 echo $info
 
@@ -35,4 +35,4 @@ echo removing...
 rm -rf /storage/ttapera/RBC/data/$SourceSubject
     
 # save progress
-echo "$TargetSubject,$download_status,$rename_status,$upload_status,$(date)" >> /storage/ttapera/RBC/data/asl_uploaded_17092020.txt
+echo "$TargetSubject,$download_status,$rename_status,$upload_status,$(date)" >> /storage/ttapera/RBC/data/asl_uploaded2_17092020.txt
