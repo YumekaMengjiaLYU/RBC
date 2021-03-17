@@ -1,0 +1,7 @@
+/cbica/projects/RBC/HBN/bidsdatasets/sub-NDARVB538ZGJ/ses-HBNsiteRU/func/sub-NDARVB538ZGJ_ses-HBNsiteRU_task-movieDM_bold.nii.gz
+/cbica/projects/RBC/HBN/bidsdatasets/sub-NDARYL443NG6/ses-HBNsiteCUNY/func/sub-NDARYL443NG6_ses-HBNsiteCUNY_task-movieDM_bold.nii.gz
+/cbica/projects/RBC/HBN/bidsdatasets/sub-NDARNF994TPA/ses-HBNsiteRU/func/sub-NDARNF994TPA_ses-HBNsiteRU_task-movieDM_bold.nii.gz
+/cbica/projects/RBC/HBN/bidsdatasets/sub-NDARJJ413MNH/ses-HBNsiteRU/func/sub-NDARJJ413MNH_ses-HBNsiteRU_task-movieDM_bold.nii.gz
+/cbica/projects/RBC/HBN/bidsdatasets/sub-NDARGJ627BL2/ses-HBNsiteRU/func/sub-NDARGJ627BL2_ses-HBNsiteRU_task-movieDM_bold.nii.gz
+/cbica/projects/RBC/HBN/bidsdatasets/sub-NDARET332CTB/ses-HBNsiteRU/func/sub-NDARET332CTB_ses-HBNsiteRU_task-movieDM_bold.nii.gz
+/cbica/projects/RBC/HBN/bidsdatasets/sub-NDARZH930XTP/ses-HBNsiteCBIC/func/sub-NDARZH930XTP_ses-HBNsiteCBIC_task-movieDM_bold.nii.gz
