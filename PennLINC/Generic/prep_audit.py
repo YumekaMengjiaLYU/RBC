@@ -23,20 +23,6 @@ def get_sub_name(path):
         if part.startswith("sub-"):
             return part
 
-# def get_ses_name(path):
-#     parts = path.parts
-#     for part in parts:
-#         print("Part: ", part)
-#         if part.startswith("ses-"):
-#             return part
-
-#TODO: STILL NEED TO ACCOUNT FOR MULTIPLE SESSIONS!
-# 1. Check for fmap files in bidsdir for each sub/ses pair!
-# for each sub/ses pair, check if fmap/ is present, if not, add that pair to the no_fmap list
-
-# create a pandas dataframe with one row per subject, and write to it intermitedly
-# create columns according to qsiprep issue labels
-
 pipeline = sys.argv[1]
 
 bids_dir = sys.argv[2]
@@ -63,6 +49,7 @@ if len(sys.argv) == 8:
         rerun_subs[i] = rerun_subs[i].strip("\n")
     rerun_txt.close()
 print("NUM RERUN SUBS", len(rerun_subs))
+
 # GET LIST OF ALL BRANCH NAMES
 # CREATE DICTIONARY OF SUB_ID/BRANCH_NAME KEY/VALUE PAIRS
 sp = subprocess.Popen(["git", "branch", "-l"], stdout=subprocess.PIPE, cwd=output_dir)
@@ -76,19 +63,14 @@ for branch in branches:
         sub_branch_names[branch_name[:-8]] = branch_name
 
 # save list of branch names
-#output_branches = sub_branch_names.values()
 # save list of subject names 
 output_subs = sub_branch_names.keys()
 
 # Get all bids dir subs and add them to the csv 
 sub_ids = []
-
-#if rerun == True:
-#    sub_ids = rerun_subs
-
 sub_paths = []
+
 for path in Path(bids_dir).glob("sub-*"):
-    #if not str(path).endswith(".html"):
     sub_id = get_sub_name(path)
     if rerun == True:
         if sub_id in rerun_subs: 
@@ -112,13 +94,6 @@ audit = pd.DataFrame(np.nan, index=range(0,len(sub_ids)), columns=columns, dtype
 audit["Path"] = sub_paths
 audit["SubjectID"] = sub_ids
 
-# check if output subject dir got generated
-#for path in Path(bids_dir).glob("sub-*/"):
-#    if Path(output_dir + "/" + audit.iloc[row]["SubjectID"]).exists():
-#        audit.at["HasOutput"] = "True"
-#    else:
-#        audit.at["HasOutput"] = "False"
-
 cntr = 0
 for row in range(len(audit)):
     cntr += 1
@@ -126,10 +101,8 @@ for row in range(len(audit)):
     # if it doesn't exist, then HasOutput = False!
     subject = audit.iloc[row]["SubjectID"]
     if subject in output_subs:
-        #audit.at[row, "HasOutput"] = "True"
-        #print(sub_branch_names[subject])
         # need to checkout to the subject specific branch! 
-        # subproces.call IS BLOCKING! NEED BLOCKING!
+        # subproces.call IS BLOCKING (necessary!)
         msg = subprocess.call(["git", "checkout", sub_branch_names[subject]], stdout=subprocess.PIPE, cwd=output_dir)
         print(cntr)
         if msg != 0:
@@ -141,10 +114,7 @@ for row in range(len(audit)):
             audit.at[row, "HasOutput"] = "True"
         else:
             audit.at[row, "HasOutput"] = "False"
-        #subprocess.run(["git", "checkout", sub_branch_names[subject]], cwd=output_dir)
-        #sp = subprocess.run(["git", "checkout", sub_branch_names[subject]], stdout=subprocess.PIPE, cwd=output_dir)
-        #out = sp.stdout.readlines()
-        #print(out)
+    
     # IN THE CASE OF NO BRANCH CREATED
     else:
         audit.at[row, "HasOutput"] = "False"
