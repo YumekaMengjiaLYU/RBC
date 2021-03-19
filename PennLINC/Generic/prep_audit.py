@@ -80,7 +80,13 @@ for path in Path(bids_dir).glob("sub-*"):
         sub_ids.append(sub_id)
         sub_paths.append(sub_path)
 if pipeline == "qsiprep":
-    columns = ["SubjectID", "HasOutput", "HasHTML", "NoErrorsToReport", "ProducedPreprocessedDWIs", "ProducedPreprocesedANATs", "RanT1wSpatialNormalization", "HasDwiDir", "HasFmapDir", "AllFmapsHaveIntendedFors", "NoMissingDwiPhaseEncodingDirection", "NoMissingFmapPhaseEncodingDirection", "ErrorDescription"]
+    columns = ["SubjectID", "HasOutput", "HasHTML", "NoErrorsToReport",
+            "ProducedPreprocessedDWIs", "ProducedPreprocesedANATs",
+            "RanT1wSpatialNormalization", "HasDwiDir", "HasFmapDir",
+            "AllFmapsHaveIntendedFors", "NoMissingDwiPhaseEncodingDirection",
+            "NoMissingFmapPhaseEncodingDirection", "RuntimeErrorDescription", 
+            "OSErrorDescription", "CommandErrorDescription", "HadScratchSpace",
+            "HadRAMSpace", "HadDiskSpace", "FinishedSuccessfully"]
 
 if pipeline == "fmriprep":
     columns = ["SubjectID", "HasOutput", "HasHTML", "NoErrorsToReport", "HasFuncDir",
@@ -122,24 +128,10 @@ for row in range(len(audit)):
         audit.at[row, "RanSurfBold"] = "False"
         audit.at[row, "RanVolBold"] = "False"
     
-    # NOT PIPELINE SPECIFIC
-    
-    # need to checkout to the subject specific branch! 
-    #subprocess.Popen(["git", "checkout", names[0]], cwd='/cbica/projects/RBC/PNC_fmriprep/fmriprep')
+    # NON PIPELINE SPECIFIC CHECKS
 
-    # check if output subject dir got generated
-    #if Path(output_dir + "/" + audit.iloc[row]["SubjectID"]).exists():
-    #    audit.at[row, "HasOutput"] = "True"
-    #else:
-    #    audit.at[row, "HasOutput"] = "False"
-    #    print(audit.iloc[row]["SubjectID"])
-        #continue 
-
-    # check if html file got generated
-    # CHANGE THIS LINE TO USE (IPYTHON TEST IF WORKS FIRST!)
-    # glob.glob('%s/*%s*.e*'%(output_dir,subject)),key=os.path.getmtime)[-1]
     html_filename = output_dir + "/" + subject + ".html"
-    #print(html_filename)
+
     if Path(html_filename).exists():
         audit.at[row, 'HasHTML'] = "True"
 
@@ -157,19 +149,13 @@ for row in range(len(audit)):
 
     # grab the last line of the error file
 
-    #e_files = []
-    #subject = audit.iloc[row]["SubjectID"]
-    
     if rerun == True: #and subject in rerun_subs: 
         #print(subject + " is a rerun")
         
         # CASE WHERE RERUN .e/.o in same dir as others
-        if subject == 'sub-1342487188':
-            jobID = '5425206'
-        else:
-            branch_name = sub_branch_names[subject]
-            jobID = branch_name.replace(subject + '-', '')
-            print("JOBID", jobID)
+        branch_name = sub_branch_names[subject]
+        jobID = branch_name.replace(subject + '-', '')
+        print("JOBID", jobID)
         try:
             e_file = sorted(glob.glob('%s/*%s*.e%s'%(rerun_error_dir,subject,jobID)),key=os.path.getmtime)[-1]
         except IndexError:
@@ -180,12 +166,9 @@ for row in range(len(audit)):
             e_file = sorted(glob.glob('%s/*%s*.e*'%(error_dir,subject)),key=os.path.getmtime)[-1]
         except IndexError:
             e_file = ''
-            #print("no .e file")
-    #print(e_file)
-    #e_files.append(e_file)
-    #print(e_file)    
-    # Assume none, overwrite if exists
-    print("E_FILE", e_file)
+  
+    # Assume none, overwrite if exists 
+
     if e_file != '':
         audit.at[row, "HasErrorFile"] = "True"
         audit.at[row, "RuntimeErrorDescription"] = "No Runtime Error"
@@ -224,20 +207,19 @@ for row in range(len(audit)):
         audit.at[row, "HadRAMSpace"] = ""
         audit.at[row, "FinishedSuccessfully"] = ""
                                                 
-    # THE REST IS PIPELINE DEPENDENT
+    # THE REST OF THE CHECKS ARE PIPELINE DEPENDENT
     
     if pipeline == "qsiprep":
 
         # check if bids_dir has dwi data
-        #if Path(bids_dir + "/" + audit.iloc[row]["SubjectID"] + "/" + get_ses_name(Path(audit.iloc[row]["Path"])) + "/dwi/").exists():
+        
         for ses_path in Path(bids_dir + "/" + audit.iloc[row]["SubjectID"]).glob("ses-*/"):
-            #print(ses_path)
+            
             if Path(str(ses_path) + "/dwi/").exists():
                 audit.at[row, 'HasDwiDir'] = "True"
 
                 # checking for missing PhaseEncodingDirection
 
-                #for filepath in Path(bids_dir + "/" + audit.iloc[row]["SubjectID"] + "/" + get_ses_name(Path(audit.iloc[row]["Path"])) + "/dwi/").rglob("*.json"):
                 for filepath in Path(str(ses_path)).rglob("dwi/*.json"):
                     #print(filepath)
                     IntendedForMissing = False
@@ -261,14 +243,12 @@ for row in range(len(audit)):
                 audit.at[row, "NoMissingDwiPhaseEncodingDirection"] = "False"
 
         # now want to check if fmap directories are present in the bids dir
-        # if Path(bids_dir + "/" + audit.iloc[row]["SubjectID"] + "/" + get_ses_name(Path(audit.iloc[row]["Path"])) + "/fmap/").exists():
         for ses_path in Path(bids_dir + "/" + audit.iloc[row]["SubjectID"]).glob("ses-*/"):
             #print(ses_path)
             if Path(str(ses_path) + "/fmap/").exists():
                 audit.at[row, "HasFmapDir"] = "True"
 
                 # checking if fmaps have intended fors
-                #for filepath in Path(bids_dir + "/" + audit.iloc[row]["SubjectID"] + "/" + get_ses_name(Path(audit.iloc[row]["Path"])) + "/fmap/").rglob("*.json"):
                 IntendedForMissing = False
                 MissingfPED = False
                 for filepath in Path(str(ses_path)).rglob("fmap/*.json"):
@@ -305,7 +285,6 @@ for row in range(len(audit)):
                 audit.at[row, "NoMissingPhaseEncodingDirection"] = "False"
 
         # check if qsiprep generated dwi
-        #if Path(audit.iloc[row]["Path"] + "/" + get_ses_name(Path(audit.iloc[row]["Path"])) + "/dwi/").exists():
         for ses_path in Path(audit.iloc[row]["Path"]).glob("ses-*/"):
             #print(ses_path)
             if Path(str(ses_path) + "/dwi/").exists():
@@ -330,10 +309,6 @@ for row in range(len(audit)):
             audit.at[row, "RanT1wSpatialNormalization"] = "False"
 
     if pipeline == "fmriprep":
-        # check if sub in bids_dir but not output_dir
-        #for ses_path in Path(bids_dir _ "/" + audit.iloc[row]["SubjectID"]):
-        #if Path(output_dir _ "/" + audit.iloc[row]["SubjectID"]).exists():
-            #audit.a
         
         # check for bold scans in bids dir and output dir
         for ses_path in Path(bids_dir + "/" + audit.iloc[row]["SubjectID"]).glob("ses-*/"):
@@ -388,11 +363,6 @@ audit = audit.drop(["Path"], axis=1)
 audit.to_csv(sys.argv[5])
 print("Saved audit csv")
 # audit.to_csv("/Users/scovitz/abcd/audit.csv")
-
-# chekcout back to master (commented out because this adds runtime and isn't necessary) 
-# BUT MAKE IT BLOCKING
-#msg = subprocess.call(["git", "checkout", "master"], stdout=subprocess.PIPE, cwd=output_dir)
-#subprocess.Popen(["git", "checkout", "master"], cwd=output_dir)
 
 # checkout to master 
 msg = subprocess.call(["git", "checkout", "master"], stdout=subprocess.PIPE, cwd=output_dir)
