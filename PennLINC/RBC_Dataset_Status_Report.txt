@@ -1,23 +1,27 @@
 RBC Dataset Status Report (DSR)
 
 CCNP
+Cubic Path: /cbica/projects/RBC/testing/colornest/bidsdatasets
+RIA Address:
 DSR: We undid the applied changes and re-applied them using new clustering/config, and saved those changes. We ran fmriprep on acq groups BEFORE we undid and re-applied changes using new clustering.
 Next Steps: We will push the new version back to PMACS, add README + Authors, and run the new version of the entire dataset through fmriprep.
 
 HRC
-DSR: HRC is now a datalad dataset located at ~/HRC/working/HRC_datalad. We applied changes, re-ran validation, and uploaded the new outputs to GitHub for Ted's approval.
-Next Steps: If Ted approves this summary csv, we can push to PMACS, run bond-copy-exemplars, and begin acq group testing.
-For Ted: Look over HRC_apply1_summary.csv and update us with your thoughts!
+Cubic Path: /cbica/projects/RBC/HRC/working/HRC_datalad
+DSR: We applied changes, and are re-running validation on the apply1 branch using new subject by subject validator.
+Next Steps: If validation comes out clean, save and then can push to PMACS, run bond-copy-exemplars, and begin acq group testing.
 
 PNC
-DSR: We ran group using the new config. Matt, Tinashe, and Sydney met and decided on tolerance adjustments, and we re-ran group. See PNC_config_summary.csv on GitHub for the result.
-Next Steps: Decide on bold scan tolerance values, checkout apply1 branch, and apply changes.
-For Ted: As can be seen in the summary csv, PNC bold scans have a lot of variance in the number of volumes. When creating PNC groupings, how much variance do we want to tolerante regarding the number of volumes in bold scans? Should this vary by task? Additionally, let us know your thoughts on the PNC summary csv otherwise!
+Cubic Path: /cbica/projects/RBC/RBC_RAWDATA/bidsdatasets/PNC
+DSR: Added missing Parallel Reduction Factor In Plane values to one T1w and one dwi scan, purge is running now on the two incomplete dwi scans and their counterpart runs.
+Next Steps: Save and re-validate post purge, checkout apply1 branch, and apply changes.
 
 HBN
-DSR: We are going to tackle HBN today. We have not touched HBN since identifying all bold and dwi scans with incomplete sampling schemes.
-Next Steps: Run validate and group, just to see where we are at before proceeding. Then bond-purge all incomplete scans, re-validate, re-group using new clustering/config, and apply changes.
+Cubic Path: /cbica/projects/RBC/RBC_RAWDATA/bidsdatasets/HBN
+DSR: Re-running validation using new subject by subject validator.
+Next Steps: Already checked out an includes-incompletes branch, so can run purge on the 16 bold scans with less than 3 mins of data and all dwi scans validator identifies as having volume count mismatch (will liikely be 16 dwi so 32 total). Add events tsvs (have peer, need movieDM and movieTP). Re-validate post purge, then add subject level events tsvs, then re-group using new clustering/config, adjust params, and apply changes.
 
 NKI
-DSR: We have not touched NKI in a while.
-Next Steps: bond-validate to see where we are at, check into datalad if we haven't already, and bond-group to see which config values we want to adjust.
+Cubic Path: /cbica/projects/RBC/RBC_RAWDATA/bidsdatasets/NKI
+DSR: Saved NKI, running validate and group now to see where we are at.
+Next Steps: Want to see which config values we want to adjust.
