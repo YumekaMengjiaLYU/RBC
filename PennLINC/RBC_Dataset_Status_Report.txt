@@ -29,7 +29,7 @@ HBN
 Cubic Path: /cbica/projects/RBC/RBC_RAWDATA/bidsdatasets/HBN
 Datalad Status: untracked changes (purged scans and 6 jsons Lei added)
 Git Branch: master
-DSR: urge + addition of jsons save running now. lei will add in T2s when save finishes. 
+DSR: urge + addition of jsons save running now. Lei (or me) will add in T2s when save finishes. CHECKOUT A NEW BRANCH CALLED no-T2s FIRST, then add to master!
 Next Steps: Post save, rerun validation and group. Then add events tsvs (have peer, need movieDM and movieTP). Decide on tolerances.
 Data Narrative: https://github.com/PennLINC/RBC/blob/master/PennLINC/HBN_BIDS_Fix/HBN_Data_Narrative.md
 
