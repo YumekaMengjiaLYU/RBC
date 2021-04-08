@@ -2,7 +2,7 @@ RBC Dataset Status Report (DSR)
 
 CCNP
 Cubic Path: /cbica/projects/RBC/testing/colornest/bidsdatasets
-Final CuBIDS Outputs: 
+Final CuBIDS Outputs: https://github.com/PennLINC/RBC/tree/master/PennLINC/CCNP_BIDS_Fix
 Datalad Status: saved, clean
 Git Branch: master
 DSR: Ran new validate on CCNP post apply and got 3 inconsistent subjects, which make sense. We ran fmriprep on acq groups BEFORE we undid and re-applied changes using new clustering.
