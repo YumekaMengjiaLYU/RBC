@@ -28,9 +28,9 @@ Data Narrative: /cbica/projects/RBC/PNC/working/curation_code/DataNarrative.md
 HBN
 ISSUE: 6 T1ws missing jsons, three from 1 subject
 Cubic Path: /cbica/projects/RBC/RBC_RAWDATA/bidsdatasets/HBN
-Datalad Status: untracked changes (purged scans)
+Datalad Status: untracked changes (purged scans and 6 jsons Lei added)
 Git Branch: master
-DSR: Purge ran on 32 scans, validate running now (should see no more VOLUME COUNT MISMATCH in validation and bold with less than 3 mins of data).
+DSR: Post purge + addition of jsons save running now. lei will add in T2s when save finishes. 
 Next Steps: Save! Then add events tsvs (have peer, need movieDM and movieTP). Decide on tolerances.
 Data Narrative: https://github.com/PennLINC/RBC/blob/master/PennLINC/HBN_BIDS_Fix/HBN_Data_Narrative.md
 
