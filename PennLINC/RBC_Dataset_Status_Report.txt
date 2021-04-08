@@ -20,9 +20,9 @@ Data Narrative: https://github.com/PennLINC/HRC/blob/main/working/curation_code/
 PNC
 Cubic Path: /cbica/projects/RBC/RBC_RAWDATA/bidsdatasets/PNC
 Datalad Status: saved
-Git Branch: master
-DSR: Validation passing! Post-purge groups in Ted's hands. 
-Next Steps: Get sign offs on csv, checkout to an apply1 branch, and apply changes.
+Git Branch: apply1
+DSR: Running apply now on apply1 branch!! 
+Next Steps: Get sign offs on csv and PUSH TO PMACS!
 Data Narrative: /cbica/projects/RBC/PNC/working/curation_code/DataNarrative.md
 
 HBN
