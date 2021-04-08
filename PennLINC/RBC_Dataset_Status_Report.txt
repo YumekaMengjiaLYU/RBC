@@ -2,7 +2,7 @@ RBC Dataset Status Report (DSR)
 
 CCNP
 Cubic Path: /cbica/projects/RBC/testing/colornest/bidsdatasets
-CuBIDS Outputs:
+Final CuBIDS Outputs: 
 Datalad Status: saved, clean
 Git Branch: master
 DSR: Ran new validate on CCNP post apply and got 3 inconsistent subjects, which make sense. We ran fmriprep on acq groups BEFORE we undid and re-applied changes using new clustering.
@@ -32,7 +32,7 @@ Datalad Status: untracked changes (purged scans)
 Git Branch: master
 DSR: Purge ran on 32 scans, validate running now (should see no more VOLUME COUNT MISMATCH in validation and bold with less than 3 mins of data).
 Next Steps: Save! Then add events tsvs (have peer, need movieDM and movieTP). Re-group using new clustering/config, adjust params, and apply changes.
-Data Narrative:
+Data Narrative: https://github.com/PennLINC/RBC/blob/master/PennLINC/HBN_BIDS_Fix/HBN_Data_Narrative.md
 
 NKI
 Datalad Status: untracked changes (deleted all physio .tsv.gz + .json files)
