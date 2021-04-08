@@ -21,8 +21,8 @@ PNC
 Cubic Path: /cbica/projects/RBC/RBC_RAWDATA/bidsdatasets/PNC
 Datalad Status: saved
 Git Branch: master
-DSR: Validation passing! Group running now with new config and VARIANTUnused.
-Next Steps: Get sign offs on csv, checkout an apply1 branch, and apply changes.
+DSR: Validation passing! Post-purge groups in Ted's hands. 
+Next Steps: Get sign offs on csv, checkout to an apply1 branch, and apply changes.
 Data Narrative: /cbica/projects/RBC/PNC/working/curation_code/DataNarrative.md
 
 HBN
