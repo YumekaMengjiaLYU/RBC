@@ -31,16 +31,15 @@ Cubic Path: /cbica/projects/RBC/RBC_RAWDATA/bidsdatasets/HBN
 Datalad Status: untracked changes (purged scans)
 Git Branch: master
 DSR: Purge ran on 32 scans, validate running now (should see no more VOLUME COUNT MISMATCH in validation and bold with less than 3 mins of data).
-Next Steps: Save! Then add events tsvs (have peer, need movieDM and movieTP). Re-group using new clustering/config, adjust params, and apply changes.
+Next Steps: Save! Then add events tsvs (have peer, need movieDM and movieTP). Decide on tolerances.
 Data Narrative: https://github.com/PennLINC/RBC/blob/master/PennLINC/HBN_BIDS_Fix/HBN_Data_Narrative.md
 
 NKI
 Datalad Status: untracked changes (deleted all physio .tsv.gz + .json files)
 Git Branch: main
 Cubic Path: /cbica/projects/RBC/RBC_RAWDATA/bidsdatasets/NKI
-DSR: Group + Validate running now on main. Saved Deletion all files except *_physio.tsv.gz and *_physio.json off physio branch. Saving deletion of all *_physio.* (ran find . -name 'sub-*physio.*' | xargs git rm) from main branch.
-Next Steps: Re-validate main branch. See which config values we want to adjust. Also might need to rerun group with new suggest_variant_rename = yes for all.
-
+DSR: Saved Deletion all files except *_physio.tsv.gz and *_physio.json off physio branch. Saving deletion of all *_physio.* (ran find . -name 'sub-*physio.*' | xargs git rm) from main branch. All validation issues due to physio files are gone (yay). Moved test files out of BIDS directory and re-ran validation. Now there should just be Suspiciously long event design warnigns left. 
+Next Steps: Do subject level tsvs! See which config values we want to adjust. 
 
 MISSING DATA
 
