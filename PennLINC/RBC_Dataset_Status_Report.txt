@@ -2,26 +2,65 @@ RBC Dataset Status Report (DSR)
 
 CCNP
 Cubic Path: /cbica/projects/RBC/testing/colornest/bidsdatasets
-RIA Address:
-DSR: We undid the applied changes and re-applied them using new clustering/config, and saved those changes. We ran fmriprep on acq groups BEFORE we undid and re-applied changes using new clustering.
-Next Steps: We will push the new version back to PMACS, add README + Authors, and run the new version of the entire dataset through fmriprep.
+CuBIDS Outputs:
+Datalad Status: saved, clean
+Git Branch: master
+DSR: Ran new validate on CCNP post apply and got 3 inconsistent subjects, which make sense. We ran fmriprep on acq groups BEFORE we undid and re-applied changes using new clustering.
+Next Steps: Push back to PMACS, add README + Authors, rerun exemplars.
 
 HRC
+ISSUE: Need 11 subjects not on GLOBUS, we had empty directories for them on cubic
 Cubic Path: /cbica/projects/RBC/HRC/working/HRC_datalad
-DSR: We applied changes, and are re-running validation on the apply1 branch using new subject by subject validator.
-Next Steps: If validation comes out clean, save and then can push to PMACS, run bond-copy-exemplars, and begin acq group testing.
+Datalad Status: saved, clean
+Git Branch: master
+DSR: Emailed Brazil Team list of 11 subjects missing data. Re-group and re-apply changes with HRC_suggest_all.yml
+Next Steps: Wait for Brazil OR save and push to PMACS, run bond-copy-exemplars, and begin acq group testing.
+Data Narrative: https://github.com/PennLINC/HRC/blob/main/working/curation_code/DataNarrative.md
 
 PNC
 Cubic Path: /cbica/projects/RBC/RBC_RAWDATA/bidsdatasets/PNC
-DSR: Added missing Parallel Reduction Factor In Plane values to one T1w and one dwi scan, purge is running now on the two incomplete dwi scans and their counterpart runs.
-Next Steps: Save and re-validate post purge, checkout apply1 branch, and apply changes.
+Datalad Status: saved
+Git Branch: master
+DSR: Validation passing! Group ran with dwi TR tolerance=1 (instead of 2)
+Next Steps: Get sign offs on csv, checkout an apply1 branch, and apply changes.
+Data Narrative: /cbica/projects/RBC/PNC/working/curation_code/DataNarrative.md
 
 HBN
+ISSUE: 6 T1ws missing jsons, three from 1 subject
 Cubic Path: /cbica/projects/RBC/RBC_RAWDATA/bidsdatasets/HBN
-DSR: Re-running validation using new subject by subject validator.
-Next Steps: Already checked out an includes-incompletes branch, so can run purge on the 16 bold scans with less than 3 mins of data and all dwi scans validator identifies as having volume count mismatch (will liikely be 16 dwi so 32 total). Add events tsvs (have peer, need movieDM and movieTP). Re-validate post purge, then add subject level events tsvs, then re-group using new clustering/config, adjust params, and apply changes.
+Datalad Status: untracked changes (purged scans)
+Git Branch: master
+DSR: Purge ran on 32 scans, validate running now (should see no more VOLUME COUNT MISMATCH in validation and bold with less than 3 mins of data).
+Next Steps: Save! Then add events tsvs (have peer, need movieDM and movieTP). Re-group using new clustering/config, adjust params, and apply changes.
+Data Narrative:
 
 NKI
+Datalad Status: untracked changes (deleted all physio .tsv.gz + .json files)
+Git Branch: main
 Cubic Path: /cbica/projects/RBC/RBC_RAWDATA/bidsdatasets/NKI
-DSR: Saved NKI, running validate and group now to see where we are at.
-Next Steps: Want to see which config values we want to adjust.
+DSR: Group + Validate running now on main. Saved Deletion all files except *_physio.tsv.gz and *_physio.json off physio branch. Saving deletion of all *_physio.* (ran find . -name 'sub-*physio.*' | xargs git rm) from main branch.
+Next Steps: Re-validate main branch. See which config values we want to adjust. Also might need to rerun group with new suggest_variant_rename = yes for all.
+
+
+MISSING DATA
+
+HBN T1ws Missing Jsons (6 scans)
+/cbica/projects/RBC/RBC_RAWDATA/bidsdatasets/HBN/sub-NDARNY023FWG/ses-HBNsiteRU/anat/sub-NDARNY023FWG_ses-HBNsiteRU_acq-HCP_T1w.nii.gz
+/cbica/projects/RBC/RBC_RAWDATA/bidsdatasets/HBN/sub-NDARAP912JK3/ses-HBNsiteCBIC/anat/sub-NDARAP912JK3_ses-HBNsiteCBIC_acq-VNavNorm_T1w.nii.gz
+/cbica/projects/RBC/RBC_RAWDATA/bidsdatasets/HBN/sub-NDARAE877NER/ses-HBNsiteCBIC/anat/sub-NDARAE877NER_ses-HBNsiteCBIC_acq-VNavNorm_run-01_T1w.nii.gz
+/cbica/projects/RBC/RBC_RAWDATA/bidsdatasets/HBN/sub-NDARNY419GR2/ses-HBNsiteCBIC/anat/sub-NDARNY419GR2_ses-HBNsiteCBIC_acq-HCP_run-01_T1w.nii.gz
+/cbica/projects/RBC/RBC_RAWDATA/bidsdatasets/HBN/sub-NDARNY419GR2/ses-HBNsiteCBIC/anat/sub-NDARNY419GR2_ses-HBNsiteCBIC_acq-VNavNorm_run-01_T1w.nii.gz
+/cbica/projects/RBC/RBC_RAWDATA/bidsdatasets/HBN/sub-NDARNY419GR2/ses-HBNsiteCBIC/anat/sub-NDARNY419GR2_ses-HBNsiteCBIC_acq-VNavNorm_run-02_T1w.nii.gz
+
+HRC Subjects Missing All Data (11 subjects)
+sub-20425
+sub-20010
+sub-20879
+sub-20866
+sub-20384
+sub-20174
+sub-20829
+sub-10640
+sub-11276
+sub-20636
+sub-20632
