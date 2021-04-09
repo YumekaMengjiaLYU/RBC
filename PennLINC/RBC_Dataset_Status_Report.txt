@@ -19,17 +19,17 @@ Data Narrative: https://github.com/PennLINC/HRC/blob/main/working/curation_code/
 
 PNC
 Cubic Path: /cbica/projects/RBC/RBC_RAWDATA/bidsdatasets/PNC
-Datalad Status: saved
+Datalad Status: untracked (applied changes)
 Git Branch: apply1
-DSR: Apply running now on apply1 branch!! 
+DSR: Apply1 ran, validation post apply running now. Apply running now on apply1 branch!! 
 Next Steps: Get sign offs on csv and PUSH TO PMACS!
 Data Narrative: /cbica/projects/RBC/PNC/working/curation_code/DataNarrative.md
 
 HBN
 Cubic Path: /cbica/projects/RBC/RBC_RAWDATA/bidsdatasets/HBN
-Datalad Status: untracked (T2s)
+Datalad Status: untracked (T2s and added nifti info)
 Git Branch: master
-DSR: Realized needed to run add-nifti-info post Lei adding T2s and 6 missing T1w jsons, so doing that now. Will validate and regroup after. Validate and group came out clean (post Lei adding T2s), Lei added T2s, status, group, and validate running now. Save finished. Checked out new apply1 branch, Lei merging T2s in on main branch now. Purge + addition of jsons save running now. Lei (or me) will add in T2s when save finishes. CHECKOUT A NEW BRANCH CALLED no-T2s FIRST, then add to master!
+DSR: Group ran post adding nift info and validation running now. Realized needed to run add-nifti-info post Lei adding T2s and 6 missing T1w jsons, so doing that now. Will validate and regroup after. Validate and group came out clean (post Lei adding T2s), Lei added T2s, status, group, and validate running now. Save finished. Checked out new apply1 branch, Lei merging T2s in on main branch now. Purge + addition of jsons save running now. Lei (or me) will add in T2s when save finishes. CHECKOUT A NEW BRANCH CALLED no-T2s FIRST, then add to master!
 Next Steps: Post save, rerun validation and group. Then add events tsvs (have peer, need movieDM and movieTP). Decide on tolerances.
 Data Narrative: https://github.com/PennLINC/RBC/blob/master/PennLINC/HBN_BIDS_Fix/HBN_Data_Narrative.md
 
