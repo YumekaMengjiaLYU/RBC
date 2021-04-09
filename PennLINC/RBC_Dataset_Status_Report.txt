@@ -29,7 +29,7 @@ HBN
 Cubic Path: /cbica/projects/RBC/RBC_RAWDATA/bidsdatasets/HBN
 Datalad Status: untracked (T2s)
 Git Branch: master
-DSR: Lei added T2s, status, group, and validate running now. Save finished. Checked out new apply1 branch, Lei merging T2s in on main branch now. Purge + addition of jsons save running now. Lei (or me) will add in T2s when save finishes. CHECKOUT A NEW BRANCH CALLED no-T2s FIRST, then add to master!
+DSR: Validate and group came out clean (post Lei adding T2s), Lei added T2s, status, group, and validate running now. Save finished. Checked out new apply1 branch, Lei merging T2s in on main branch now. Purge + addition of jsons save running now. Lei (or me) will add in T2s when save finishes. CHECKOUT A NEW BRANCH CALLED no-T2s FIRST, then add to master!
 Next Steps: Post save, rerun validation and group. Then add events tsvs (have peer, need movieDM and movieTP). Decide on tolerances.
 Data Narrative: https://github.com/PennLINC/RBC/blob/master/PennLINC/HBN_BIDS_Fix/HBN_Data_Narrative.md
 
