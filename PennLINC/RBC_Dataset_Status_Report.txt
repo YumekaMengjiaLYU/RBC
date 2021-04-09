@@ -20,16 +20,16 @@ Data Narrative: https://github.com/PennLINC/HRC/blob/main/working/curation_code/
 PNC
 Cubic Path: /cbica/projects/RBC/RBC_RAWDATA/bidsdatasets/PNC
 Datalad Status: saved
-Git Branch: master
-DSR: Validation passing! Post-purge groups in Ted's hands. 
-Next Steps: Get sign offs on csv, checkout to an apply1 branch, and apply changes.
+Git Branch: apply1
+DSR: Apply running now on apply1 branch!! 
+Next Steps: Get sign offs on csv and PUSH TO PMACS!
 Data Narrative: /cbica/projects/RBC/PNC/working/curation_code/DataNarrative.md
 
 HBN
 Cubic Path: /cbica/projects/RBC/RBC_RAWDATA/bidsdatasets/HBN
-Datalad Status: untracked changes (purged scans and 6 jsons Lei added)
+Datalad Status: untracked (T2s)
 Git Branch: master
-DSR: urge + addition of jsons save running now. lei will add in T2s when save finishes. 
+DSR: Validate and group came out clean (post Lei adding T2s), Lei added T2s, status, group, and validate running now. Save finished. Checked out new apply1 branch, Lei merging T2s in on main branch now. Purge + addition of jsons save running now. Lei (or me) will add in T2s when save finishes. CHECKOUT A NEW BRANCH CALLED no-T2s FIRST, then add to master!
 Next Steps: Post save, rerun validation and group. Then add events tsvs (have peer, need movieDM and movieTP). Decide on tolerances.
 Data Narrative: https://github.com/PennLINC/RBC/blob/master/PennLINC/HBN_BIDS_Fix/HBN_Data_Narrative.md
 
@@ -37,7 +37,7 @@ NKI
 Datalad Status: untracked changes (deleted all physio .tsv.gz + .json files)
 Git Branch: main
 Cubic Path: /cbica/projects/RBC/RBC_RAWDATA/bidsdatasets/NKI
-DSR: Validate running now post getting rid of checkpoints and test files. Saved Deletion all files except *_physio.tsv.gz and *_physio.json off physio branch. Saving deletion of all *_physio.* (ran find . -name 'sub-*physio.*' | xargs git rm) from main branch. All validation issues due to physio files are gone (yay). Moved test files out of BIDS directory and re-ran validation. Now there should just be Suspiciously long event design warnigns left. 
+DSR: Validate finished successfully. Now need to talk groupings and events tsvs! Validate running now post getting rid of checkpoints and test files. Saved Deletion all files except *_physio.tsv.gz and *_physio.json off physio branch. Saving deletion of all *_physio.* (ran find . -name 'sub-*physio.*' | xargs git rm) from main branch. All validation issues due to physio files are gone (yay). Moved test files out of BIDS directory and re-ran validation. Now there should just be Suspiciously long event design warnigns left. 
 Next Steps: Truncate existing subject level tsvs! See which config values we want to adjust. 
 
 MISSING DATA
