@@ -20,9 +20,9 @@ Data Narrative: https://github.com/PennLINC/HRC/blob/main/working/curation_code/
 
 PNC GONG
 Cubic Path: /cbica/projects/RBC/RBC_RAWDATA/bidsdatasets/PNC
-Datalad Status: saved apply1
+Datalad Status: saved? (status came out clean post merge)
 Git Branch: master
-DSR: GONGED VERSION saved on apply1 branch! Saved apply1 changes, and validation came out clean.
+DSR: Merged apply1 into main. Running group/validate post merge now. GONGED VERSION saved on apply1 branch! Saved apply1 changes, and validation came out clean.
 Next Steps: Merge apply1 into main branch and PUSH TO PMACS!
 Data Narrative: /cbica/projects/RBC/PNC/working/curation_code/DataNarrative.md
 
