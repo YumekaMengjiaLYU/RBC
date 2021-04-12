@@ -269,7 +269,9 @@ Working off the copy of HBN at ~/RBC_RAWDATA/bidsdatasets/HBN, we checked out an
 /cbica/projects/RBC/RBC_RAWDATA/bidsdatasets/HBN/sub-NDARZH930XTP/ses-HBNsiteCBIC/func/sub-NDARZH930XTP_ses-HBNsiteCBIC_task-movieDM_bold.nii.gz
 /cbica/projects/RBC/RBC_RAWDATA/bidsdatasets/HBN/sub-NDARET949LMU/ses-HBNsiteSI/func/sub-NDARET949LMU_ses-HBNsiteSI_task-rest_bold.nii.gz
 
-We checked out a branch called no-T2s. Then, Lei then merged the defaced, non skull-stripped T2w scans he had stored in a separate directory on cubic into the main branch and uploaded the 6 T1w sidecars we identified as missing. The CMI team used the following script to deface the T2s: .  We then ran add-nifti-info to add nifti information from the sidecars Lei added (all T2ws and 6 T1ws). 
+We checked out a branch called no-T2s. Then, Lei then merged the defaced, non skull-stripped T2w scans he had stored in a separate directory on cubic into the main branch and uploaded the 6 T1w sidecars we identified as missing. The CMI team used the following script to deface the T2s: https://github.com/PennLINC/RBC/blob/master/PennLINC/HBN_BIDS_Fix/deface_other_image.sh  
+
+We then ran add-nifti-info to add nifti information from the sidecars Lei added (all T2ws and 6 T1ws). 
 
 HBN T1ws that were Missing Jsons (6 scans)
 /cbica/projects/RBC/RBC_RAWDATA/bidsdatasets/HBN/sub-NDARNY023FWG/ses-HBNsiteRU/anat/sub-NDARNY023FWG_ses-HBNsiteRU_acq-HCP_T1w.nii.gz
