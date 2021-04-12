@@ -7,7 +7,7 @@ Datalad Status: saved, clean
 Git Branch: master
 DSR: Pushed back to PMACS. Ran new validate on CCNP post apply and got 3 inconsistent subjects, which make sense. We ran fmriprep on acq groups BEFORE we undid and re-applied changes using new clustering.
 Next Steps: Add back README + Authors and rerun exemplars.
-RIA Store: ~/project/RBC/RIA/BIDS
+RIA Store: /project/RBC/RIA/BIDS (on PMACS)
 
 HRC
 ISSUE: Need 11 subjects not on GLOBUS, we had empty directories for them on cubic
