@@ -41,6 +41,10 @@ Cubic Path: /cbica/projects/RBC/RBC_RAWDATA/bidsdatasets/NKI
 DSR: Decide on config params and truncate subject level events tsvs. 
 Next Steps: Re-validate and re-group after truncating subject level events tsvs. 
 
+
+HBN ISSUES
+- SiteSI T1ws have no acqusition in their filenames but T1s for all other sites do! 
+
 MISSING DATA
 
 HRC Subjects Missing All Data (11 subjects)
