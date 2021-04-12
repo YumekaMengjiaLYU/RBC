@@ -271,4 +271,14 @@ Working off the copy of HBN at ~/RBC_RAWDATA/bidsdatasets/HBN, we checked out an
 
 We checked out a branch called no-T2s. Then, Lei then merged the defaced, non skull-stripped T2w scans he had stored in a separate directory on cubic into the main branch and uploaded the 6 T1w sidecars we identified as missing. We then ran add-nifti-info to add nifti information from the sidecars Lei added (all T2ws and 6 T1ws). 
 
-We identified 7 anat/ scans (2 T2ws and 5 T1ws) with a very low Dimension 1 Size (between 20 and 32 voxels). We decided to purge these scans. 
+HBN T1ws that were Missing Jsons (6 scans)
+/cbica/projects/RBC/RBC_RAWDATA/bidsdatasets/HBN/sub-NDARNY023FWG/ses-HBNsiteRU/anat/sub-NDARNY023FWG_ses-HBNsiteRU_acq-HCP_T1w.nii.gz
+/cbica/projects/RBC/RBC_RAWDATA/bidsdatasets/HBN/sub-NDARAP912JK3/ses-HBNsiteCBIC/anat/sub-NDARAP912JK3_ses-HBNsiteCBIC_acq-VNavNorm_T1w.nii.gz
+/cbica/projects/RBC/RBC_RAWDATA/bidsdatasets/HBN/sub-NDARAE877NER/ses-HBNsiteCBIC/anat/sub-NDARAE877NER_ses-HBNsiteCBIC_acq-VNavNorm_run-01_T1w.nii.gz
+/cbica/projects/RBC/RBC_RAWDATA/bidsdatasets/HBN/sub-NDARNY419GR2/ses-HBNsiteCBIC/anat/sub-NDARNY419GR2_ses-HBNsiteCBIC_acq-HCP_run-01_T1w.nii.gz
+/cbica/projects/RBC/RBC_RAWDATA/bidsdatasets/HBN/sub-NDARNY419GR2/ses-HBNsiteCBIC/anat/sub-NDARNY419GR2_ses-HBNsiteCBIC_acq-VNavNorm_run-01_T1w.nii.gz
+/cbica/projects/RBC/RBC_RAWDATA/bidsdatasets/HBN/sub-NDARNY419GR2/ses-HBNsiteCBIC/anat/sub-NDARNY419GR2_ses-HBNsiteCBIC_acq-VNavNorm_run-02_T1w.nii.gz
+
+Next, we identified 7 anat/ scans (2 T2ws and 5 T1ws) with a very low Dimension 1 Size (between 20 and 32 voxels). We decided to purge these scans. 
+
+We also noticed that 137 subjects still had multiple runs of T1ws.
