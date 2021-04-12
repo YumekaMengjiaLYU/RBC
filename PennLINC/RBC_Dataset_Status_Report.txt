@@ -1,12 +1,13 @@
 RBC Dataset Status Report (DSR)
 
-CCNP GONG 
+CCNP (GONG)
 Cubic Path: /cbica/projects/RBC/testing/colornest/bidsdatasets
 Final CuBIDS Outputs: https://github.com/PennLINC/RBC/tree/master/PennLINC/CCNP_BIDS_Fix
 Datalad Status: saved, clean
 Git Branch: master
-DSR: Ran new validate on CCNP post apply and got 3 inconsistent subjects, which make sense. We ran fmriprep on acq groups BEFORE we undid and re-applied changes using new clustering.
-Next Steps: Push back to PMACS, add README + Authors, rerun exemplars.
+DSR: Pushed back to PMACS. Ran new validate on CCNP post apply and got 3 inconsistent subjects, which make sense. We ran fmriprep on acq groups BEFORE we undid and re-applied changes using new clustering.
+Next Steps: Add back README + Authors and rerun exemplars.
+RIA Store: ~/project/RBC/RIA/BIDS
 
 HRC
 ISSUE: Need 11 subjects not on GLOBUS, we had empty directories for them on cubic
@@ -17,38 +18,30 @@ DSR: Emailed HRC Team list of 11 subjects missing data. Re-group and re-apply ch
 Next Steps: Wait for Brazil OR save and push to PMACS, run bond-copy-exemplars, and begin acq group testing.
 Data Narrative: https://github.com/PennLINC/HRC/blob/main/working/curation_code/DataNarrative.md
 
-PNC GONG 
+PNC GONG
 Cubic Path: /cbica/projects/RBC/RBC_RAWDATA/bidsdatasets/PNC
-Datalad Status: untracked (applied changes)
-Git Branch: apply1
-DSR: SAVING GONG! Saving now. Apply1 ran, validation post apply running now. Apply running now on apply1 branch!! 
-Next Steps: Get sign offs on csv and PUSH TO PMACS!
+Datalad Status: saved apply1
+Git Branch: master
+DSR: GONGED VERSION saved on apply1 branch! Saved apply1 changes, and validation came out clean.
+Next Steps: Merge apply1 into main branch and PUSH TO PMACS!
 Data Narrative: /cbica/projects/RBC/PNC/working/curation_code/DataNarrative.md
 
 HBN
 Cubic Path: /cbica/projects/RBC/RBC_RAWDATA/bidsdatasets/HBN
-Datalad Status: untracked (T2s and added nifti info)
+Datalad Status: saved
 Git Branch: master
-DSR: Lei says to keep the multiple T1w runs, can we purge the 7 super low T1w/T2 scans? Group ran post adding nift info and validation running now. Realized needed to run add-nifti-info post Lei adding T2s and 6 missing T1w jsons, so doing that now. Will validate and regroup after. Validate and group came out clean (post Lei adding T2s), Lei added T2s, status, group, and validate running now. Save finished. Checked out new apply1 branch, Lei merging T2s in on main branch now. Purge + addition of jsons save running now. Lei (or me) will add in T2s when save finishes. CHECKOUT A NEW BRANCH CALLED no-T2s FIRST, then add to master!
-Next Steps: Post save, rerun validation and group. Then add events tsvs (have peer, need movieDM and movieTP). Decide on tolerances.
+DSR: Find Lei's defacing code! Purge 7 scans with super low Dim1Size. Identify and keep best run of the 137 subjects with multiple runs of T1w scans.
+Next Steps: Re-validate and re-group. Add events tsvs (have peer, need movieDM and movieTP). Decide on tolerances.
 Data Narrative: https://github.com/PennLINC/RBC/blob/master/PennLINC/HBN_BIDS_Fix/HBN_Data_Narrative.md
 
 NKI
 Datalad Status: untracked changes (deleted all physio .tsv.gz + .json files)
 Git Branch: main
 Cubic Path: /cbica/projects/RBC/RBC_RAWDATA/bidsdatasets/NKI
-DSR: Validate finished successfully. Now need to talk groupings and events tsvs! Validate running now post getting rid of checkpoints and test files. Saved Deletion all files except *_physio.tsv.gz and *_physio.json off physio branch. Saving deletion of all *_physio.* (ran find . -name 'sub-*physio.*' | xargs git rm) from main branch. All validation issues due to physio files are gone (yay). Moved test files out of BIDS directory and re-ran validation. Now there should just be Suspiciously long event design warnigns left. 
-Next Steps: Truncate existing subject level tsvs! See which config values we want to adjust. 
+DSR: Decide on config params and truncate subject level events tsvs. 
+Next Steps: Re-validate and re-group after truncating subject level events tsvs. 
 
 MISSING DATA
-
-HBN T1ws Missing Jsons (6 scans)
-/cbica/projects/RBC/RBC_RAWDATA/bidsdatasets/HBN/sub-NDARNY023FWG/ses-HBNsiteRU/anat/sub-NDARNY023FWG_ses-HBNsiteRU_acq-HCP_T1w.nii.gz
-/cbica/projects/RBC/RBC_RAWDATA/bidsdatasets/HBN/sub-NDARAP912JK3/ses-HBNsiteCBIC/anat/sub-NDARAP912JK3_ses-HBNsiteCBIC_acq-VNavNorm_T1w.nii.gz
-/cbica/projects/RBC/RBC_RAWDATA/bidsdatasets/HBN/sub-NDARAE877NER/ses-HBNsiteCBIC/anat/sub-NDARAE877NER_ses-HBNsiteCBIC_acq-VNavNorm_run-01_T1w.nii.gz
-/cbica/projects/RBC/RBC_RAWDATA/bidsdatasets/HBN/sub-NDARNY419GR2/ses-HBNsiteCBIC/anat/sub-NDARNY419GR2_ses-HBNsiteCBIC_acq-HCP_run-01_T1w.nii.gz
-/cbica/projects/RBC/RBC_RAWDATA/bidsdatasets/HBN/sub-NDARNY419GR2/ses-HBNsiteCBIC/anat/sub-NDARNY419GR2_ses-HBNsiteCBIC_acq-VNavNorm_run-01_T1w.nii.gz
-/cbica/projects/RBC/RBC_RAWDATA/bidsdatasets/HBN/sub-NDARNY419GR2/ses-HBNsiteCBIC/anat/sub-NDARNY419GR2_ses-HBNsiteCBIC_acq-VNavNorm_run-02_T1w.nii.gz
 
 HRC Subjects Missing All Data (11 subjects)
 sub-20425
