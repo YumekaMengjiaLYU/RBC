@@ -30,7 +30,7 @@ HBN
 Cubic Path: /cbica/projects/RBC/RBC_RAWDATA/bidsdatasets/HBN
 Datalad Status: saved
 Git Branch: master
-DSR: Currently running purge on the 9 unusable T1s/T2s with super low Dim1Size (20-32 voxels). Check in Imaging Properties of sidecars if moco (motion corrected), compare sidecars for mult. runs, if same, choose which is better (Mike's call, ask in rbc-collab which should keep) (do digging ourselves then propose plan to CMI, ping Ted to text Mike if they don't respond). Check if parameter groups are the same for run1/run2. Post the list of subjects with multiple T1 runs to collab channel. Find Lei's defacing code for T2s (if possible). Purge 7 scans with super low Dim1Size. Identify and keep best run of the 137 subjects with multiple runs of T1w scans.
+DSR: Post T1T2 group/validate currently running. Purge ran on the 9 unusable T1s/T2s with super low Dim1Size (20-32 voxels). Check in Imaging Properties of sidecars if moco (motion corrected), compare sidecars for mult. runs, if same, choose which is better (Mike's call, ask in rbc-collab which should keep) (do digging ourselves then propose plan to CMI, ping Ted to text Mike if they don't respond). Check if parameter groups are the same for run1/run2. Post the list of subjects with multiple T1 runs to collab channel. Find Lei's defacing code for T2s (if possible). Purge 7 scans with super low Dim1Size. Identify and keep best run of the 137 subjects with multiple runs of T1w scans.
 Next Steps: Re-validate and re-group. Add events tsvs (have peer, need movieDM and movieTP). Decide on tolerances.
 Data Narrative: https://github.com/PennLINC/RBC/blob/master/PennLINC/HBN_BIDS_Fix/HBN_Data_Narrative.md
 
