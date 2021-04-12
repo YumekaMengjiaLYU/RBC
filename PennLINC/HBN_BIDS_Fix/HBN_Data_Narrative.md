@@ -230,3 +230,45 @@ In initial iterations, these scans were deleted using an independent deletion sc
 
 The final iteration available is a functional script, however, the informatics team decided it would be best to include a purge function into `CuBIDS` in order simplify and standardize the curation process.
 The deletion for these scans was completed using the `CuBIDS-purge` function.
+
+SYDNEY 
+Working off the copy of HBN at ~/RBC_RAWDATA/bidsdatasets/HBN, we checked out an includes-incompletes branch and then purged 16 dwi scans that were receiving a VOLUME_COUNT_MISMATCH warning during validation along with 16 bold scans with less than 3 mins of data from the main branch. See below for the list. 
+
+/cbica/projects/RBC/RBC_RAWDATA/bidsdatasets/HBN/sub-NDARWE130JMG/ses-HBNsiteRU/dwi/sub-NDARWE130JMG_ses-HBNsiteRU_acq-64dir_dwi.nii.gz
+/cbica/projects/RBC/RBC_RAWDATA/bidsdatasets/HBN/sub-NDARVP285RXV/ses-HBNsiteRU/dwi/sub-NDARVP285RXV_ses-HBNsiteRU_acq-64dir_dwi.nii.gz
+/cbica/projects/RBC/RBC_RAWDATA/bidsdatasets/HBN/sub-NDARBR128UFP/ses-HBNsiteCBIC/dwi/sub-NDARBR128UFP_ses-HBNsiteCBIC_acq-64dir_dwi.nii.gz
+/cbica/projects/RBC/RBC_RAWDATA/bidsdatasets/HBN/sub-NDARGK253TTG/ses-HBNsiteRU/dwi/sub-NDARGK253TTG_ses-HBNsiteRU_acq-64dir_dwi.nii.gz
+/cbica/projects/RBC/RBC_RAWDATA/bidsdatasets/HBN/sub-NDARLY872ZXA/ses-HBNsiteRU/dwi/sub-NDARLY872ZXA_ses-HBNsiteRU_acq-64dir_dwi.nii.gz
+/cbica/projects/RBC/RBC_RAWDATA/bidsdatasets/HBN/sub-NDARFG568PXZ/ses-HBNsiteRU/dwi/sub-NDARFG568PXZ_ses-HBNsiteRU_acq-64dir_dwi.nii.gz
+/cbica/projects/RBC/RBC_RAWDATA/bidsdatasets/HBN/sub-NDARZW662UK6/ses-HBNsiteRU/dwi/sub-NDARZW662UK6_ses-HBNsiteRU_acq-64dir_dwi.nii.gz
+/cbica/projects/RBC/RBC_RAWDATA/bidsdatasets/HBN/sub-NDARRU499DP2/ses-HBNsiteRU/dwi/sub-NDARRU499DP2_ses-HBNsiteRU_acq-64dir_dwi.nii.gz
+/cbica/projects/RBC/RBC_RAWDATA/bidsdatasets/HBN/sub-NDAREC078VFT/ses-HBNsiteRU/dwi/sub-NDAREC078VFT_ses-HBNsiteRU_acq-64dir_dwi.nii.gz
+/cbica/projects/RBC/RBC_RAWDATA/bidsdatasets/HBN/sub-NDARRK038CBD/ses-HBNsiteCBIC/dwi/sub-NDARRK038CBD_ses-HBNsiteCBIC_acq-64dir_dwi.nii.gz
+/cbica/projects/RBC/RBC_RAWDATA/bidsdatasets/HBN/sub-NDARWK051GG4/ses-HBNsiteRU/dwi/sub-NDARWK051GG4_ses-HBNsiteRU_acq-64dir_dwi.nii.gz
+/cbica/projects/RBC/RBC_RAWDATA/bidsdatasets/HBN/sub-NDARLB671TLU/ses-HBNsiteRU/dwi/sub-NDARLB671TLU_ses-HBNsiteRU_acq-64dir_dwi.nii.gz
+/cbica/projects/RBC/RBC_RAWDATA/bidsdatasets/HBN/sub-NDARJZ167VEZ/ses-HBNsiteCBIC/dwi/sub-NDARJZ167VEZ_ses-HBNsiteCBIC_acq-64dir_dwi.nii.gz
+/cbica/projects/RBC/RBC_RAWDATA/bidsdatasets/HBN/sub-NDARYF272EDC/ses-HBNsiteCBIC/dwi/sub-NDARYF272EDC_ses-HBNsiteCBIC_acq-64dir_dwi.nii.gz
+/cbica/projects/RBC/RBC_RAWDATA/bidsdatasets/HBN/sub-NDARYZ906UHJ/ses-HBNsiteRU/dwi/sub-NDARYZ906UHJ_ses-HBNsiteRU_acq-64dir_dwi.nii.gz
+/cbica/projects/RBC/RBC_RAWDATA/bidsdatasets/HBN/sub-NDARBM490LK7/ses-HBNsiteRU/dwi/sub-NDARBM490LK7_ses-HBNsiteRU_acq-64dir_dwi.nii.gz
+
+
+/cbica/projects/RBC/RBC_RAWDATA/bidsdatasets/HBN/sub-NDAREG930XPP/ses-HBNsiteCBIC/func/sub-NDAREG930XPP_ses-HBNsiteCBIC_task-movieTP_bold.nii.gz
+/cbica/projects/RBC/RBC_RAWDATA/bidsdatasets/HBN/sub-NDARRA719CPH/ses-HBNsiteCBIC/func/sub-NDARRA719CPH_ses-HBNsiteCBIC_task-movieTP_bold.nii.gz
+/cbica/projects/RBC/RBC_RAWDATA/bidsdatasets/HBN/sub-NDARZH930XTP/ses-HBNsiteCBIC/func/sub-NDARZH930XTP_ses-HBNsiteCBIC_task-movieTP_bold.nii.gz
+/cbica/projects/RBC/RBC_RAWDATA/bidsdatasets/HBN/sub-NDARCH868WVX/ses-HBNsiteRU/func/sub-NDARCH868WVX_ses-HBNsiteRU_task-rest_run-1_bold.nii.gz
+/cbica/projects/RBC/RBC_RAWDATA/bidsdatasets/HBN/sub-NDARKA946MJ1/ses-HBNsiteRU/func/sub-NDARKA946MJ1_ses-HBNsiteRU_task-rest_run-1_bold.nii.gz
+/cbica/projects/RBC/RBC_RAWDATA/bidsdatasets/HBN/sub-NDARRM725BRV/ses-HBNsiteCUNY/func/sub-NDARRM725BRV_ses-HBNsiteCUNY_task-rest_run-1_bold.nii.gz
+/cbica/projects/RBC/RBC_RAWDATA/bidsdatasets/HBN/sub-NDARTB003FDD/ses-HBNsiteCUNY/func/sub-NDARTB003FDD_ses-HBNsiteCUNY_task-rest_run-1_bold.nii.gz
+/cbica/projects/RBC/RBC_RAWDATA/bidsdatasets/HBN/sub-NDARXB286YBR/ses-HBNsiteRU/func/sub-NDARXB286YBR_ses-HBNsiteRU_task-rest_run-1_bold.nii.gz
+/cbica/projects/RBC/RBC_RAWDATA/bidsdatasets/HBN/sub-NDARVB538ZGJ/ses-HBNsiteRU/func/sub-NDARVB538ZGJ_ses-HBNsiteRU_task-movieDM_bold.nii.gz
+/cbica/projects/RBC/RBC_RAWDATA/bidsdatasets/HBN/sub-NDARYL443NG6/ses-HBNsiteCUNY/func/sub-NDARYL443NG6_ses-HBNsiteCUNY_task-movieDM_bold.nii.gz
+/cbica/projects/RBC/RBC_RAWDATA/bidsdatasets/HBN/sub-NDARNF994TPA/ses-HBNsiteRU/func/sub-NDARNF994TPA_ses-HBNsiteRU_task-movieDM_bold.nii.gz
+/cbica/projects/RBC/RBC_RAWDATA/bidsdatasets/HBN/sub-NDARJJ413MNH/ses-HBNsiteRU/func/sub-NDARJJ413MNH_ses-HBNsiteRU_task-movieDM_bold.nii.gz
+/cbica/projects/RBC/RBC_RAWDATA/bidsdatasets/HBN/sub-NDARGJ627BL2/ses-HBNsiteRU/func/sub-NDARGJ627BL2_ses-HBNsiteRU_task-movieDM_bold.nii.gz
+/cbica/projects/RBC/RBC_RAWDATA/bidsdatasets/HBN/sub-NDARET332CTB/ses-HBNsiteRU/func/sub-NDARET332CTB_ses-HBNsiteRU_task-movieDM_bold.nii.gz
+/cbica/projects/RBC/RBC_RAWDATA/bidsdatasets/HBN/sub-NDARZH930XTP/ses-HBNsiteCBIC/func/sub-NDARZH930XTP_ses-HBNsiteCBIC_task-movieDM_bold.nii.gz
+/cbica/projects/RBC/RBC_RAWDATA/bidsdatasets/HBN/sub-NDARET949LMU/ses-HBNsiteSI/func/sub-NDARET949LMU_ses-HBNsiteSI_task-rest_bold.nii.gz
+
+We checked out a branch called no-T2s. Then, Lei then merged the defaced, non skull-stripped T2w scans he had stored in a separate directory on cubic into the main branch and uploaded the 6 T1w sidecars we identified as missing. We then ran add-nifti-info to add nifti information from the sidecars Lei added (all T2ws and 6 T1ws). 
+
+We identified 7 anat/ scans (2 T2ws and 5 T1ws) with a very low Dimension 1 Size (between 20 and 32 voxels). We decided to purge these scans. 
