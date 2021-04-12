@@ -1,0 +1,9 @@
+/cbica/projects/RBC/RBC_RAWDATA/bidsdatasets/HBN/sub-NDARUY825AKX/ses-HBNsiteCBIC/anat/sub-NDARUY825AKX_ses-HBNsiteCBIC_acq-HCP_T1w.nii.gz
+/cbica/projects/RBC/RBC_RAWDATA/bidsdatasets/HBN/sub-NDARWV769JM7/ses-HBNsiteCBIC/anat/sub-NDARWV769JM7_ses-HBNsiteCBIC_acq-HCP_T1w.nii.gz
+/cbica/projects/RBC/RBC_RAWDATA/bidsdatasets/HBN/sub-NDARXK893KLX/ses-HBNsiteCBIC/anat/sub-NDARXK893KLX_ses-HBNsiteCBIC_acq-HCP_T1w.nii.gz
+/cbica/projects/RBC/RBC_RAWDATA/bidsdatasets/HBN/sub-NDARGZ207NNA/ses-HBNsiteCBIC/anat/sub-NDARGZ207NNA_ses-HBNsiteCBIC_acq-VNavNorm_T2w.nii.gz
+/cbica/projects/RBC/RBC_RAWDATA/bidsdatasets/HBN/sub-NDARXR123PFR/ses-HBNsiteCBIC/anat/sub-NDARXR123PFR_ses-HBNsiteCBIC_acq-VNavNorm_T2w.nii.gz
+/cbica/projects/RBC/RBC_RAWDATA/bidsdatasets/HBN/sub-NDARGZ207NNA/ses-HBNsiteCBIC/anat/sub-NDARGZ207NNA_ses-HBNsiteCBIC_acq-VNav_T2w.nii.gz
+/cbica/projects/RBC/RBC_RAWDATA/bidsdatasets/HBN/sub-NDARXR123PFR/ses-HBNsiteCBIC/anat/sub-NDARXR123PFR_ses-HBNsiteCBIC_acq-VNav_T2w.nii.gz
+/cbica/projects/RBC/RBC_RAWDATA/bidsdatasets/HBN/sub-NDARXR123PFR/ses-HBNsiteCBIC/anat/sub-NDARXR123PFR_ses-HBNsiteCBIC_acq-VNavNorm_T1w.nii.gz
+/cbica/projects/RBC/RBC_RAWDATA/bidsdatasets/HBN/sub-NDARXR123PFR/ses-HBNsiteCBIC/anat/sub-NDARXR123PFR_ses-HBNsiteCBIC_acq-VNav_T1w.nii.gz
