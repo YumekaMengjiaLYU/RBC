@@ -31,7 +31,7 @@ Cubic Path: /cbica/projects/RBC/RBC_RAWDATA/bidsdatasets/HBN
 Datalad Status: saved
 Git Branch: master
 DSR: Reran group + validate with new nifti info (num vols = 1 for 3D scans), Deleted 3 subjects with no more data post T1/T2 purge. Running add-nifti-info now so consistent. Post T1T2 group/validate currently running. Purge ran on the 9 unusable T1s/T2s with super low Dim1Size (20-32 voxels). Check in Imaging Properties of sidecars if moco (motion corrected), compare sidecars for mult. runs, if same, choose which is better (Mike's call, ask in rbc-collab which should keep) (do digging ourselves then propose plan to CMI, ping Ted to text Mike if they don't respond). Check if parameter groups are the same for run1/run2. Post the list of subjects with multiple T1 runs to collab channel. Find Lei's defacing code for T2s (if possible). Purge 7 scans with super low Dim1Size. Identify and keep best run of the 137 subjects with multiple runs of T1w scans.
-Next Steps: Re validate and re group. SWITCH TO MAIN AND PULL NEW BOND!!!! IF IT WORKS ON HBN THEN TELL JAKE TO PULL AND RERUN GROUP. Then re-run group on HBN and make sure it works! Add events tsvs (have peer, need movieDM and movieTP). Decide on tolerances.
+Next Steps: SWITCH TO MAIN AND PULL NEW BOND!!!! IF IT WORKS ON HBN THEN TELL JAKE TO PULL AND RERUN GROUP. Then re-run group on HBN and make sure it works! Add events tsvs (have peer, need movieDM and movieTP). Decide on tolerances.
 Data Narrative: https://github.com/PennLINC/RBC/blob/master/PennLINC/HBN_BIDS_Fix/HBN_Data_Narrative.md
 
 NKI
