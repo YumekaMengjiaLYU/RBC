@@ -1,24 +1,26 @@
 RBC Dataset Status Report (DSR)
 
 CCNP (GONG)
+RIA Store: ssh://sciget.pmacs.upenn.edu/project/RBC/RIA/BIDS/970/4eab1-3320-41f0-9fce-3c6961b4ac96
 Cubic Path: /cbica/projects/RBC/testing/colornest/bidsdatasets
 Final CuBIDS Outputs: https://github.com/PennLINC/RBC/tree/master/PennLINC/CCNP_BIDS_Fix
 Datalad Status: saved, clean
 Git Branch: master
 DSR: Examplars running now on fmriprep. Pushed back to PMACS. Ran new validate on CCNP post apply and got 3 inconsistent subjects, which make sense. We ran fmriprep on acq groups BEFORE we undid and re-applied changes using new clustering.
 Next Steps: Add back README + Authors and run all subjects through fmriprep. 
-RIA Store: /project/RBC/RIA/BIDS (on PMACS)
+
 
 HRC
 ISSUE: Need 11 subjects not on GLOBUS, we had empty directories for them on cubic
 Cubic Path: /cbica/projects/RBC/HRC/working/HRC_datalad
 Datalad Status: saved, clean
 Git Branch: master
-DSR: Save running now. Validation came out clean. Group showed add nifti info worked. Ran add-nifti-info (got NumVolumes=1.0 for 3D scans). Emailed HRC Team list of 11 subjects missing data. Re-group and re-apply changes with HRC_suggest_all.yml
+DSR: Saved master. Validation came out clean. Group showed add nifti info worked. Ran add-nifti-info (got NumVolumes=1.0 for 3D scans). Emailed HRC Team list of 11 subjects missing data. Re-group and re-apply changes with HRC_suggest_all.yml
 Next Steps: REMEMBER TO RUN ADD-NIFTI-INFO ON APPLY1 BRANCH IF WE DON'T END UP ADDING 11 MISSING SUBJECTS! Wait for Brazil OR save and push to PMACS, run bond-copy-exemplars, and begin acq group testing.
 Data Narrative: https://github.com/PennLINC/HRC/blob/main/working/curation_code/DataNarrative.md
 
 PNC GONG
+RIA Store: ssh://sciget.pmacs.upenn.edu/project/RBC/RIA/BIDS/6a5/7d847-1441-442d-81d7-04ca51526645
 Cubic Path: /cbica/projects/RBC/RBC_RAWDATA/bidsdatasets/PNC
 Datalad Status: untracked (NumVolumes=1.0 for 3D scans being added)
 Git Branch: master
