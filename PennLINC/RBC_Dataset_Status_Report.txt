@@ -14,8 +14,8 @@ ISSUE: Need 11 subjects not on GLOBUS, we had empty directories for them on cubi
 Cubic Path: /cbica/projects/RBC/HRC/working/HRC_datalad
 Datalad Status: saved, clean
 Git Branch: master
-DSR: Add-nifti-info running now (should get NumVolumes=1.0 for 3D scans). Emailed HRC Team list of 11 subjects missing data. Re-group and re-apply changes with HRC_suggest_all.yml
-Next Steps: Wait for Brazil OR save and push to PMACS, run bond-copy-exemplars, and begin acq group testing.
+DSR: Waiting on validation. Group showed add nifti info worked. Ran add-nifti-info (got NumVolumes=1.0 for 3D scans). Emailed HRC Team list of 11 subjects missing data. Re-group and re-apply changes with HRC_suggest_all.yml
+Next Steps: SAVE MAIN BRANCH! REMEMBER TO RUN ADD-NIFTI-INFO ON APPLY1 BRANCH IF WE DON'T END UP ADDING 11 MISSING SUBJECTS! Wait for Brazil OR save and push to PMACS, run bond-copy-exemplars, and begin acq group testing.
 Data Narrative: https://github.com/PennLINC/HRC/blob/main/working/curation_code/DataNarrative.md
 
 PNC GONG
