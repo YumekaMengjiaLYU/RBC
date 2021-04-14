@@ -22,7 +22,7 @@ PNC GONG
 Cubic Path: /cbica/projects/RBC/RBC_RAWDATA/bidsdatasets/PNC
 Datalad Status: untracked (NumVolumes=1.0 for 3D scans being added)
 Git Branch: master
-DSR: Group/validate running now. Add-nifti-info ran so 3D scans get NumVolumes=1.0 now. Merged apply1 into main. Running group/validate post merge now. GONGED VERSION saved on apply1 branch! Saved apply1 changes, and validation came out clean.
+DSR: Validate running now, group looks good. Add-nifti-info ran so 3D scans get NumVolumes=1.0 now. Merged apply1 into main. Running group/validate post merge now. GONGED VERSION saved on apply1 branch! Saved apply1 changes, and validation came out clean.
 Next Steps: Re group/validate (make sure no changes), save, PUSH TO PMACS!
 Data Narrative: /cbica/projects/RBC/PNC/working/curation_code/DataNarrative.md
 
