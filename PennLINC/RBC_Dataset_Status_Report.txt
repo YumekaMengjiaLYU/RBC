@@ -47,10 +47,10 @@ Next Steps: Re-validate and re-group after truncating subject level events tsvs.
 HBN ISSUES 
 - Add "acquisition-SiteSI" to T1 key group with no acquisition. 
 - DWI: dominant add acq-RU and acq-SI to param groups wtih just those? MAKE SURE NO SI/RU DWI SCANS ELSEWHERE!
-- DWI: tolerate Effective Echo Spacing and Total Readout Time
 - DWI: scans with super low num volumes, a lot from site-SI, also correspond to VARAINT-EVERYTHING scans 
-
-
+- DWI + FMAP: tolerate Effective Echo Spacing, Total Readout Time, and Repetition Time
+- FMAP: lots of missing PRFIP and MAF, want this in filename? want separate group because of this? 
+- FMAP: round VoxelSizeDim1
 
 MISSING DATA
 
