@@ -40,7 +40,7 @@ NKI
 Datalad Status: untracked changes (deleted all physio .tsv.gz + .json files)
 Git Branch: main
 Cubic Path: /cbica/projects/RBC/RBC_RAWDATA/bidsdatasets/NKI
-DSR: Status, group, validate running now post purge. Save finished. Regroup and check. 
+DSR: Group, validate running now post purge. Status came out clean. Save finished. 
 Next Steps: Get missing jsons, decide on config params, and truncate subject level events tsvs. 
 
 
