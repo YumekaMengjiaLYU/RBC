@@ -6,8 +6,8 @@ Cubic Path: /cbica/projects/RBC/testing/colornest/bidsdatasets
 Final CuBIDS Outputs: https://github.com/PennLINC/RBC/tree/master/PennLINC/CCNP_BIDS_Fix
 Datalad Status: saved, clean
 Git Branch: master
-DSR: Examplars running now on fmriprep. Pushed back to PMACS. Ran new validate on CCNP post apply and got 3 inconsistent subjects, which make sense. We ran fmriprep on acq groups BEFORE we undid and re-applied changes using new clustering.
-Next Steps: Add back README + Authors and run all subjects through fmriprep. 
+DSR: Examplars running now on fmriprep. Copied exemplars. Pushed back to PMACS. Ran new validate on CCNP post apply and got 3 inconsistent subjects, which make sense. We ran fmriprep on acq groups BEFORE we undid and re-applied changes using new clustering.
+Next Steps: Audit exmplars (with unzipping)! Add back README + Authors and run all subjects through fmriprep. 
 
 
 HRC
@@ -24,8 +24,8 @@ RIA Store: ssh://sciget.pmacs.upenn.edu/project/RBC/RIA/BIDS/6a5/7d847-1441-442d
 Cubic Path: /cbica/projects/RBC/RBC_RAWDATA/bidsdatasets/PNC
 Datalad Status: untracked (NumVolumes=1.0 for 3D scans being added)
 Git Branch: master
-DSR: Save running now. Validate and group came out good. Add-nifti-info ran so 3D scans get NumVolumes=1.0 now. Merged apply1 into main. Running group/validate post merge now. GONGED VERSION saved on apply1 branch! Saved apply1 changes, and validation came out clean.
-Next Steps: PUSH TO PMACS!
+DSR: Fmriprep running now on exemplars. Copied exemplars. Pushed to PMACS. Validate and group came out good. Add-nifti-info ran so 3D scans get NumVolumes=1.0 now. Merged apply1 into main. Running group/validate post merge now. GONGED VERSION saved on apply1 branch! Saved apply1 changes, and validation came out clean.
+Next Steps: Audit!
 Data Narrative: /cbica/projects/RBC/PNC/working/curation_code/DataNarrative.md
 
 HBN
@@ -40,14 +40,15 @@ NKI
 Datalad Status: untracked changes (deleted all physio .tsv.gz + .json files)
 Git Branch: main
 Cubic Path: /cbica/projects/RBC/RBC_RAWDATA/bidsdatasets/NKI
-DSR: Group, validate running now post purge. Status came out clean. Save finished. 
-Next Steps: Get missing jsons, decide on config params, and truncate subject level events tsvs. 
+DSR: Purge of 20 low vol dwi scans runnign now. Status came out clean. Save finished. 
+Next Steps: Regroup/validate. Rerun add-nifti-info. Get missing jsons, decide on config params, and truncate subject level events tsvs. 
 
 
 HBN ISSUES 
-- ANAT: Get acquisition type from ALex Franco for siteSI T1ws (no acquisition specified). 
-- ANAT: Need to delete some T2s, waiting on CMI for which ones
-- ANAT: 57 VNavNorm scans are unscored. Options: score ourselves or wait on CMI
+- ALL: DO WE WANT TO ADD ACQUISITION-SITESI TO ALL SITE-SI SCANS? THEY ARE ALL IN THEIR OWN PARAM GROUPS (32 GROUPS TOTAL)! What about site-RU (dwi all separate). 
+- ANAT: Change T1 key group with no acq value to acquisition-siteSI
+- ANAT: Need to delete some T2s, waiting on CMI for which ones (Mike or Alex)
+- ANAT: RULE FOR T1s: Ideally, keep the VnavNorm scan with the highest rating. If unscored, keep first run. If no VnavNorm, keep Vnav. If neither, keep HCP.
 - DWI: dominant add acq-RU and acq-SI to param groups wtih just those? MAKE SURE NO SI/RU DWI SCANS ELSEWHERE!
 - DWI: scans with super low num volumes, a lot from site-SI, also correspond to VARAINT-EVERYTHING scans 
 - DWI + FMAP: tolerate Effective Echo Spacing, Total Readout Time, and Repetition Time
@@ -57,27 +58,7 @@ HBN ISSUES
 NKI ISSUES
 - ALL: NEEDS A RERUN OF ADD-NIFTI-INFO! 
 - ANAT + DWI: 51 scans missing sidecars (29 T1w and 22 dwi). 
-- DWI: 20 scans with less than 137 volumes (dominant NumVolumes value). Delete all? 
-/cbica/projects/RBC/RBC_RAWDATA/bidsdatasets/NKI/sub-A00077585/ses-BAS1/dwi/sub-A00077585_ses-BAS1_dwi.nii.gz
-/cbica/projects/RBC/RBC_RAWDATA/bidsdatasets/NKI/sub-A00066860/ses-BAS1/dwi/sub-A00066860_ses-BAS1_dwi.nii.gz
-/cbica/projects/RBC/RBC_RAWDATA/bidsdatasets/NKI/sub-A00081517/ses-BAS1/dwi/sub-A00081517_ses-BAS1_dwi.nii.gz
-/cbica/projects/RBC/RBC_RAWDATA/bidsdatasets/NKI/sub-A00076759/ses-BAS1/dwi/sub-A00076759_ses-BAS1_dwi.nii.gz
-/cbica/projects/RBC/RBC_RAWDATA/bidsdatasets/NKI/sub-A00054897/ses-BAS1/dwi/sub-A00054897_ses-BAS1_dwi.nii.gz
-/cbica/projects/RBC/RBC_RAWDATA/bidsdatasets/NKI/sub-A00021039/ses-BAS1/dwi/sub-A00021039_ses-BAS1_dwi.nii.gz
-/cbica/projects/RBC/RBC_RAWDATA/bidsdatasets/NKI/sub-A00077753/ses-BAS1/dwi/sub-A00077753_ses-BAS1_dwi.nii.gz
-/cbica/projects/RBC/RBC_RAWDATA/bidsdatasets/NKI/sub-A00074447/ses-TRT/dwi/sub-A00074447_ses-TRT_dwi.nii.gz
-/cbica/projects/RBC/RBC_RAWDATA/bidsdatasets/NKI/sub-A00066389/ses-FLU1/dwi/sub-A00066389_ses-FLU1_dwi.nii.gz
-/cbica/projects/RBC/RBC_RAWDATA/bidsdatasets/NKI/sub-A00056098/ses-BAS1/dwi/sub-A00056098_ses-BAS1_dwi.nii.gz
-/cbica/projects/RBC/RBC_RAWDATA/bidsdatasets/NKI/sub-A00065962/ses-FLU2/dwi/sub-A00065962_ses-FLU2_dwi.nii.gz
-/cbica/projects/RBC/RBC_RAWDATA/bidsdatasets/NKI/sub-A00061730/ses-BAS1/dwi/sub-A00061730_ses-BAS1_dwi.nii.gz
-/cbica/projects/RBC/RBC_RAWDATA/bidsdatasets/NKI/sub-A00062085/ses-FLU1/dwi/sub-A00062085_ses-FLU1_dwi.nii.gz
-/cbica/projects/RBC/RBC_RAWDATA/bidsdatasets/NKI/sub-A00037229/ses-FLU1/dwi/sub-A00037229_ses-FLU1_dwi.nii.gz
-/cbica/projects/RBC/RBC_RAWDATA/bidsdatasets/NKI/sub-A00028177/ses-BAS1/dwi/sub-A00028177_ses-BAS1_dwi.nii.gz
-/cbica/projects/RBC/RBC_RAWDATA/bidsdatasets/NKI/sub-A00041049/ses-BAS1/dwi/sub-A00041049_ses-BAS1_dwi.nii.gz
-/cbica/projects/RBC/RBC_RAWDATA/bidsdatasets/NKI/sub-A00050998/ses-BAS1/dwi/sub-A00050998_ses-BAS1_dwi.nii.gz
-/cbica/projects/RBC/RBC_RAWDATA/bidsdatasets/NKI/sub-A00051658/ses-BAS1/dwi/sub-A00051658_ses-BAS1_dwi.nii.gz
-/cbica/projects/RBC/RBC_RAWDATA/bidsdatasets/NKI/sub-A00051758/ses-BAS1/dwi/sub-A00051758_ses-BAS1_dwi.nii.gz
-/cbica/projects/RBC/RBC_RAWDATA/bidsdatasets/NKI/sub-A00081064/ses-FLU2/dwi/sub-A00081064_ses-FLU2_dwi.nii.gz
+- DWI: purging currently 20 scans with less than 137 volumes (dominant NumVolumes value).
 
 
 MISSING DATA
