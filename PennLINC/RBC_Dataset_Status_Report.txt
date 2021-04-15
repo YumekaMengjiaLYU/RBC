@@ -9,7 +9,6 @@ Git Branch: master
 DSR: Examplars running now on fmriprep. Copied exemplars. Pushed back to PMACS. Ran new validate on CCNP post apply and got 3 inconsistent subjects, which make sense. We ran fmriprep on acq groups BEFORE we undid and re-applied changes using new clustering.
 Next Steps: Audit exmplars (with unzipping)! Add back README + Authors and run all subjects through fmriprep. 
 
-
 HRC
 ISSUE: Need 11 subjects not on GLOBUS, we had empty directories for them on cubic
 Cubic Path: /cbica/projects/RBC/HRC/working/HRC_datalad
@@ -30,26 +29,25 @@ Data Narrative: /cbica/projects/RBC/PNC/working/curation_code/DataNarrative.md
 
 HBN
 Cubic Path: /cbica/projects/RBC/RBC_RAWDATA/bidsdatasets/HBN
-Datalad Status: saved, clean
+Datalad Status: untracked (14 dwi scans gor purged) 
 Git Branch: master
-DSR: Status, group, validate running now post purge. Purge finished running on 14 dwi scans with low num vols. Pushed to PMACS. Reran group + validate with new nifti info (num vols = 1 for 3D scans), Deleted 3 subjects with no more data post T1/T2 purge. Running add-nifti-info now so consistent. Post T1T2 group/validate currently running. Purge ran on the 9 unusable T1s/T2s with super low Dim1Size (20-32 voxels). Check in Imaging Properties of sidecars if moco (motion corrected), compare sidecars for mult. runs, if same, choose which is better (Mike's call, ask in rbc-collab which should keep) (do digging ourselves then propose plan to CMI, ping Ted to text Mike if they don't respond). Check if parameter groups are the same for run1/run2. Post the list of subjects with multiple T1 runs to collab channel. Find Lei's defacing code for T2s (if possible). Purge 7 scans with super low Dim1Size. Identify and keep best run of the 137 subjects with multiple runs of T1w scans.
-Next Steps: When push to PMACS finishes, qsub purge_hbn.sh (will purge 14 dwi scans with low num vols!) Matt to checkout new branch with extra-anats, then delete extra T1 scans from main. Add events tsvs (have peer, need movieDM and movieTP). Decide on tolerances.
+DSR: Status running now. Saved? Status, group, validate ran successfully post 14 dwi with low num vols purge. Purge finished running on 14 dwi scans with low num vols. Pushed to PMACS. Reran group + validate with new nifti info (num vols = 1 for 3D scans), Deleted 3 subjects with no more data post T1/T2 purge. Running add-nifti-info now so consistent. Post T1T2 group/validate currently running. Purge ran on the 9 unusable T1s/T2s with super low Dim1Size (20-32 voxels). Check in Imaging Properties of sidecars if moco (motion corrected), compare sidecars for mult. runs, if same, choose which is better (Mike's call, ask in rbc-collab which should keep) (do digging ourselves then propose plan to CMI, ping Ted to text Mike if they don't respond). Check if parameter groups are the same for run1/run2. Post the list of subjects with multiple T1 runs to collab channel. Find Lei's defacing code for T2s (if possible). Purge 7 scans with super low Dim1Size. Identify and keep best run of the 137 subjects with multiple runs of T1w scans.
+Next Steps: NEED TO DELETE SOME T1s (delete all non-VNavNorm T1s for subjects who have VNavNorm present), rest based on Matt's plots! NEED TO DELETE SOME T2s. NEED TO PUSH BACK TO PMACS WHEN DONE! When push to PMACS finishes, qsub purge_hbn.sh (will purge 14 dwi scans with low num vols!) Matt to checkout new branch with extra-anats, then delete extra T1 scans from main. Add events tsvs (have peer, need movieDM and movieTP). Decide on tolerances.
 Data Narrative: https://github.com/PennLINC/RBC/blob/master/PennLINC/HBN_BIDS_Fix/HBN_Data_Narrative.md
 
 NKI
-Datalad Status: untracked changes (deleted all physio .tsv.gz + .json files)
+Datalad Status: untracked changes (Matt added 45/51 missing jsons, Sydney purged 20 dwi scans with low num vols)
 Git Branch: main
 Cubic Path: /cbica/projects/RBC/RBC_RAWDATA/bidsdatasets/NKI
-DSR: Purge of 20 low vol dwi scans runnign now. Status came out clean. Save finished. 
-Next Steps: Regroup/validate. Rerun add-nifti-info. Get missing jsons, decide on config params, and truncate subject level events tsvs. 
+DSR: Validate running now. Purge of 20 low vol dwi scans ran, and group came out clean. Status came out clean. Save finished. 
+Next Steps: Validate again cus Matt added 51-6=45 missing jsons. Save, Rerun add-nifti-info. Get missing jsons, decide on config params, and truncate subject level events tsvs. 
 
 
 HBN ISSUES 
-- ALL: DO WE WANT TO ADD ACQUISITION-SI TO ALL SITE-SI SCANS? THEY ARE ALL IN THEIR OWN PARAM GROUPS (32 GROUPS TOTAL)! 
+- ALL: ADD SITE-SI SCANS? THEY ARE ALL IN THEIR OWN PARAM GROUPS (32 GROUPS TOTAL)! 
 - ANAT: Change T1 key group with no acq value to acquisition-SI
 - ANAT: Need to delete some T2s, waiting on CMI for which ones (Mike or Alex)
 - ANAT: RULE FOR T1s: Ideally, keep the VnavNorm scan with the highest rating. If unscored, keep best one (from plot), if can't tell difference, keep first run. If no VnavNorm, keep Vnav. If neither, keep HCP. 
-- DWI: scans with super low num volumes, a lot from site-SI, also correspond to VARAINT-EVERYTHING scans 
 - DWI + FMAP: tolerate Effective Echo Spacing, Total Readout Time, and Repetition Time
 - FMAP: lots of missing PRFIP and MAF, want this in filename? want separate group because of this? SHORTHAND FOR ACQUISITION (UNSET SUGGEST VARIANT RENAME)! 
 - FMAP: tolerate VoxelSizeDim1 (0.05mm)
@@ -62,58 +60,13 @@ NKI ISSUES
 
 MISSING DATA
 
-NKI has 51 scans missing sidecars (29 T1w and 22 dwi scans).
-/NKI/sub-A00028266/ses-BAS1/anat/sub-A00028266_ses-BAS1_T1w.nii.gz
-/NKI/sub-A00043762/ses-BAS1/anat/sub-A00043762_ses-BAS1_T1w.nii.gz
-/NKI/sub-A00055267/ses-TRT/anat/sub-A00055267_ses-TRT_T1w.nii.gz
-/NKI/sub-A00055267/ses-FLU2/anat/sub-A00055267_ses-FLU2_T1w.nii.gz
-/NKI/sub-A00043762/ses-FLU2/anat/sub-A00043762_ses-FLU2_T1w.nii.gz
-/NKI/sub-A00043762/ses-BAS2/anat/sub-A00043762_ses-BAS2_T1w.nii.gz
-/NKI/sub-A00028339/ses-BAS1/anat/sub-A00028339_ses-BAS1_T1w.nii.gz
-/NKI/sub-A00043740/ses-FLU1/anat/sub-A00043740_ses-FLU1_T1w.nii.gz
-/NKI/sub-A00028430/ses-BAS1/anat/sub-A00028430_ses-BAS1_T1w.nii.gz
-/NKI/sub-A00028380/ses-BAS1/anat/sub-A00028380_ses-BAS1_T1w.nii.gz
-/NKI/sub-A00028352/ses-BAS1/anat/sub-A00028352_ses-BAS1_T1w.nii.gz
-/NKI/sub-A00028287/ses-BAS1/anat/sub-A00028287_ses-BAS1_T1w.nii.gz
-/NKI/sub-A00057726/ses-FLU2/anat/sub-A00057726_ses-FLU2_T1w.nii.gz
-/NKI/sub-A00077638/ses-TRT/anat/sub-A00077638_ses-TRT_T1w.nii.gz
-/NKI/sub-A00057726/ses-TRT/anat/sub-A00057726_ses-TRT_T1w.nii.gz
-/NKI/sub-A00060503/ses-BAS1/anat/sub-A00060503_ses-BAS1_T1w.nii.gz
-/NKI/sub-A00060503/ses-FLU1/anat/sub-A00060503_ses-FLU1_T1w.nii.gz
-/NKI/sub-A00060503/ses-FLU2/anat/sub-A00060503_ses-FLU2_T1w.nii.gz
-/NKI/sub-A00062349/ses-FLU2/anat/sub-A00062349_ses-FLU2_T1w.nii.gz
-/NKI/sub-A00062349/ses-TRT/anat/sub-A00062349_ses-TRT_T1w.nii.gz
-/NKI/sub-A00062353/ses-FLU1/anat/sub-A00062353_ses-FLU1_T1w.nii.gz
-/NKI/sub-A00062353/ses-TRT/anat/sub-A00062353_ses-TRT_T1w.nii.gz
-/NKI/sub-A00064328/ses-FLU1/anat/sub-A00064328_ses-FLU1_T1w.nii.gz
-/NKI/sub-A00064418/ses-FLU2/anat/sub-A00064418_ses-FLU2_T1w.nii.gz
-/NKI/sub-A00081239/ses-BAS1/anat/sub-A00081239_ses-BAS1_T1w.nii.gz
-/NKI/sub-A00082635/ses-BAS1/anat/sub-A00082635_ses-BAS1_T1w.nii.gz
-/NKI/sub-A00082942/ses-BAS1/anat/sub-A00082942_ses-BAS1_T1w.nii.gz
-/NKI/sub-A00027439/ses-TRT/anat/sub-A00027439_ses-TRT_T1w.nii.gz
-/NKI/sub-A00027439/ses-FLU1/anat/sub-A00027439_ses-FLU1_T1w.nii.gz
-/NKI/sub-A00043762/ses-FLU2/dwi/sub-A00043762_ses-FLU2_dwi.nii.gz
-/NKI/sub-A00057726/ses-TRT/dwi/sub-A00057726_ses-TRT_dwi.nii.gz
-/NKI/sub-A00057726/ses-FLU2/dwi/sub-A00057726_ses-FLU2_dwi.nii.gz
-/NKI/sub-A00055267/ses-FLU2/dwi/sub-A00055267_ses-FLU2_dwi.nii.gz
-/NKI/sub-A00043740/ses-FLU1/dwi/sub-A00043740_ses-FLU1_dwi.nii.gz
-/NKI/sub-A00043762/ses-BAS2/dwi/sub-A00043762_ses-BAS2_dwi.nii.gz
-/NKI/sub-A00043762/ses-BAS1/dwi/sub-A00043762_ses-BAS1_dwi.nii.gz
-/NKI/sub-A00027439/ses-TRT/dwi/sub-A00027439_ses-TRT_dwi.nii.gz
-/NKI/sub-A00027439/ses-FLU1/dwi/sub-A00027439_ses-FLU1_dwi.nii.gz
-/NKI/sub-A00060503/ses-FLU1/dwi/sub-A00060503_ses-FLU1_dwi.nii.gz
-/NKI/sub-A00060503/ses-BAS1/dwi/sub-A00060503_ses-BAS1_dwi.nii.gz
-/NKI/sub-A00062353/ses-TRT/dwi/sub-A00062353_ses-TRT_dwi.nii.gz
-/NKI/sub-A00060503/ses-FLU2/dwi/sub-A00060503_ses-FLU2_dwi.nii.gz
-/NKI/sub-A00064328/ses-FLU1/dwi/sub-A00064328_ses-FLU1_dwi.nii.gz
-/NKI/sub-A00064418/ses-FLU2/dwi/sub-A00064418_ses-FLU2_dwi.nii.gz
-/NKI/sub-A00064418/ses-TRT/dwi/sub-A00064418_ses-TRT_dwi.nii.gz
-/NKI/sub-A00077638/ses-TRT/dwi/sub-A00077638_ses-TRT_dwi.nii.gz
-/NKI/sub-A00079715/ses-BAS1/dwi/sub-A00079715_ses-BAS1_dwi.nii.gz
-/NKI/sub-A00081239/ses-BAS1/dwi/sub-A00081239_ses-BAS1_dwi.nii.gz
-/NKI/sub-A00082635/ses-BAS1/dwi/sub-A00082635_ses-BAS1_dwi.nii.gz
-/NKI/sub-A00082942/ses-BAS1/dwi/sub-A00082942_ses-BAS1_dwi.nii.gz
-/NKI/sub-A00062349/ses-FLU2/dwi/sub-A00062349_ses-FLU2_dwi.nii.gz
+NKI has 6 T1 scans still missing sidecars 
+sub-A00028266/ses-BAS1/anat/sub-A00028266_ses-BAS1_T1w.json
+sub-A00028339/ses-BAS1/anat/sub-A00028339_ses-BAS1_T1w.json
+sub-A00028430/ses-BAS1/anat/sub-A00028430_ses-BAS1_T1w.json
+sub-A00028380/ses-BAS1/anat/sub-A00028380_ses-BAS1_T1w.json
+sub-A00028352/ses-BAS1/anat/sub-A00028352_ses-BAS1_T1w.json
+sub-A00028287/ses-BAS1/anat/sub-A00028287_ses-BAS1_T1w.json
 
 
 
