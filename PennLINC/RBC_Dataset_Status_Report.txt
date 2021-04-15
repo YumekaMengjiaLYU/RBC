@@ -44,9 +44,14 @@ DSR: Decide on config params and truncate subject level events tsvs.
 Next Steps: Re-validate and re-group after truncating subject level events tsvs. 
 
 
-HBN ISSUES
-- SiteSI T1ws have no acqusition in their filenames but T1s for all other sites do! 
-- ADD ACQ-SITENAME TO SINGLE SITE KEY GROUPS E.G. PARAM GROUP? DO THIS ALSO FOR DWI GROUP 2 (BUT THEN WOULD ALSO HAVE TO DO THIS FOR OTHER PARAM GROUPS OF THAT KEY GROUP FOR SITE-RU? 
+HBN ISSUES 
+- Add "acquisition-SiteSI" to T1 key group with no acquisition. 
+- DWI: dominant add acq-RU and acq-SI to param groups wtih just those? MAKE SURE NO SI/RU DWI SCANS ELSEWHERE!
+- DWI: tolerate Effective Echo Spacing and Total Readout Time
+- DWI: scans with super low num volumes, a lot from site-SI, also correspond to VARAINT-EVERYTHING scans 
+
+
+
 MISSING DATA
 
 HRC Subjects Missing All Data (11 subjects)
