@@ -45,7 +45,9 @@ Next Steps: Get missing jsons, decide on config params, and truncate subject lev
 
 
 HBN ISSUES 
-- Add "acquisition-SiteSI" to T1 key group with no acquisition. 
+- ANAT: Get acquisition type from ALex Franco for siteSI T1ws (no acquisition specified). 
+- ANAT: Need to delete some T2s, waiting on CMI for which ones
+- ANAT: 57 VNavNorm scans are unscored. Options: score ourselves or wait on CMI
 - DWI: dominant add acq-RU and acq-SI to param groups wtih just those? MAKE SURE NO SI/RU DWI SCANS ELSEWHERE!
 - DWI: scans with super low num volumes, a lot from site-SI, also correspond to VARAINT-EVERYTHING scans 
 - DWI + FMAP: tolerate Effective Echo Spacing, Total Readout Time, and Repetition Time
