@@ -54,6 +54,32 @@ HBN ISSUES
 - FMAP: lots of missing PRFIP and MAF, want this in filename? want separate group because of this? 
 - FMAP: round VoxelSizeDim1
 
+NKI ISSUES
+- ALL: NEEDS A RERUN OF ADD-NIFTI-INFO! 
+- ANAT + DWI: 51 scans missing sidecars (29 T1w and 22 dwi). 
+- DWI: 20 scans with less than 137 volumes (dominant NumVolumes value). Delete all? 
+/cbica/projects/RBC/RBC_RAWDATA/bidsdatasets/NKI/sub-A00077585/ses-BAS1/dwi/sub-A00077585_ses-BAS1_dwi.nii.gz
+/cbica/projects/RBC/RBC_RAWDATA/bidsdatasets/NKI/sub-A00066860/ses-BAS1/dwi/sub-A00066860_ses-BAS1_dwi.nii.gz
+/cbica/projects/RBC/RBC_RAWDATA/bidsdatasets/NKI/sub-A00081517/ses-BAS1/dwi/sub-A00081517_ses-BAS1_dwi.nii.gz
+/cbica/projects/RBC/RBC_RAWDATA/bidsdatasets/NKI/sub-A00076759/ses-BAS1/dwi/sub-A00076759_ses-BAS1_dwi.nii.gz
+/cbica/projects/RBC/RBC_RAWDATA/bidsdatasets/NKI/sub-A00054897/ses-BAS1/dwi/sub-A00054897_ses-BAS1_dwi.nii.gz
+/cbica/projects/RBC/RBC_RAWDATA/bidsdatasets/NKI/sub-A00021039/ses-BAS1/dwi/sub-A00021039_ses-BAS1_dwi.nii.gz
+/cbica/projects/RBC/RBC_RAWDATA/bidsdatasets/NKI/sub-A00077753/ses-BAS1/dwi/sub-A00077753_ses-BAS1_dwi.nii.gz
+/cbica/projects/RBC/RBC_RAWDATA/bidsdatasets/NKI/sub-A00074447/ses-TRT/dwi/sub-A00074447_ses-TRT_dwi.nii.gz
+/cbica/projects/RBC/RBC_RAWDATA/bidsdatasets/NKI/sub-A00066389/ses-FLU1/dwi/sub-A00066389_ses-FLU1_dwi.nii.gz
+/cbica/projects/RBC/RBC_RAWDATA/bidsdatasets/NKI/sub-A00056098/ses-BAS1/dwi/sub-A00056098_ses-BAS1_dwi.nii.gz
+/cbica/projects/RBC/RBC_RAWDATA/bidsdatasets/NKI/sub-A00065962/ses-FLU2/dwi/sub-A00065962_ses-FLU2_dwi.nii.gz
+/cbica/projects/RBC/RBC_RAWDATA/bidsdatasets/NKI/sub-A00061730/ses-BAS1/dwi/sub-A00061730_ses-BAS1_dwi.nii.gz
+/cbica/projects/RBC/RBC_RAWDATA/bidsdatasets/NKI/sub-A00062085/ses-FLU1/dwi/sub-A00062085_ses-FLU1_dwi.nii.gz
+/cbica/projects/RBC/RBC_RAWDATA/bidsdatasets/NKI/sub-A00037229/ses-FLU1/dwi/sub-A00037229_ses-FLU1_dwi.nii.gz
+/cbica/projects/RBC/RBC_RAWDATA/bidsdatasets/NKI/sub-A00028177/ses-BAS1/dwi/sub-A00028177_ses-BAS1_dwi.nii.gz
+/cbica/projects/RBC/RBC_RAWDATA/bidsdatasets/NKI/sub-A00041049/ses-BAS1/dwi/sub-A00041049_ses-BAS1_dwi.nii.gz
+/cbica/projects/RBC/RBC_RAWDATA/bidsdatasets/NKI/sub-A00050998/ses-BAS1/dwi/sub-A00050998_ses-BAS1_dwi.nii.gz
+/cbica/projects/RBC/RBC_RAWDATA/bidsdatasets/NKI/sub-A00051658/ses-BAS1/dwi/sub-A00051658_ses-BAS1_dwi.nii.gz
+/cbica/projects/RBC/RBC_RAWDATA/bidsdatasets/NKI/sub-A00051758/ses-BAS1/dwi/sub-A00051758_ses-BAS1_dwi.nii.gz
+/cbica/projects/RBC/RBC_RAWDATA/bidsdatasets/NKI/sub-A00081064/ses-FLU2/dwi/sub-A00081064_ses-FLU2_dwi.nii.gz
+
+
 MISSING DATA
 
 NKI has 51 scans missing sidecars (29 T1w and 22 dwi scans).
