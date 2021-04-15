@@ -45,21 +45,20 @@ Next Steps: Regroup/validate. Rerun add-nifti-info. Get missing jsons, decide on
 
 
 HBN ISSUES 
-- ALL: DO WE WANT TO ADD ACQUISITION-SITESI TO ALL SITE-SI SCANS? THEY ARE ALL IN THEIR OWN PARAM GROUPS (32 GROUPS TOTAL)! What about site-RU (dwi all separate). 
-- ANAT: Change T1 key group with no acq value to acquisition-siteSI
+- ALL: DO WE WANT TO ADD ACQUISITION-SI TO ALL SITE-SI SCANS? THEY ARE ALL IN THEIR OWN PARAM GROUPS (32 GROUPS TOTAL)! 
+- ANAT: Change T1 key group with no acq value to acquisition-SI
 - ANAT: Need to delete some T2s, waiting on CMI for which ones (Mike or Alex)
-- ANAT: RULE FOR T1s: Ideally, keep the VnavNorm scan with the highest rating. If unscored, keep first run. If no VnavNorm, keep Vnav. If neither, keep HCP.
-- DWI: dominant add acq-RU and acq-SI to param groups wtih just those? MAKE SURE NO SI/RU DWI SCANS ELSEWHERE!
+- ANAT: RULE FOR T1s: Ideally, keep the VnavNorm scan with the highest rating. If unscored, keep best one (from plot), if can't tell difference, keep first run. If no VnavNorm, keep Vnav. If neither, keep HCP. 
 - DWI: scans with super low num volumes, a lot from site-SI, also correspond to VARAINT-EVERYTHING scans 
 - DWI + FMAP: tolerate Effective Echo Spacing, Total Readout Time, and Repetition Time
-- FMAP: lots of missing PRFIP and MAF, want this in filename? want separate group because of this? 
-- FMAP: round VoxelSizeDim1
+- FMAP: lots of missing PRFIP and MAF, want this in filename? want separate group because of this? SHORTHAND FOR ACQUISITION (UNSET SUGGEST VARIANT RENAME)! 
+- FMAP: tolerate VoxelSizeDim1 (0.05mm)
 
 NKI ISSUES
 - ALL: NEEDS A RERUN OF ADD-NIFTI-INFO! 
 - ANAT + DWI: 51 scans missing sidecars (29 T1w and 22 dwi). 
 - DWI: purging currently 20 scans with less than 137 volumes (dominant NumVolumes value).
-
+- CHECK IF MULTI SESSION!
 
 MISSING DATA
 
