@@ -31,7 +31,7 @@ HBN
 Cubic Path: /cbica/projects/RBC/RBC_RAWDATA/bidsdatasets/HBN
 Datalad Status: untracked (14 dwi scans gor purged) 
 Git Branch: master
-DSR: Save running now. Status, group, validate ran successfully post 14 dwi with low num vols purge. Purge finished running on 14 dwi scans with low num vols. Pushed to PMACS. Reran group + validate with new nifti info (num vols = 1 for 3D scans), Deleted 3 subjects with no more data post T1/T2 purge. Running add-nifti-info now so consistent. Post T1T2 group/validate currently running. Purge ran on the 9 unusable T1s/T2s with super low Dim1Size (20-32 voxels). Check in Imaging Properties of sidecars if moco (motion corrected), compare sidecars for mult. runs, if same, choose which is better (Mike's call, ask in rbc-collab which should keep) (do digging ourselves then propose plan to CMI, ping Ted to text Mike if they don't respond). Check if parameter groups are the same for run1/run2. Post the list of subjects with multiple T1 runs to collab channel. Find Lei's defacing code for T2s (if possible). Purge 7 scans with super low Dim1Size. Identify and keep best run of the 137 subjects with multiple runs of T1w scans.
+DSR: Save ran successfully. Status, group, validate ran successfully post 14 dwi with low num vols purge. Purge finished running on 14 dwi scans with low num vols. Pushed to PMACS. Reran group + validate with new nifti info (num vols = 1 for 3D scans), Deleted 3 subjects with no more data post T1/T2 purge. Running add-nifti-info now so consistent. Post T1T2 group/validate currently running. Purge ran on the 9 unusable T1s/T2s with super low Dim1Size (20-32 voxels). Check in Imaging Properties of sidecars if moco (motion corrected), compare sidecars for mult. runs, if same, choose which is better (Mike's call, ask in rbc-collab which should keep) (do digging ourselves then propose plan to CMI, ping Ted to text Mike if they don't respond). Check if parameter groups are the same for run1/run2. Post the list of subjects with multiple T1 runs to collab channel. Find Lei's defacing code for T2s (if possible). Purge 7 scans with super low Dim1Size. Identify and keep best run of the 137 subjects with multiple runs of T1w scans.
 Next Steps: NEED TO DELETE SOME T1s (delete all non-VNavNorm T1s for subjects who have VNavNorm present), rest based on Matt's plots! NEED TO DELETE SOME T2s. NEED TO PUSH BACK TO PMACS WHEN DONE! When push to PMACS finishes, qsub purge_hbn.sh (will purge 14 dwi scans with low num vols!) Matt to checkout new branch with extra-anats, then delete extra T1 scans from main. Add events tsvs (have peer, need movieDM and movieTP). Decide on tolerances.
 Data Narrative: https://github.com/PennLINC/RBC/blob/master/PennLINC/HBN_BIDS_Fix/HBN_Data_Narrative.md
 
@@ -39,7 +39,7 @@ NKI
 Datalad Status: untracked changes (Matt added 45/51 missing jsons, Sydney purged 20 dwi scans with low num vols)
 Git Branch: main
 Cubic Path: /cbica/projects/RBC/RBC_RAWDATA/bidsdatasets/NKI
-DSR: ADD NIFTI INFO. Validate/group again cus Matt added 51-6=45 missing jsons. Validate running now. Purge of 20 low vol dwi scans ran, and group came out clean. Status came out clean. Save finished. 
+DSR: ADD NIFTI INFO running now. Validate/group again cus Matt added 51-6=45 missing jsons. Validate running now. Purge of 20 low vol dwi scans ran, and group came out clean. Status came out clean. Save finished. 
 Next Steps: Re validate/group and save. Get missing jsons, decide on config params, and truncate subject level events tsvs. 
 
 
