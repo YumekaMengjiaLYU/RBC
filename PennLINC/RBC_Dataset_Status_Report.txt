@@ -14,7 +14,7 @@ ISSUE: Need 11 subjects not on GLOBUS, we had empty directories for them on cubi
 Cubic Path: /cbica/projects/RBC/HRC/working/HRC_datalad
 Datalad Status: untracked (added 11 missing subjects + nift info)
 Git Branch: master
-DSR: NEED TO FIX PERMISSIONS ISSUES IF THERE ARE ANY AND RERUN ADD NIFT INFO! Added 11 missing subjects. Saved master. Validation came out clean. Group showed add nifti info worked. Ran add-nifti-info (got NumVolumes=1.0 for 3D scans). Emailed HRC Team list of 11 subjects missing data. Re-group and re-apply changes with HRC_suggest_all.yml
+DSR: NEED TO FIX PERMISSIONS ISSUES FOR SUB I UPLOADED NOT THROUGH DROPBOX/CHECK IF ANY OTHERS EXIST AND RERUN ADD NIFT INFO! Added 11 missing subjects. Saved master. Validation came out clean. Group showed add nifti info worked. Ran add-nifti-info (got NumVolumes=1.0 for 3D scans). Emailed HRC Team list of 11 subjects missing data. Re-group and re-apply changes with HRC_suggest_all.yml
 Next Steps: REMEMBER TO RUN ADD-NIFTI-INFO ON APPLY1 BRANCH IF WE DON'T END UP ADDING 11 MISSING SUBJECTS! Wait for Brazil OR save and push to PMACS, run bond-copy-exemplars, and begin acq group testing.
 Data Narrative: https://github.com/PennLINC/HRC/blob/main/working/curation_code/DataNarrative.md
 
