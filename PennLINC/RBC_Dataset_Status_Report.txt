@@ -39,8 +39,8 @@ NKI
 Datalad Status: untracked changes (Matt added 45/51 missing jsons, Sydney purged 20 dwi scans with low num vols)
 Git Branch: main
 Cubic Path: /cbica/projects/RBC/RBC_RAWDATA/bidsdatasets/NKI
-DSR: Validate/group again cus Matt added 51-6=45 missing jsons. Validate running now. Purge of 20 low vol dwi scans ran, and group came out clean. Status came out clean. Save finished. 
-Next Steps: Save, Rerun add-nifti-info. Get missing jsons, decide on config params, and truncate subject level events tsvs. 
+DSR: ADD NIFTI INFO. Validate/group again cus Matt added 51-6=45 missing jsons. Validate running now. Purge of 20 low vol dwi scans ran, and group came out clean. Status came out clean. Save finished. 
+Next Steps: Re validate/group and save. Get missing jsons, decide on config params, and truncate subject level events tsvs. 
 
 
 HBN ISSUES 
