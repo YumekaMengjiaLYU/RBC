@@ -12,9 +12,9 @@ Next Steps: Audit exmplars (with unzipping)! Add back README + Authors and run a
 HRC
 ISSUE: Need 11 subjects not on GLOBUS, we had empty directories for them on cubic
 Cubic Path: /cbica/projects/RBC/HRC/working/HRC_datalad
-Datalad Status: saved, clean
+Datalad Status: untracked (added 11 missing subjects + nift info)
 Git Branch: master
-DSR: Saved master. Validation came out clean. Group showed add nifti info worked. Ran add-nifti-info (got NumVolumes=1.0 for 3D scans). Emailed HRC Team list of 11 subjects missing data. Re-group and re-apply changes with HRC_suggest_all.yml
+DSR: NEED TO FIX PERMISSIONS ISSUES IF THERE ARE ANY AND RERUN ADD NIFT INFO! Added 11 missing subjects. Saved master. Validation came out clean. Group showed add nifti info worked. Ran add-nifti-info (got NumVolumes=1.0 for 3D scans). Emailed HRC Team list of 11 subjects missing data. Re-group and re-apply changes with HRC_suggest_all.yml
 Next Steps: REMEMBER TO RUN ADD-NIFTI-INFO ON APPLY1 BRANCH IF WE DON'T END UP ADDING 11 MISSING SUBJECTS! Wait for Brazil OR save and push to PMACS, run bond-copy-exemplars, and begin acq group testing.
 Data Narrative: https://github.com/PennLINC/HRC/blob/main/working/curation_code/DataNarrative.md
 
@@ -39,7 +39,7 @@ NKI
 Datalad Status: untracked changes (Matt added 45/51 missing jsons, Sydney purged 20 dwi scans with low num vols)
 Git Branch: main
 Cubic Path: /cbica/projects/RBC/RBC_RAWDATA/bidsdatasets/NKI
-DSR: Add nifti info running now (for new jsons). Ran validate/group again, came out clean cus Matt added 51-6=45 missing jsons. Validate running now. Purge of 20 low vol dwi scans ran, and group came out clean. Status came out clean. Save finished. 
+DSR: Add nifti info FAILED WITH PERMISSIONS ERROR (for new jsons). Ran validate/group again, came out clean cus Matt added 51-6=45 missing jsons. Validate running now. Purge of 20 low vol dwi scans ran, and group came out clean. Status came out clean. Save finished. 
 Next Steps: Save. NEED TO RUN ADD NIFTI INFO!Re validate/group and save. Get missing jsons, decide on config params, and truncate subject level events tsvs. 
 
 
