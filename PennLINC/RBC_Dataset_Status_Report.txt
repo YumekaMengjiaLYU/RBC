@@ -54,10 +54,8 @@ HBN ISSUES
 - FMAP: tolerate VoxelSizeDim1 (0.05mm)
 
 NKI ISSUES
-- ALL: NEEDS A RERUN OF ADD-NIFTI-INFO! 
-- ANAT + DWI: 51 scans missing sidecars (29 T1w and 22 dwi). 
-- DWI: purging currently 20 scans with less than 137 volumes (dominant NumVolumes value).
-- CHECK IF MULTI SESSION!
+- 6 T1 sidecars are still missing
+- T2s? 
 
 MISSING DATA
 
