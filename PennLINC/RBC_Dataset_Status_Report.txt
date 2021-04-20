@@ -21,7 +21,7 @@ Data Narrative: https://github.com/PennLINC/HRC/blob/main/working/curation_code/
 PNC GONG
 RIA Store: ssh://sciget.pmacs.upenn.edu/project/RBC/RIA/BIDS/6a5/7d847-1441-442d-81d7-04ca51526645
 Cubic Path: /cbica/projects/RBC/RBC_RAWDATA/bidsdatasets/PNC
-Datalad Status: untracked (NumVolumes=1.0 for 3D scans being added)
+Datalad Status: saved, clean
 Git Branch: master
 DSR: Fmriprep finished running on exemplars. 
 Next Steps: Audit and run fmriprep on the entire dataset! 
