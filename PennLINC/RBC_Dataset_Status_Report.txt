@@ -53,13 +53,28 @@ HBN ISSUES
 - FMAP: lots of missing PRFIP and MAF, want this in filename? want separate group because of this? SHORTHAND FOR ACQUISITION (UNSET SUGGEST VARIANT RENAME)! 
 - FMAP: tolerate VoxelSizeDim1 (0.05mm)
 
+HRC ISSUES
+(1) The 11 subjects they just sent us are all missing bvals and bvecs for the dwi scans. The list of subjects missing bvals/bvecs is below (same list of 11 subjects that were previously missing all data). 
+
+sub-20425
+sub-20010
+sub-20879
+sub-20866
+sub-20384
+sub-20174
+sub-20829
+sub-10640
+sub-11276
+sub-20636
+sub-20632
+
 HBN ISSUES
 (1) sub-NDARXJ973GFA has two HCP T1ws, but the images look like they are of two different people. Alex is looking into the dicoms now to try to find out what happened.
 
 NKI ISSUES
 (1) sub-A00074953 has a T2 with a sidecar but no corresponding nifti. The following is the path to the sidecar missing a nifti: sub-A00074953/ses-TRT/anat/sub-A00074953_ses-TRT_T2w.json. This nifti is not on s3. 
 
-(2) There are 22 T2s on s3 of subjects for whom we have no other data. Is CMI still collecting data for NKI? See below for the full list of subjects with T2s on s3 but no other data.
+(2) There are 22 subjects on s3 that are currently missing from our RBC repository. Do we want to add these subjects to RBC? Additionally, is CMI still collecting data for NKI? See below for the full list of subjects on s3 but not currently in RBC: 
 sub-A00010893
 sub-A00033962
 sub-A00040992
