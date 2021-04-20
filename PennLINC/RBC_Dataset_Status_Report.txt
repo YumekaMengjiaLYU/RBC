@@ -14,7 +14,7 @@ ISSUE: Need 11 subjects not on GLOBUS, we had empty directories for them on cubi
 Cubic Path: /cbica/projects/RBC/HRC/working/HRC_datalad
 Datalad Status: untracked (added 11 missing subjects + nift info)
 Git Branch: master
-DSR: Add nifti info running now. VALIDATION ISSUES 11 SUBJECTS ??!? REC-REFACED BEFORE RUN INSTEAD OF AFTER!!! AND NO BVAL/BVEC FOR DWI
+DSR: MISSING BVALS/BVECS. EMAILED BRAZIL. Add nifti info running now. VALIDATION ISSUES 11 SUBJECTS ??!? REC-REFACED BEFORE RUN INSTEAD OF AFTER!!! AND NO BVAL/BVEC FOR DWI
 Next Steps: Run group/validate! Save, re Save, checkout apply2 branch and rerun apply. Save and push to PMACS, run bond-copy-exemplars, and begin acq group testing.
 Data Narrative: https://github.com/PennLINC/HRC/blob/main/working/curation_code/DataNarrative.md
 
@@ -30,7 +30,7 @@ Data Narrative: /cbica/projects/RBC/PNC/working/curation_code/DataNarrative.md
 HBN
 RIA Store: ssh://sciget.pmacs.upenn.edu/project/RBC/RIA/BIDS/b32/508c1-d2c1-4b40-a3e3-48df49e7fa56
 Cubic Path: /cbica/projects/RBC/RBC_RAWDATA/bidsdatasets/HBN
-Datalad Status: saved, clean
+Datalad Status: untracked (removed Matt's script from root bids dir)
 Git Branch: master
 DSR: We pushed HBN to PMACS. Next we purged 14 dwi scans with low number of volumes (less than dominant 129) and 9 unusable T1s/T2s with super low Dim1Size (20-32 voxels). We then reran the now backwards compatible add-nifti-info so that 3D scans got NumVolumes=1.0 added to their sidecars. Next we checked out an extra-anats branch, Matt deleted extra T1s and remove 'run' from the T1s we keep and saved. Validation/group running now! 
 Next Steps: Add-nifti-info! RERUN ADD NIFT INFO AFTER T1S ARE DELETED! Keep VNav-Norm T2. Add events tsvs (have peer, need movieDM and movieTP). Decide on tolerances, apply changes, and push back to PMACS. 
@@ -74,7 +74,15 @@ HBN ISSUES
 NKI ISSUES
 (1) sub-A00074953 has a T2 with a sidecar but no corresponding nifti. The following is the path to the sidecar missing a nifti: sub-A00074953/ses-TRT/anat/sub-A00074953_ses-TRT_T2w.json. This nifti is not on s3. 
 
-(2) There are 22 subjects on s3 that are currently missing from our RBC repository. Do we want to add these subjects to RBC? Additionally, is CMI still collecting data for NKI? See below for the full list of subjects on s3 but not currently in RBC: 
+(2) NKI has six T1 scans still missing sidecars. See below for the list of missing sidecars: 
+sub-A00028266/ses-BAS1/anat/sub-A00028266_ses-BAS1_T1w.json
+sub-A00028339/ses-BAS1/anat/sub-A00028339_ses-BAS1_T1w.json
+sub-A00028430/ses-BAS1/anat/sub-A00028430_ses-BAS1_T1w.json
+sub-A00028380/ses-BAS1/anat/sub-A00028380_ses-BAS1_T1w.json
+sub-A00028352/ses-BAS1/anat/sub-A00028352_ses-BAS1_T1w.json
+sub-A00028287/ses-BAS1/anat/sub-A00028287_ses-BAS1_T1w.json
+
+(3) There are 22 subjects on s3 that are currently missing from our RBC repository. Do we want to add these subjects to RBC? Additionally, is CMI still collecting data for NKI? See below for the full list of subjects on s3 but not currently in RBC: 
 sub-A00010893
 sub-A00033962
 sub-A00040992
@@ -98,13 +106,6 @@ sub-A00086467
 sub-A00086474
 sub-A00086551
 
-(3) NKI has six T1 scans still missing sidecars. See below for the list of missing sidecars: 
-sub-A00028266/ses-BAS1/anat/sub-A00028266_ses-BAS1_T1w.json
-sub-A00028339/ses-BAS1/anat/sub-A00028339_ses-BAS1_T1w.json
-sub-A00028430/ses-BAS1/anat/sub-A00028430_ses-BAS1_T1w.json
-sub-A00028380/ses-BAS1/anat/sub-A00028380_ses-BAS1_T1w.json
-sub-A00028352/ses-BAS1/anat/sub-A00028352_ses-BAS1_T1w.json
-sub-A00028287/ses-BAS1/anat/sub-A00028287_ses-BAS1_T1w.json
 
 MISSING DATA
 
