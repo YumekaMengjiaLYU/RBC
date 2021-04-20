@@ -53,9 +53,43 @@ HBN ISSUES
 - FMAP: lots of missing PRFIP and MAF, want this in filename? want separate group because of this? SHORTHAND FOR ACQUISITION (UNSET SUGGEST VARIANT RENAME)! 
 - FMAP: tolerate VoxelSizeDim1 (0.05mm)
 
+HBN ISSUES
+(1) sub-NDARXJ973GFA has two HCP T1ws, but the images look like they are of two different people. Alex is looking into the dicoms now to try to find out what happened.
+
 NKI ISSUES
-- 6 T1 sidecars are still missing
-- T2s? 
+(1) sub-A00074953 has a T2 with a sidecar but no corresponding nifti. The following is the path to the sidecar missing a nifti: sub-A00074953/ses-TRT/anat/sub-A00074953_ses-TRT_T2w.json. This nifti is not on s3. 
+
+(2) There are 22 T2s on s3 of subjects for whom we have no other data. Is CMI still collecting data for NKI? See below for the full list of subjects with T2s on s3 but no other data.
+sub-A00010893
+sub-A00033962
+sub-A00040992
+sub-A00044217
+sub-A00050677
+sub-A00060265
+sub-A00061802
+sub-A00062355
+sub-A00085828
+sub-A00085864
+sub-A00085866
+sub-A00085906
+sub-A00085907
+sub-A00085927
+sub-A00085942
+sub-A00085951
+sub-A00086169
+sub-A00086238
+sub-A00086259
+sub-A00086467
+sub-A00086474
+sub-A00086551
+
+(3) NKI has six T1 scans still missing sidecars. See below for the list of missing sidecars: 
+sub-A00028266/ses-BAS1/anat/sub-A00028266_ses-BAS1_T1w.json
+sub-A00028339/ses-BAS1/anat/sub-A00028339_ses-BAS1_T1w.json
+sub-A00028430/ses-BAS1/anat/sub-A00028430_ses-BAS1_T1w.json
+sub-A00028380/ses-BAS1/anat/sub-A00028380_ses-BAS1_T1w.json
+sub-A00028352/ses-BAS1/anat/sub-A00028352_ses-BAS1_T1w.json
+sub-A00028287/ses-BAS1/anat/sub-A00028287_ses-BAS1_T1w.json
 
 MISSING DATA
 
