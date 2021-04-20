@@ -14,7 +14,7 @@ ISSUE: Need 11 subjects not on GLOBUS, we had empty directories for them on cubi
 Cubic Path: /cbica/projects/RBC/HRC/working/HRC_datalad
 Datalad Status: untracked (added 11 missing subjects + nift info)
 Git Branch: master
-DSR: Add nifti info running now. VALIDATION ISSUES 11 SUBJECTS ??!? REC-REFACED BEFORE RUN INSTEAD OF AFTER!!!
+DSR: Add nifti info running now. VALIDATION ISSUES 11 SUBJECTS ??!? REC-REFACED BEFORE RUN INSTEAD OF AFTER!!! AND NO BVAL/BVEC FOR DWI
 Next Steps: Run group/validate! Save, re Save, checkout apply2 branch and rerun apply. Save and push to PMACS, run bond-copy-exemplars, and begin acq group testing.
 Data Narrative: https://github.com/PennLINC/HRC/blob/main/working/curation_code/DataNarrative.md
 
@@ -40,8 +40,8 @@ NKI
 Datalad Status: untracked changes (Matt added 45/51 missing jsons, Sydney purged 20 dwi scans with low num vols)
 Git Branch: main
 Cubic Path: /cbica/projects/RBC/RBC_RAWDATA/bidsdatasets/NKI
-DSR: We purged 20 dwi scans with low number of volumes (less than dominant 137). We then identified that NKI was missing 51 sidcars. We uploaded 45/51 of the missing sidecars, and Alex is checking to see if he has the last 6. We then realized we accidentally initialized NKI as a datalad dataset without text2git, so the sidecars were in git annex. To keep things consistent with the other RBC datasets, we unlocked and ran datalad run-procedure cfg_text2git to remove the jsons from git annex. We uplodaded the T2s for subjects we currently have in NKI from s3 to cubic. Add nift info is running now!! 
-Next Steps: Rerun group/validate. Ask Alex if they are currently still collecting data (Ted). They have T2s on s3 for subjects we don't currently have in NKI. Get 6 missing jsons, decide on config params, and truncate subject level events tsvs. 
+DSR: We purged 20 dwi scans with low number of volumes (less than dominant 137). We then identified that NKI was missing 51 sidcars. We uploaded 45/51 of the missing sidecars, and Alex is checking to see if he has the last 6. We then realized we accidentally initialized NKI as a datalad dataset without text2git, so the sidecars were in git annex. To keep things consistent with the other RBC datasets, we unlocked and ran datalad run-procedure cfg_text2git to remove the jsons from git annex. We uplodaded the T2s for subjects we currently have in NKI from s3 to cubic. Add nift info ran!! Matt needs to upload the T2 for the sidecar missing a nifti. 
+Next Steps: Rerun add-nifti-info (if Matt uploads new sidecar). Rerun group/validate. Ask Alex if they are currently still collecting data (Ted). They have T2s on s3 for subjects we don't currently have in NKI. Get 6 missing jsons, decide on config params, and truncate subject level events tsvs. 
 
 
 HBN ISSUES 
