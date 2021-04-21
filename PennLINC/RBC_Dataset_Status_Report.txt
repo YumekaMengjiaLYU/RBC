@@ -15,7 +15,7 @@ Cubic Path: /cbica/projects/RBC/HRC/working/HRC_datalad
 Datalad Status: untracked (added 11 missing subjects + nift info)
 Git Branch: master
 DSR: Save running now. Still validation errors on 11 new subs. Group/validate running now. Add nifti info running now. Brazil added bvals/bvecs for 11 new subs from third wave, and we uploaded them to cubic. VALIDATION ISSUES 11 SUBJECTS ??!? REC-REFACED BEFORE RUN INSTEAD OF AFTER!!! AND NO BVAL/BVEC FOR DWI
-Next Steps: Make sure config params look good, save, checkout apply2 branch and rerun apply. Save and push to PMACS, run bond-copy-exemplars, and begin acq group testing.
+Next Steps: Rerun group/validate. Make sure config params look good, save, checkout apply2 branch and rerun apply. Save and push to PMACS, run bond-copy-exemplars, and begin acq group testing.
 Data Narrative: https://github.com/PennLINC/HRC/blob/main/working/curation_code/DataNarrative.md
 
 PNC GONG
