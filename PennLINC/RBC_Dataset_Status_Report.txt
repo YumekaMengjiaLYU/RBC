@@ -30,18 +30,18 @@ Data Narrative: /cbica/projects/RBC/PNC/working/curation_code/DataNarrative.md
 HBN
 RIA Store: ssh://sciget.pmacs.upenn.edu/project/RBC/RIA/BIDS/b32/508c1-d2c1-4b40-a3e3-48df49e7fa56
 Cubic Path: /cbica/projects/RBC/RBC_RAWDATA/bidsdatasets/HBN
-Datalad Status: untracked (removed Matt's script from root bids dir)
+Datalad Status: saved, clean
 Git Branch: master
 DSR: We pushed HBN to PMACS. Next we purged 14 dwi scans with low number of volumes (less than dominant 129) and 9 unusable T1s/T2s with super low Dim1Size (20-32 voxels). We then reran the now backwards compatible add-nifti-info so that 3D scans got NumVolumes=1.0 added to their sidecars. Next we checked out an extra-anats branch, Matt deleted extra T1s and remove 'run' from the T1s we keep and saved. Validation/group running now! 
 Next Steps: Add-nifti-info! RERUN ADD NIFT INFO AFTER T1S ARE DELETED! Keep VNav-Norm T2. Add events tsvs (have peer, need movieDM and movieTP). Decide on tolerances, apply changes, and push back to PMACS. 
 Data Narrative: https://github.com/PennLINC/RBC/blob/master/PennLINC/HBN_BIDS_Fix/HBN_Data_Narrative.md
 
 NKI
-Datalad Status: untracked changes (Matt added 45/51 missing jsons, Sydney purged 20 dwi scans with low num vols)
+Datalad Status: untracked changes (Added T2s and ran add_nifti_info) 
 Git Branch: main
 Cubic Path: /cbica/projects/RBC/RBC_RAWDATA/bidsdatasets/NKI
-DSR: We purged 20 dwi scans with low number of volumes (less than dominant 137). We then identified that NKI was missing 51 sidcars. We uploaded 45/51 of the missing sidecars, and Alex is checking to see if he has the last 6. We then realized we accidentally initialized NKI as a datalad dataset without text2git, so the sidecars were in git annex. To keep things consistent with the other RBC datasets, we unlocked and ran datalad run-procedure cfg_text2git to remove the jsons from git annex. We uplodaded the T2s for subjects we currently have in NKI from s3 to cubic. Add nift info ran!! Matt needs to upload the T2 for the sidecar missing a nifti. 
-Next Steps: Rerun add-nifti-info (if Matt uploads new sidecar). Rerun group/validate. Ask Alex if they are currently still collecting data (Ted). They have T2s on s3 for subjects we don't currently have in NKI. Get 6 missing jsons, decide on config params, and truncate subject level events tsvs. 
+DSR: We purged 20 dwi scans with low number of volumes (less than dominant 137). We then identified that NKI was missing 51 sidcars. We uploaded 45/51 of the missing sidecars, and Alex is checking to see if he has the last 6. We then realized we accidentally initialized NKI as a datalad dataset without text2git, so the sidecars were in git annex. To keep things consistent with the other RBC datasets, we unlocked and ran datalad run-procedure cfg_text2git to remove the jsons from git annex. We uplodaded the T2s for subjects we currently have in NKI from s3 to cubic. Add nift info ran!! Save running now. 
+Next Steps: Rerun group/validate and get CMI to send us stuff. Ask Alex if they are currently still collecting data (Ted). They have T2s on s3 for subjects we don't currently have in NKI. Get 6 missing jsons, decide on config params, and truncate subject level events tsvs. 
 
 
 HBN ISSUES 
