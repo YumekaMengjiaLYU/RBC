@@ -55,12 +55,12 @@ HBN ISSUES
  
 
 HBN ISSUES
-(1) sub-NDARXJ973GFA has two HCP T1ws, but the images look like they are of two different people. Alex is looking into the dicoms now to try to find out what happened.
+(1) sub-NDARXJ973GFA has two HCP T1ws, but the images look like they are of two different people. Alex is looking into the dicoms now to try to find out what happened. This subject only has acq-HCP (no VNavNorm and no VNav), so we need to decide which of the two HCP runs we want to keep. 
 
 NKI ISSUES
-(1) sub-A00074953 has a T2 with a sidecar but no corresponding nifti. The following is the path to the sidecar missing a nifti: sub-A00074953/ses-TRT/anat/sub-A00074953_ses-TRT_T2w.json. This nifti is not on s3. 
+(1) sub-A00074953 has one T2w scan with a sidecar but no corresponding nifti. The following is the path to the sidecar missing a nifti: sub-A00074953/ses-TRT/anat/sub-A00074953_ses-TRT_T2w.json. This nifti is not on s3. 
 
-(2) NKI has six T1 scans still missing sidecars. See below for the list of missing sidecars: 
+(2) NKI has six T1w scans missing sidecars. See below for the list of missing sidecars: 
 sub-A00028266/ses-BAS1/anat/sub-A00028266_ses-BAS1_T1w.json
 sub-A00028339/ses-BAS1/anat/sub-A00028339_ses-BAS1_T1w.json
 sub-A00028430/ses-BAS1/anat/sub-A00028430_ses-BAS1_T1w.json
@@ -68,7 +68,7 @@ sub-A00028380/ses-BAS1/anat/sub-A00028380_ses-BAS1_T1w.json
 sub-A00028352/ses-BAS1/anat/sub-A00028352_ses-BAS1_T1w.json
 sub-A00028287/ses-BAS1/anat/sub-A00028287_ses-BAS1_T1w.json
 
-(3) There are 22 subjects on s3 that are currently missing from our RBC repository. Do we want to add these subjects to RBC? Additionally, is CMI still collecting data for NKI? See below for the full list of subjects on s3 but not currently in RBC: 
+(3) There are 22 subjects on s3 that are currently missing from our RBC repository. Do we want to add these subjects to RBC? See below for the full list of subjects on s3 but not currently in RBC: (UPLOAD TO CUBIC)
 sub-A00010893
 sub-A00033962
 sub-A00040992
