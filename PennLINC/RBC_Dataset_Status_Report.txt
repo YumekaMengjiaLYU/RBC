@@ -15,7 +15,7 @@ Cubic Path: /cbica/projects/RBC/HRC/working/HRC_datalad
 Datalad Status: untracked (added 11 missing subjects + nift info)
 Git Branch: master
 DSR: Save running now. Still validation errors on 11 new subs. Group/validate running now. Add nifti info running now. Brazil added bvals/bvecs for 11 new subs from third wave, and we uploaded them to cubic. VALIDATION ISSUES 11 SUBJECTS ??!? REC-REFACED BEFORE RUN INSTEAD OF AFTER!!! AND NO BVAL/BVEC FOR DWI
-Next Steps: Rerun group/validate. Make sure config params look good, save, checkout apply2 branch and rerun apply. Save and push to PMACS, run bond-copy-exemplars, and begin acq group testing.
+Next Steps: Rerun group/validate, make sure config params look good, save, checkout apply2 branch and rerun apply. Save and push to PMACS, run bond-copy-exemplars, and begin acq group testing.
 Data Narrative: https://github.com/PennLINC/HRC/blob/main/working/curation_code/DataNarrative.md
 
 PNC GONG
@@ -33,7 +33,7 @@ Cubic Path: /cbica/projects/RBC/RBC_RAWDATA/bidsdatasets/HBN
 Datalad Status: saved, clean
 Git Branch: master
 DSR: We pushed HBN to PMACS. Next we purged 14 dwi scans with low number of volumes (less than dominant 129) and 9 unusable T1s/T2s with super low Dim1Size (20-32 voxels). We then reran the now backwards compatible add-nifti-info so that 3D scans got NumVolumes=1.0 added to their sidecars. Next we checked out an extra-anats branch, Matt deleted extra T1s and remove 'run' from the T1s we keep and saved. Validation/group running now! 
-Next Steps: Add-nifti-info! RERUN ADD NIFT INFO AFTER T1S ARE DELETED! Keep VNav-Norm T2. Add events tsvs (have peer, need movieDM and movieTP). Decide on tolerances, apply changes, and push back to PMACS. 
+Next Steps: Add-nifti-info! RERUN ADD NIFT INFO AFTER T1S ARE DELETED! Keep VNav-Norm T2. Add events tsvs (have peer, need movieDM and movieTP). Decide on tolerances, apply changes, and push back to PMACS. NEED TO RUN GROUP WITH --includes-session!! 
 Data Narrative: https://github.com/PennLINC/RBC/blob/master/PennLINC/HBN_BIDS_Fix/HBN_Data_Narrative.md
 
 NKI
@@ -52,11 +52,16 @@ HBN ISSUES
 - DWI + FMAP: tolerate Effective Echo Spacing, Total Readout Time, and Repetition Time
 - FMAP: lots of missing PRFIP and MAF, want this in filename? want separate group because of this? SHORTHAND FOR ACQUISITION (UNSET SUGGEST VARIANT RENAME)! 
 - FMAP: tolerate VoxelSizeDim1 (0.05mm)
+- ADD PixelBandwith to sidecar params!!!!
+- RERUN GROUP WITH SES INCLUDED IN GROUPINGS! 
+
+HBN FINAL TOLERNACES 
+ANAT: EchoTime: 0.001, 
+DWI: group 1 = CBIC/CUNY, group 2 = RU, group 3 = SI, EES, TRT, TR 
+FMAP: VoxelSizeDim*:0.05mm, EES:0.0001, TRT: 0.01 
+FUNC: EES:precision=4, TRT:precision=2, 
+
  
-
-HBN ISSUES
-(1) sub-NDARXJ973GFA has two HCP T1ws, but the images look like they are of two different people. Alex is looking into the dicoms now to try to find out what happened. This subject only has acq-HCP (no VNavNorm and no VNav), so we need to decide which of the two HCP runs we want to keep. 
-
 NKI ISSUES
 (1) sub-A00074953 has one T2w scan with a sidecar but no corresponding nifti. The following is the path to the sidecar missing a nifti: sub-A00074953/ses-TRT/anat/sub-A00074953_ses-TRT_T2w.json. This nifti is not on s3. 
 
