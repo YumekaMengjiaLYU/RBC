@@ -12,10 +12,10 @@ Next Steps: Audit exmplars (with unzipping)! Add back README + Authors and run a
 HRC
 ISSUE: Need 11 subjects not on GLOBUS, we had empty directories for them on cubic
 Cubic Path: /cbica/projects/RBC/HRC/working/HRC_datalad
-Datalad Status: saved, clean
+Datalad Status: applied changes
 Git Branch: apply2
-DSR: Save running now. Still validation errors on 11 new subs. Group/validate running now. Add nifti info running now. Brazil added bvals/bvecs for 11 new subs from third wave, and we uploaded them to cubic. Saved. Ran Group/validate. Checked out apply2 branch. Ran apply! 
-Next Steps: Save, merge apply2 into main, and push to PMACS. Run bond-copy-exemplars, and begin acq group testing.
+DSR: Save running now on apply2. Still validation errors on 11 new subs. Group/validate running now. Add nifti info running now. Brazil added bvals/bvecs for 11 new subs from third wave, and we uploaded them to cubic. Saved. Ran Group/validate. Checked out apply2 branch. Ran apply! 
+Next Steps: GO BACK TO MAIN and rerun group with new config. Push to PMACS. Run bond-copy-exemplars, and begin acq group testing. 
 Data Narrative: https://github.com/PennLINC/HRC/blob/main/working/curation_code/DataNarrative.md
 
 PNC GONG
