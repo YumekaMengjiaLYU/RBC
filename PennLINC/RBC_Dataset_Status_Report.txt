@@ -62,9 +62,6 @@ sub-colornest177
 sub-colornest195
 sub-colornest036
 
-HRC ISSUES
-- VALIDATION: 11 new subs still quick validation failing! Matt and I found nothing wrong with them 
-
 HBN ISSUES 
 - ALL: ADD SITE-SI SCANS? THEY ARE ALL IN THEIR OWN PARAM GROUPS (32 GROUPS TOTAL)! 
 - ANAT: Change T1 key group with no acq value to acquisition-SI
@@ -117,6 +114,9 @@ sub-A00086259
 sub-A00086467
 sub-A00086474
 sub-A00086551
+
+HRC ISSUES
+(1) VALIDATION: 11 new subs still quick validation failing ('bids dir structure doesn't match' description so maybe just having an issue with ses-3?) using the --sequential flag! Matt and I found nothing wrong with them (likely just need to debug the new flag. They passed validation WITHOUT the sequential flag. 
 
 
 MISSING DATA
