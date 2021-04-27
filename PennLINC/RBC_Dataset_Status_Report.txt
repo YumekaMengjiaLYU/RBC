@@ -14,8 +14,8 @@ ISSUE: Need 11 subjects not on GLOBUS, we had empty directories for them on cubi
 Cubic Path: /cbica/projects/RBC/HRC/working/HRC_datalad
 Datalad Status: clean, saved
 Git Branch: apply3
-DSR: Save running now on apply2. Still validation errors on 11 new subs. Group/validate running now. Add nifti info running now. Brazil added bvals/bvecs for 11 new subs from third wave, and we uploaded them to cubic. Saved. Ran Group/validate. Checked out apply2 branch. Ran apply! Re-ran group with no TRT in dwi and func. Checked out apply3 branch. Apply ran on apply3 branch. Validation came out the same (no sequential worked, with sequential failed on 11 new subs with ses-3). Apply3=GONG, save running now on apply3
-Next Steps: Merge apply3 into main. Save. Rerun group/validate. Push to PMACS. Run bond-copy-exemplars, and begin acq group testing. 
+DSR: Save running now on apply2. Still validation errors on 11 new subs. Group/validate running now. Add nifti info running now. Brazil added bvals/bvecs for 11 new subs from third wave, and we uploaded them to cubic. Saved. Ran Group/validate. Checked out apply2 branch. Ran apply! Re-ran group with no TRT in dwi and func. Checked out apply3 branch. Apply ran on apply3 branch. Validation came out the same (no sequential worked, with sequential failed on 11 new subs with ses-3). Apply3=GONG, save ran on apply3, and status came out clean on apply3. Status running on main. 
+Next Steps: Merge apply3 into main and save. Rerun group/validate. Push to PMACS. Run bond-copy-exemplars, and begin acq group testing. 
 Data Narrative: https://github.com/PennLINC/HRC/blob/main/working/curation_code/DataNarrative.md
 
 PNC (GONG)
@@ -32,7 +32,7 @@ RIA Store: ssh://sciget.pmacs.upenn.edu/project/RBC/RIA/BIDS/b32/508c1-d2c1-4b40
 Cubic Path: /cbica/projects/RBC/RBC_RAWDATA/bidsdatasets/HBN
 Datalad Status: saved, clean
 Git Branch: master
-DSR: We pushed HBN to PMACS. Next we purged 14 dwi scans with low number of volumes (less than dominant 129) and 9 unusable T1s/T2s with super low Dim1Size (20-32 voxels). We then reran the now backwards compatible add-nifti-info so that 3D scans got NumVolumes=1.0 added to their sidecars. Next we checked out an extra-anats branch, Matt deleted extra T1s and remove 'run' from the T1s we keep and saved. Validation/group running now! Came out clean. Group ran with session flag. Looks good. 
+DSR: We pushed HBN to PMACS. Next we purged 14 dwi scans with low number of volumes (less than dominant 129) and 9 unusable T1s/T2s with super low Dim1Size (20-32 voxels). We then reran the now backwards compatible add-nifti-info so that 3D scans got NumVolumes=1.0 added to their sidecars. Next we checked out an extra-anats branch, Matt deleted extra T1s and remove 'run' from the T1s we keep and saved. Validation/group running now! Came out clean. Group ran with session flag. Looks good. Group running now with HBN FINAL TOLERANCES yes ses and no ses.
 Next Steps: Add-nifti-info! RERUN ADD NIFT INFO AFTER T1S ARE DELETED! Keep VNav-Norm T2. Add events tsvs (have peer, need movieDM and movieTP). Decide on tolerances, apply changes, and push back to PMACS. 
 Data Narrative: https://github.com/PennLINC/RBC/blob/master/PennLINC/HBN_BIDS_Fix/HBN_Data_Narrative.md
 
@@ -58,7 +58,7 @@ HBN ISSUES
 - RERUN GROUP WITH SES INCLUDED IN GROUPINGS! 
 
 HBN FINAL TOLERNACES 
-ANAT: EchoTime: 0.001, 
+ANAT: EchoTime: 0.002, 
 DWI: group 1 = CBIC/CUNY, group 2 = RU, group 3 = SI, EES, TRT, TR 
 FMAP: VoxelSizeDim*:0.05mm, EES:0.0001, TRT: 0.01 
 FUNC: EES:precision=4, TRT:precision=2, 
