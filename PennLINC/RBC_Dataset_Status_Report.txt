@@ -9,7 +9,7 @@ Git Branch: master
 DSR: Fmriprep finished running on exemplars. Audit came out clean. Fmriprep finished running on production. Audit running now. 
 Next Steps: Check audit. Add back README + Authors. Run exemplars through qsiprep. 
 
-HRC
+HRC (GONG)
 ISSUE: Need 11 subjects not on GLOBUS, we had empty directories for them on cubic
 Cubic Path: /cbica/projects/RBC/HRC/working/HRC_datalad
 Datalad Status: clean, saved
