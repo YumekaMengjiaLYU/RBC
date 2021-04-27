@@ -6,7 +6,7 @@ Cubic Path: /cbica/projects/RBC/testing/colornest/bidsdatasets
 Final CuBIDS Outputs: https://github.com/PennLINC/RBC/tree/master/PennLINC/CCNP_BIDS_Fix
 Datalad Status: saved, clean
 Git Branch: master
-DSR: Fmriprep finished running on exemplars. Audit came out clean. Fmriprep finished running on production. Audit revealed 14 subjects didn't finish (connection to PMACS closed before they did, so need to rerun. See below for list. 
+DSR: Fmriprep finished running on exemplars. Audit came out clean. Fmriprep finished running on production. Audit revealed 14 subjects didn't finish (connection to PMACS closed before they did, so need to rerun. See below for list. NOTE: this might also happen with PNC. Might need to modify 'The Way' slightly to submit in smaller groups. 
 Next Steps: Rerun 14 subjects that failed due to the closed connection. Add back README + Authors. Run exemplars through qsiprep. 
 
 HRC (GONG)
@@ -14,7 +14,7 @@ ISSUE: Need 11 subjects not on GLOBUS, we had empty directories for them on cubi
 Cubic Path: /cbica/projects/RBC/HRC/working/HRC_datalad
 Datalad Status: clean, saved
 Git Branch: apply3
-DSR: Save running now on apply2. Still validation errors on 11 new subs. Group/validate running now. Add nifti info running now. Brazil added bvals/bvecs for 11 new subs from third wave, and we uploaded them to cubic. Saved. Ran Group/validate. Checked out apply2 branch. Ran apply! Re-ran group with no TRT in dwi and func. Checked out apply3 branch. Apply ran on apply3 branch. Validation came out the same (no sequential worked, with sequential failed on 11 new subs with ses-3). Apply3=GONG, save ran on apply3, and status came out clean on apply3. Switched back to main. Status came out clean on main. Qsubbed merge apply3 into main. Group/validate came out good. Qsubbed copy-exemplars into ~/testing/hrc_exemplars. 
+DSR: Save running now on apply2. Still validation errors on 11 new subs. Group/validate running now. Add nifti info running now. Brazil added bvals/bvecs for 11 new subs from third wave, and we uploaded them to cubic. Saved. Ran Group/validate. Checked out apply2 branch. Ran apply! Re-ran group with no TRT in dwi and func. Checked out apply3 branch. Apply ran on apply3 branch. Validation came out the same (no sequential worked, with sequential failed on 11 new subs with ses-3). Apply3=GONG, save ran on apply3, and status came out clean on apply3. Switched back to main. Status came out clean on main. Qsubbed merge apply3 into main. Group/validate came out good. Qsubbed copy-exemplars into ~/testing/hrc_exemplars (running now). 
 Next Steps: Push to PMACS and begin acq group testing. 
 Data Narrative: https://github.com/PennLINC/HRC/blob/main/working/curation_code/DataNarrative.md
 
