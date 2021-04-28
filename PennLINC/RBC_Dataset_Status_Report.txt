@@ -10,7 +10,7 @@ DSR: Fmriprep finished running on exemplars. Audit came out clean. Fmriprep fini
 Next Steps: Rerun 14 subjects that failed due to the closed connection. Add back README + Authors. Run exemplars through qsiprep. 
 
 HRC (GONG)
-ISSUE: Need 11 subjects not on GLOBUS, we had empty directories for them on cubic
+RIA Store: ssh://sciget.pmacs.upenn.edu/project/RBC/RIA/BIDS/98f/55d34-d001-40ac-8056-db2803d3280f
 Cubic Path: /cbica/projects/RBC/HRC/working/HRC_datalad
 Datalad Status: clean, saved
 Git Branch: apply3
