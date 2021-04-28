@@ -32,7 +32,7 @@ RIA Store: ssh://sciget.pmacs.upenn.edu/project/RBC/RIA/BIDS/b32/508c1-d2c1-4b40
 Cubic Path: /cbica/projects/RBC/RBC_RAWDATA/bidsdatasets/HBN
 Datalad Status: saved, clean
 Git Branch: master
-DSR: We pushed HBN to PMACS. Next we purged 14 dwi scans with low number of volumes (less than dominant 129) and 9 unusable T1s/T2s with super low Dim1Size (20-32 voxels). We then reran the now backwards compatible add-nifti-info so that 3D scans got NumVolumes=1.0 added to their sidecars. Next we checked out an extra-anats branch, We deleted extra T1s and remove 'run' from the T1s we keep and saved. Validation/group running now! Came out clean. Group ran with session flag. Looks good. Group running now with HBN FINAL TOLERANCES yes ses and no ses. 
+DSR: We pushed HBN to PMACS. Next we purged 14 dwi scans with low number of volumes (less than dominant 129) and 9 unusable T1s/T2s with super low Dim1Size (20-32 voxels). We then reran the now backwards compatible add-nifti-info so that 3D scans got NumVolumes=1.0 added to their sidecars. Next we checked out an extra-anats branch, We deleted extra T1s and remove 'run' from the T1s we keep and saved. Validation/group running now! Came out clean. Group ran with session flag. Looks good. Group running now with HBN FINAL TOLERANCES yes ses and no ses. SEND ALEX HBN SUBJECTS WITH VARIANT EVERYTHING AND THE SITE AT WHICH THEY WERE COLLECTED!
 Next Steps: Decide if --acq-group-level is 'subject' or 'session.' Add events tsvs (have peer, need movieDM and movieTP). Decide on tolerances, apply changes, and push back to PMACS. 
 Data Narrative: https://github.com/PennLINC/RBC/blob/master/PennLINC/HBN_BIDS_Fix/HBN_Data_Narrative.md
 
@@ -40,8 +40,8 @@ NKI
 Datalad Status: untracked changes (Added 22 new subjects + nifti info) 
 Git Branch: main
 Cubic Path: /cbica/projects/RBC/RBC_RAWDATA/bidsdatasets/NKI
-DSR: We purged 20 dwi scans with low number of volumes (less than dominant 137). We then identified that NKI was missing 51 sidcars. We uploaded 45/51 of the missing sidecars, and Alex is checking to see if he has the last 6. We then realized we accidentally initialized NKI as a datalad dataset without text2git, so the sidecars were in git annex. To keep things consistent with the other RBC datasets, we unlocked and ran datalad run-procedure cfg_text2git to remove the jsons from git annex. We uplodaded the T2s for subjects we currently have in NKI from s3 to cubic. Add nift info ran!! Save running now. MATT IS GOING TO UPLOAD 22 new subjects from s3! Group/validate ran now post adding 22 new. Add Nifti Info ran. Group and validate ran and came out clean.  
-Next Steps: 2 OUTSTANDING ISSUES (see below). Decide on config params, and truncate subject level events tsvs. 
+DSR: We purged 20 dwi scans with low number of volumes (less than dominant 137). We then identified that NKI was missing 51 sidcars. We uploaded 45/51 of the missing sidecars, and Alex is checking to see if he has the last 6. We then realized we accidentally initialized NKI as a datalad dataset without text2git, so the sidecars were in git annex. To keep things consistent with the other RBC datasets, we unlocked and ran datalad run-procedure cfg_text2git to remove the jsons from git annex. We uplodaded the T2s for subjects we currently have in NKI from s3 to cubic. Add nift info ran!! Save running now. MATT IS GOING TO UPLOAD 22 new subjects from s3! Group/validate ran now post adding 22 new. Add Nifti Info ran. Group and validate ran and came out clean. ALL DATA THERE! Validation running now! 
+Next Steps: TODO LIST ON SLACK FROM MEETING WITH ALEX. Decide on config params, and truncate subject level events tsvs. 
 
 CCNP ISSUES
 
