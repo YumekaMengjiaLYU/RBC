@@ -6,15 +6,15 @@ Cubic Path: /cbica/projects/RBC/testing/colornest/bidsdatasets
 Final CuBIDS Outputs: https://github.com/PennLINC/RBC/tree/master/PennLINC/CCNP_BIDS_Fix
 Datalad Status: saved, clean
 Git Branch: master
-DSR: Fmriprep finished running on exemplars. Audit came out clean. Fmriprep finished running on production. Audit revealed 14 subjects didn't finish (connection to PMACS closed before they did, so need to rerun. See below for list. NOTE: this might also happen with PNC. Might need to modify 'The Way' slightly to submit in smaller groups. 
-Next Steps: Rerun 14 subjects that failed due to the closed connection. Add back README + Authors. Run exemplars through qsiprep. 
+DSR: Fmriprep finished running on exemplars. Audit came out clean. Fmriprep finished running on production. Audit revealed 14 subjects didn't finish (connection to PMACS closed before they did, so need to rerun. Resubmitted the 14 subs who didn't finish. Audit is running now. 
+Next Steps: If audit comes out as expected, add back README + Authors, and run exemplars through qsiprep. 
 
 HRC (GONG)
 RIA Store: ssh://sciget.pmacs.upenn.edu/project/RBC/RIA/BIDS/98f/55d34-d001-40ac-8056-db2803d3280f
 Cubic Path: /cbica/projects/RBC/HRC/working/HRC_datalad
 Datalad Status: clean, saved
 Git Branch: apply3
-DSR: Save running now on apply2. Still validation errors on 11 new subs. Group/validate running now. Add nifti info running now. Brazil added bvals/bvecs for 11 new subs from third wave, and we uploaded them to cubic. Saved. Ran Group/validate. Checked out apply2 branch. Ran apply! Re-ran group with no TRT in dwi and func. Checked out apply3 branch. Apply ran on apply3 branch. Validation came out the same (no sequential worked, with sequential failed on 11 new subs with ses-3). Apply3=GONG, save ran on apply3, and status came out clean on apply3. Switched back to main. Status came out clean on main. Qsubbed merge apply3 into main. Group/validate came out good. Qsubbed copy-exemplars into ~/testing/hrc_exemplars (running now). 
+DSR: Save running now on apply2. Still validation errors on 11 new subs. Group/validate running now. Add nifti info running now. Brazil added bvals/bvecs for 11 new subs from third wave, and we uploaded them to cubic. Saved. Ran Group/validate. Checked out apply2 branch. Ran apply! Re-ran group with no TRT in dwi and func. Checked out apply3 branch. Apply ran on apply3 branch. Validation came out the same (no sequential worked, with sequential failed on 11 new subs with ses-3). Apply3=GONG, save ran on apply3, and status came out clean on apply3. Switched back to main. Status came out clean on main. Qsubbed merge apply3 into main. Group/validate came out good. Qsubbed copy-exemplars into ~/testing/hrc_exemplars (running now). Exemplars finished running, and audit is running now.
 Next Steps: Push to PMACS and begin acq group testing. 
 Data Narrative: https://github.com/PennLINC/HRC/blob/main/working/curation_code/DataNarrative.md
 
@@ -23,7 +23,7 @@ RIA Store: ssh://sciget.pmacs.upenn.edu/project/RBC/RIA/BIDS/6a5/7d847-1441-442d
 Cubic Path: /cbica/projects/RBC/RBC_RAWDATA/bidsdatasets/PNC
 Datalad Status: saved, clean
 Git Branch: master
-DSR: Fmriprep finished running on exemplars. Audit revealed 5 acq groups with no bold scans. Fmriprep running now on all subjects. 
+DSR: Fmriprep finished running on exemplars. Audit revealed 5 acq groups with no bold scans. Fmriprep running now on all subjects. Audit is running now on production outputs. <30 will likely need a rerun. 
 Next Steps: Audit production fmriprep run. Run qsiprep on exemplars.
 Data Narrative: /cbica/projects/RBC/PNC/working/curation_code/DataNarrative.md
 
@@ -78,18 +78,6 @@ ANAT: EchoTime: 0.002,
 DWI: group 1 = CBIC/CUNY, group 2 = RU, group 3 = SI, EES, TRT, TR 
 FMAP: VoxelSizeDim*:0.05mm, EES:0.0001, TRT: 0.01 
 FUNC: EES:precision=4, TRT:precision=2, 
-
- 
-NKI ISSUES
-(1) sub-A00074953 has one T2w scan with a sidecar but no corresponding nifti. The following is the path to the sidecar missing a nifti: sub-A00074953/ses-TRT/anat/sub-A00074953_ses-TRT_T2w.json. This nifti is not on s3. 
-
-(2) NKI has six T1w scans missing sidecars. See below for the list of missing sidecars: 
-sub-A00028266/ses-BAS1/anat/sub-A00028266_ses-BAS1_T1w.json
-sub-A00028339/ses-BAS1/anat/sub-A00028339_ses-BAS1_T1w.json
-sub-A00028430/ses-BAS1/anat/sub-A00028430_ses-BAS1_T1w.json
-sub-A00028380/ses-BAS1/anat/sub-A00028380_ses-BAS1_T1w.json
-sub-A00028352/ses-BAS1/anat/sub-A00028352_ses-BAS1_T1w.json
-sub-A00028287/ses-BAS1/anat/sub-A00028287_ses-BAS1_T1w.json
 
 
 HRC ISSUES
