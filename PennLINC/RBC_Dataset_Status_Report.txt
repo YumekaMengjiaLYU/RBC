@@ -6,16 +6,16 @@ Cubic Path: /cbica/projects/RBC/testing/colornest/bidsdatasets
 Final CuBIDS Outputs: https://github.com/PennLINC/RBC/tree/master/PennLINC/CCNP_BIDS_Fix
 Datalad Status: saved, clean
 Git Branch: master
-DSR: Fmriprep finished running on exemplars. Audit came out clean. Fmriprep finished running on production. Audit revealed 14 subjects didn't finish (connection to PMACS closed before they did, so need to rerun. Resubmitted the 14 subs who didn't finish. Audit is running now. 
-Next Steps: If audit comes out as expected, add back README + Authors, and run exemplars through qsiprep. 
+DSR: All CCNP subjects ran through fmriprep successfully.
+Next Steps: Add back README + Authors, and run exemplars through XCP. 
 
 HRC (GONG)
 RIA Store: ssh://sciget.pmacs.upenn.edu/project/RBC/RIA/BIDS/98f/55d34-d001-40ac-8056-db2803d3280f
 Cubic Path: /cbica/projects/RBC/HRC/working/HRC_datalad
-Datalad Status: clean, saved
-Git Branch: apply3
-DSR: Save running now on apply2. Still validation errors on 11 new subs. Group/validate running now. Add nifti info running now. Brazil added bvals/bvecs for 11 new subs from third wave, and we uploaded them to cubic. Saved. Ran Group/validate. Checked out apply2 branch. Ran apply! Re-ran group with no TRT in dwi and func. Checked out apply3 branch. Apply ran on apply3 branch. Validation came out the same (no sequential worked, with sequential failed on 11 new subs with ses-3). Apply3=GONG, save ran on apply3, and status came out clean on apply3. Switched back to main. Status came out clean on main. Qsubbed merge apply3 into main. Group/validate came out good. Qsubbed copy-exemplars into ~/testing/hrc_exemplars (running now). Exemplars finished running, and audit is running now.
-Next Steps: Push to PMACS and begin acq group testing. 
+Datalad Status: saved, clean
+Git Branch: main
+DSR: We ran the exemplars through fmriprep. All finished successfully except 3 with no bold and 2 who needed a rerun due to cluster issues. 1/2 of these subjects is still running. 
+Next Steps: Run the audit on the exemplar reruns. If it comes out clean, run fmriprep on the entire dataset.
 Data Narrative: https://github.com/PennLINC/HRC/blob/main/working/curation_code/DataNarrative.md
 
 PNC (GONG)
@@ -23,7 +23,7 @@ RIA Store: ssh://sciget.pmacs.upenn.edu/project/RBC/RIA/BIDS/6a5/7d847-1441-442d
 Cubic Path: /cbica/projects/RBC/RBC_RAWDATA/bidsdatasets/PNC
 Datalad Status: saved, clean
 Git Branch: master
-DSR: Fmriprep finished running on exemplars. Audit revealed 5 acq groups with no bold scans. Fmriprep running now on all subjects. Audit is running now on production outputs. <30 will likely need a rerun. 
+DSR: Fmriprep finished running on the entire dataset. Audit is running now on production outputs. <~0 will likely need a rerun. 
 Next Steps: Audit production fmriprep run. Run qsiprep on exemplars.
 Data Narrative: /cbica/projects/RBC/PNC/working/curation_code/DataNarrative.md
 
@@ -32,38 +32,22 @@ RIA Store: ssh://sciget.pmacs.upenn.edu/project/RBC/RIA/BIDS/b32/508c1-d2c1-4b40
 Cubic Path: /cbica/projects/RBC/RBC_RAWDATA/bidsdatasets/HBN
 Datalad Status: saved, clean
 Git Branch: master
-DSR: We pushed HBN to PMACS. Next we purged 14 dwi scans with low number of volumes (less than dominant 129) and 9 unusable T1s/T2s with super low Dim1Size (20-32 voxels). We then reran the now backwards compatible add-nifti-info so that 3D scans got NumVolumes=1.0 added to their sidecars. Next we checked out an extra-anats branch, We deleted extra T1s and remove 'run' from the T1s we keep and saved. Validation/group running now! Came out clean. Group ran with session flag. Looks good. Group running now with HBN FINAL TOLERANCES yes ses and no ses. SEND ALEX HBN SUBJECTS WITH VARIANT EVERYTHING AND THE SITE AT WHICH THEY WERE COLLECTED!
-Next Steps: Decide if --acq-group-level is 'subject' or 'session.' Add events tsvs (have peer, need movieDM and movieTP). Decide on tolerances, apply changes, and push back to PMACS. 
+DSR: HBN varient everything key groups that appear have a different MR protocol (sent list to CMI). 
+Next Steps: Add events tsvs (have peer, need movieDM and movieTP). Decide on tolerances, apply changes, and push back to PMACS. 
 Data Narrative: https://github.com/PennLINC/RBC/blob/master/PennLINC/HBN_BIDS_Fix/HBN_Data_Narrative.md
 
 NKI
 Datalad Status: untracked changes (Added 22 new subjects + nifti info) 
 Git Branch: main
 Cubic Path: /cbica/projects/RBC/RBC_RAWDATA/bidsdatasets/NKI
-DSR: We purged 20 dwi scans with low number of volumes (less than dominant 137). We then identified that NKI was missing 51 sidcars. We uploaded 45/51 of the missing sidecars, and Alex is checking to see if he has the last 6. We then realized we accidentally initialized NKI as a datalad dataset without text2git, so the sidecars were in git annex. To keep things consistent with the other RBC datasets, we unlocked and ran datalad run-procedure cfg_text2git to remove the jsons from git annex. We uplodaded the T2s for subjects we currently have in NKI from s3 to cubic. Add nift info ran!! Save running now. MATT IS GOING TO UPLOAD 22 new subjects from s3! Group/validate ran now post adding 22 new. Add Nifti Info ran. Group and validate ran and came out clean. ALL DATA THERE! Validation running now! 
-Next Steps: TODO LIST ON SLACK FROM MEETING WITH ALEX. Decide on config params, and truncate subject level events tsvs. 
+DSR: Look into NKI T2ws with slice timing (sent list to CMI). Purging bold scans with less than 3 mins of data and checkerboard scans with less than dominant group's quantity of data. 
+Next Steps: Use config params from meeting with Alex, truncate subject level events tsvs, and apply changes. 
 
-CCNP ISSUES
 
-(1) 14 subjects that need to be rerun through fmriprep (due to connection to PMACS closing early). 
 
-sub-colornest138
-sub-colornest089
-sub-colornest148
-sub-colornest068
-sub-colornest082
-sub-colornest096
-sub-colornest140
-sub-colornest119
-sub-colornest047
-sub-colornest174
-sub-colornest011
-sub-colornest177
-sub-colornest195
-sub-colornest036
 
-HBN ISSUES 
-- ALL: ADD SITE-SI SCANS? THEY ARE ALL IN THEIR OWN PARAM GROUPS (32 GROUPS TOTAL)! 
+
+HBN ISSUES
 - ANAT: Change T1 key group with no acq value to acquisition-SI
 - ANAT: Need to delete some T2s, waiting on CMI for which ones (Mike or Alex)
 - ANAT: RULE FOR T1s: Ideally, keep the VnavNorm scan with the highest rating. If unscored, keep best one (from plot), if can't tell difference, keep first run. If no VnavNorm, keep Vnav. If neither, keep HCP. 
@@ -81,15 +65,4 @@ FUNC: EES:precision=4, TRT:precision=2,
 
 
 HRC ISSUES
-(1) VALIDATION: 11 new subs still quick validation failing ('bids dir structure doesn't match' description so maybe just having an issue with ses-3?) using the --sequential flag! Matt and I found nothing wrong with them (likely just need to debug the new flag. They passed validation WITHOUT the sequential flag. 
-
-
-MISSING DATA
-
-NKI has 6 T1 scans still missing sidecars 
-sub-A00028266/ses-BAS1/anat/sub-A00028266_ses-BAS1_T1w.json
-sub-A00028339/ses-BAS1/anat/sub-A00028339_ses-BAS1_T1w.json
-sub-A00028430/ses-BAS1/anat/sub-A00028430_ses-BAS1_T1w.json
-sub-A00028380/ses-BAS1/anat/sub-A00028380_ses-BAS1_T1w.json
-sub-A00028352/ses-BAS1/anat/sub-A00028352_ses-BAS1_T1w.json
-sub-A00028287/ses-BAS1/anat/sub-A00028287_ses-BAS1_T1w.json
+- VALIDATION: 11 new subs still quick validation failing ('bids dir structure doesn't match' description so maybe just having an issue with ses-3?) using the --sequential flag! Matt and I found nothing wrong with them (likely just need to debug the new flag. They passed validation WITHOUT the sequential flag. 
