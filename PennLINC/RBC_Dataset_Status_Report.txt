@@ -10,6 +10,7 @@ DSR: All CCNP subjects ran through fmriprep successfully.
 Next Steps: Add back README + Authors, and run exemplars through XCP. 
 
 HRC (GONG)
+QUESTIONS: Can we test without longitudinal default? 
 RIA Store: ssh://sciget.pmacs.upenn.edu/project/RBC/RIA/BIDS/98f/55d34-d001-40ac-8056-db2803d3280f
 Cubic Path: /cbica/projects/RBC/HRC/working/HRC_datalad
 Datalad Status: saved, clean
@@ -23,11 +24,12 @@ RIA Store: ssh://sciget.pmacs.upenn.edu/project/RBC/RIA/BIDS/6a5/7d847-1441-442d
 Cubic Path: /cbica/projects/RBC/RBC_RAWDATA/bidsdatasets/PNC
 Datalad Status: saved, clean
 Git Branch: master
-DSR: Fmriprep finished running on the entire dataset. Audit is running now on production outputs. <~0 will likely need a rerun. 
+DSR: Fmriprep finished running on the entire dataset. Audit is running now on production outputs. ~30 will likely need a rerun. 
 Next Steps: Audit production fmriprep run. Run qsiprep on exemplars.
 Data Narrative: /cbica/projects/RBC/PNC/working/curation_code/DataNarrative.md
 
 HBN
+QUESTIONS: Are the variant scans the only scans for those subjects for the modalities to which they corespond?
 RIA Store: ssh://sciget.pmacs.upenn.edu/project/RBC/RIA/BIDS/b32/508c1-d2c1-4b40-a3e3-48df49e7fa56
 Cubic Path: /cbica/projects/RBC/RBC_RAWDATA/bidsdatasets/HBN
 Datalad Status: saved, clean
@@ -40,11 +42,23 @@ NKI
 Datalad Status: untracked changes (Added 22 new subjects + nifti info) 
 Git Branch: main
 Cubic Path: /cbica/projects/RBC/RBC_RAWDATA/bidsdatasets/NKI
-DSR: Look into NKI T2ws with slice timing (sent list to CMI). Purging bold scans with less than 3 mins of data and checkerboard scans with less than dominant group's quantity of data. 
+DSR: Look into NKI T2ws with slice timing (sent list to CMI). Final decision on bold purge (see below).
 Next Steps: Use config params from meeting with Alex, truncate subject level events tsvs, and apply changes. 
 
 
+NKI BOLD TO DELETE
+(1) task-checkerboard scans with less than the dominant group's quantity of data
+- 19 acq-645 check scans with less than the dominant group's quantity of data: 240*0.645/60 = 2.58 mins of data
+- 8 check acq-1400 check scans with less than the dominant group's quantity of data: 98*1.4/60 = 2.28666666667 mins of data
+- 2 acq-1400RR scans with less than the dominant group's quantity of data: 98*1.4/60 = 2.28666666667 mins of data
+- 2 check acq-65RR scans with less than the dominant group's quantity of data: 240*0.645/60 = 2.58 mins of data
 
+(2) 60 task-rest scans with less than 3 mins of data 
+
+(3) task-breathhold 
+- 3 breath acq-1400RR scans with less than the dominant group's quantity of data: 191*1.4/60 = 4.45666666667 mins of data
+- 20 acq-1400 breathhold scans that have less than the dominant group's quantity of data: 186*1.4/60 = 4.34 mins of data
+The task-breathhold dominant groups have more than 3 mins of data. 
 
 
 HBN ISSUES
