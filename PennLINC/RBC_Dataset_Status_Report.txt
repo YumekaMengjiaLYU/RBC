@@ -13,7 +13,7 @@ HRC (GONG)
 QUESTIONS: Can we test without longitudinal default? 
 RIA Store: ssh://sciget.pmacs.upenn.edu/project/RBC/RIA/BIDS/98f/55d34-d001-40ac-8056-db2803d3280f
 Cubic Path: /cbica/projects/RBC/HRC/working/HRC_datalad
-Datalad Status: saved, clean
+Datalad Status: unlocked
 Git Branch: main
 DSR: We ran the exemplars through fmriprep. All finished successfully except 3 with no bold and 2 who needed a rerun due to cluster issues. 1/2 of these subjects is still running. 
 Next Steps: Run the audit on the exemplar reruns. If it comes out clean, run fmriprep on the entire dataset.
