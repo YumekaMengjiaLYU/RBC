@@ -42,7 +42,7 @@ NKI
 Datalad Status: untracked changes (Added 22 new subjects + nifti info) 
 Git Branch: main
 Cubic Path: /cbica/projects/RBC/RBC_RAWDATA/bidsdatasets/NKI
-DSR: Look into NKI T2ws with slice timing (sent list to CMI). Final decision on bold purge (see below).
+DSR: Look into NKI T2ws with slice timing (sent list to CMI). Final decision on bold purge (see below). Save running now (on 22 new subjects that got added + nifti info). 
 Next Steps: Use config params from meeting with Alex, truncate subject level events tsvs, and apply changes. 
 
 
