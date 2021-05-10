@@ -24,7 +24,7 @@ RIA Store: ssh://sciget.pmacs.upenn.edu/project/RBC/RIA/BIDS/6a5/7d847-1441-442d
 Cubic Path: /cbica/projects/RBC/RBC_RAWDATA/bidsdatasets/PNC
 Datalad Status: saved, clean
 Git Branch: master
-DSR: Fmriprep finished running on the entire dataset. Audit revealed ~30 needed a rerun. All rerun subjects finished except 1, which is still running. 
+DSR: Fmriprep finished running on the entire dataset. Audit revealed ~30 needed a rerun. All rerun subjects finished except one, who got stuck on autorecon. We just resubmitted that last subject. 
 Next Steps: Merge and rerun audit. Run qsiprep on exemplars and XCP on the entire dataset. 
 Data Narrative: /cbica/projects/RBC/PNC/working/curation_code/DataNarrative.md
 
