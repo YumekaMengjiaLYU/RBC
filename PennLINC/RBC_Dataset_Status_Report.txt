@@ -6,8 +6,8 @@ Cubic Path: /cbica/projects/RBC/testing/colornest/bidsdatasets
 Final CuBIDS Outputs: https://github.com/PennLINC/RBC/tree/master/PennLINC/CCNP_BIDS_Fix
 Datalad Status: saved, clean
 Git Branch: master
-DSR: All CCNP subjects ran through fmriprep successfully.
-Next Steps: Add back README + Authors, and run exemplars through XCP. 
+DSR: All CCNP subjects ran through fmriprep successfully. Ready for XCP
+Next Steps: Run entire dataset through XCP using bootstrap scripts. Add README + Authors.
 
 HRC (GONG)
 QUESTIONS: Can we test without longitudinal default? 
@@ -15,8 +15,8 @@ RIA Store: ssh://sciget.pmacs.upenn.edu/project/RBC/RIA/BIDS/98f/55d34-d001-40ac
 Cubic Path: /cbica/projects/RBC/HRC/working/HRC_datalad
 Datalad Status: unlocked
 Git Branch: main
-DSR: We ran the exemplars through fmriprep. All finished successfully except 3 with no bold and 2 who needed a rerun due to cluster issues. 1/2 of these subjects is still running. 
-Next Steps: Run the audit on the exemplar reruns. If it comes out clean, run fmriprep on the entire dataset.
+DSR: We ran the exemplars through fmriprep using the non-multisession version.
+Next Steps: Run the exemplars with the multi-session version of fmriprep. If it comes out clean, run fmriprep on the entire dataset.
 Data Narrative: https://github.com/PennLINC/HRC/blob/main/working/curation_code/DataNarrative.md
 
 PNC (GONG)
@@ -24,8 +24,8 @@ RIA Store: ssh://sciget.pmacs.upenn.edu/project/RBC/RIA/BIDS/6a5/7d847-1441-442d
 Cubic Path: /cbica/projects/RBC/RBC_RAWDATA/bidsdatasets/PNC
 Datalad Status: saved, clean
 Git Branch: master
-DSR: Fmriprep finished running on the entire dataset. Audit is running now on production outputs. ~30 will likely need a rerun. 
-Next Steps: Audit production fmriprep run. Run qsiprep on exemplars.
+DSR: Fmriprep finished running on the entire dataset. Audit revealed ~30 needed a rerun. All rerun subjects finished except 1, which is still running. 
+Next Steps: Merge and rerun audit. Run qsiprep on exemplars and XCP on the entire dataset. 
 Data Narrative: /cbica/projects/RBC/PNC/working/curation_code/DataNarrative.md
 
 HBN
@@ -34,16 +34,16 @@ RIA Store: ssh://sciget.pmacs.upenn.edu/project/RBC/RIA/BIDS/b32/508c1-d2c1-4b40
 Cubic Path: /cbica/projects/RBC/RBC_RAWDATA/bidsdatasets/HBN
 Datalad Status: saved, clean
 Git Branch: master
-DSR: HBN varient everything key groups that appear have a different MR protocol (sent list to CMI). 
-Next Steps: Add events tsvs (have peer, need movieDM and movieTP). Decide on tolerances, apply changes, and push back to PMACS. 
+DSR: Sent CMI more inof on 36 HBN abnormally varient subjects, some of which appeared to be scanned with the abcd protocol. Waiting on Mike to respond to Alex's message. QUESTION: Does Mike check Slack? Should we email him?
+Next Steps: Add events tsvs (have peer, need movieDM and movieTP). Use tolerances listed below, apply changes, and push back to PMACS. 
 Data Narrative: https://github.com/PennLINC/RBC/blob/master/PennLINC/HBN_BIDS_Fix/HBN_Data_Narrative.md
 
 NKI
 Datalad Status: untracked changes (Added 22 new subjects + nifti info) 
 Git Branch: main
 Cubic Path: /cbica/projects/RBC/RBC_RAWDATA/bidsdatasets/NKI
-DSR: Look into NKI T2ws with slice timing (sent list to CMI). Final decision on bold purge (see below). Save running now (on 22 new subjects that got added + nifti info). 
-Next Steps: Use config params from meeting with Alex, truncate subject level events tsvs, and apply changes. 
+DSR: Sent CMI list of 125 subjects with T2ws that have slice timing. Alex is looking into what happened here, since it is unexpected. Save is running now (qsubbed one job per untracked subject). 
+Next Steps: Purge list of too short bold scans. Group using config params from meeting with Alex, truncate subject level events tsvs, and apply changes. 
 
 
 NKI BOLD TO DELETE
@@ -60,8 +60,13 @@ NKI BOLD TO DELETE
 - 20 acq-1400 breathhold scans that have less than the dominant group's quantity of data: 186*1.4/60 = 4.34 mins of data
 The task-breathhold dominant groups have more than 3 mins of data. 
 
+HBN FINAL TOLERNACES 
+ANAT: EchoTime: 0.002, 
+DWI: group 1 = CBIC/CUNY, group 2 = RU, group 3 = SI, EES, TRT, TR 
+FMAP: VoxelSizeDim*:0.05mm, EES:0.0001, TRT: 0.01 
+FUNC: EES:precision=4, TRT:precision=2
 
-HBN ISSUES
+HBN ISSUES (OLD)
 - ANAT: Change T1 key group with no acq value to acquisition-SI
 - ANAT: Need to delete some T2s, waiting on CMI for which ones (Mike or Alex)
 - ANAT: RULE FOR T1s: Ideally, keep the VnavNorm scan with the highest rating. If unscored, keep best one (from plot), if can't tell difference, keep first run. If no VnavNorm, keep Vnav. If neither, keep HCP. 
@@ -70,12 +75,6 @@ HBN ISSUES
 - FMAP: tolerate VoxelSizeDim1 (0.05mm)
 - ADD PixelBandwith to sidecar params!!!!
 - RERUN GROUP WITH SES INCLUDED IN GROUPINGS! 
-
-HBN FINAL TOLERNACES 
-ANAT: EchoTime: 0.002, 
-DWI: group 1 = CBIC/CUNY, group 2 = RU, group 3 = SI, EES, TRT, TR 
-FMAP: VoxelSizeDim*:0.05mm, EES:0.0001, TRT: 0.01 
-FUNC: EES:precision=4, TRT:precision=2, 
 
 
 HRC ISSUES
