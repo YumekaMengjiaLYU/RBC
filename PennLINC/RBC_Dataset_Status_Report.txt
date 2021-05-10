@@ -10,7 +10,6 @@ DSR: All CCNP subjects ran through fmriprep successfully. Ready for XCP
 Next Steps: Run entire dataset through XCP using bootstrap scripts. Add README + Authors.
 
 HRC (GONG)
-QUESTIONS: Can we test without longitudinal default? 
 RIA Store: ssh://sciget.pmacs.upenn.edu/project/RBC/RIA/BIDS/98f/55d34-d001-40ac-8056-db2803d3280f
 Cubic Path: /cbica/projects/RBC/HRC/working/HRC_datalad
 Datalad Status: unlocked
@@ -29,12 +28,11 @@ Next Steps: Merge and rerun audit. Run qsiprep on exemplars and XCP on the entir
 Data Narrative: /cbica/projects/RBC/PNC/working/curation_code/DataNarrative.md
 
 HBN
-QUESTIONS: Are the variant scans the only scans for those subjects for the modalities to which they corespond?
 RIA Store: ssh://sciget.pmacs.upenn.edu/project/RBC/RIA/BIDS/b32/508c1-d2c1-4b40-a3e3-48df49e7fa56
 Cubic Path: /cbica/projects/RBC/RBC_RAWDATA/bidsdatasets/HBN
 Datalad Status: saved, clean
 Git Branch: master
-DSR: Sent CMI more inof on 36 HBN abnormally varient subjects, some of which appeared to be scanned with the abcd protocol. Waiting on Mike to respond to Alex's message. QUESTION: Does Mike check Slack? Should we email him?
+DSR:36 HBN subjects with at least one abnormally varient scan. Some of these scans appear to be scanned with the abcd protocol. We are meeting with Alex to go over these at 4pm today. 
 Next Steps: Add events tsvs (have peer, need movieDM and movieTP). Use tolerances listed below, apply changes, and push back to PMACS. 
 Data Narrative: https://github.com/PennLINC/RBC/blob/master/PennLINC/HBN_BIDS_Fix/HBN_Data_Narrative.md
 
