@@ -32,7 +32,7 @@ RIA Store: ssh://sciget.pmacs.upenn.edu/project/RBC/RIA/BIDS/b32/508c1-d2c1-4b40
 Cubic Path: /cbica/projects/RBC/RBC_RAWDATA/bidsdatasets/HBN
 Datalad Status: saved, clean
 Git Branch: master
-DSR:36 HBN subjects with at least one abnormally varient scan. Some of these scans appear to be scanned with the abcd protocol. We are meeting with Alex to go over these at 4pm today. 
+DSR: Sent CSV outlining info on 36 HBN subjects with at least one abnormally varient scan in rbc-collab. Some of these subjects appear to have been scanned with the abcd protocol. We are meeting with Alex to go over these at 4pm today. 
 Next Steps: Add events tsvs (have peer, need movieDM and movieTP). Use tolerances listed below, apply changes, and push back to PMACS. 
 Data Narrative: https://github.com/PennLINC/RBC/blob/master/PennLINC/HBN_BIDS_Fix/HBN_Data_Narrative.md
 
@@ -41,7 +41,7 @@ Datalad Status: untracked changes (Added 22 new subjects + nifti info)
 Git Branch: main
 Cubic Path: /cbica/projects/RBC/RBC_RAWDATA/bidsdatasets/NKI
 DSR: Sent CMI list of 125 subjects with T2ws that have slice timing. Alex is looking into what happened here, since it is unexpected. Save is running now (qsubbed one job per untracked subject). 
-Next Steps: Purge list of too short bold scans. Group using config params from meeting with Alex, truncate subject level events tsvs, and apply changes. 
+Next Steps: Purge list of too short bold scans (compiled according to the rules we established with Alex). Truncate subject level events tsvs. Group using config params from meeting with Alex, and apply changes. 
 
 
 NKI BOLD TO DELETE
