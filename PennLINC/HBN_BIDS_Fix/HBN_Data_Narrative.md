@@ -233,7 +233,7 @@ The deletion for these scans was completed using the `CuBIDS-purge` function.
 
 SYDNEY 
 Working off the copy of HBN at ~/RBC_RAWDATA/bidsdatasets/HBN, we checked out an includes-incompletes branch and then purged 16 dwi scans that were receiving a VOLUME_COUNT_MISMATCH warning during validation along with 16 bold scans with less than 3 mins of data from the main branch. See below for the list. 
-
+```
 /cbica/projects/RBC/RBC_RAWDATA/bidsdatasets/HBN/sub-NDARWE130JMG/ses-HBNsiteRU/dwi/sub-NDARWE130JMG_ses-HBNsiteRU_acq-64dir_dwi.nii.gz
 /cbica/projects/RBC/RBC_RAWDATA/bidsdatasets/HBN/sub-NDARVP285RXV/ses-HBNsiteRU/dwi/sub-NDARVP285RXV_ses-HBNsiteRU_acq-64dir_dwi.nii.gz
 /cbica/projects/RBC/RBC_RAWDATA/bidsdatasets/HBN/sub-NDARBR128UFP/ses-HBNsiteCBIC/dwi/sub-NDARBR128UFP_ses-HBNsiteCBIC_acq-64dir_dwi.nii.gz
@@ -251,7 +251,6 @@ Working off the copy of HBN at ~/RBC_RAWDATA/bidsdatasets/HBN, we checked out an
 /cbica/projects/RBC/RBC_RAWDATA/bidsdatasets/HBN/sub-NDARYZ906UHJ/ses-HBNsiteRU/dwi/sub-NDARYZ906UHJ_ses-HBNsiteRU_acq-64dir_dwi.nii.gz
 /cbica/projects/RBC/RBC_RAWDATA/bidsdatasets/HBN/sub-NDARBM490LK7/ses-HBNsiteRU/dwi/sub-NDARBM490LK7_ses-HBNsiteRU_acq-64dir_dwi.nii.gz
 
-
 /cbica/projects/RBC/RBC_RAWDATA/bidsdatasets/HBN/sub-NDAREG930XPP/ses-HBNsiteCBIC/func/sub-NDAREG930XPP_ses-HBNsiteCBIC_task-movieTP_bold.nii.gz
 /cbica/projects/RBC/RBC_RAWDATA/bidsdatasets/HBN/sub-NDARRA719CPH/ses-HBNsiteCBIC/func/sub-NDARRA719CPH_ses-HBNsiteCBIC_task-movieTP_bold.nii.gz
 /cbica/projects/RBC/RBC_RAWDATA/bidsdatasets/HBN/sub-NDARZH930XTP/ses-HBNsiteCBIC/func/sub-NDARZH930XTP_ses-HBNsiteCBIC_task-movieTP_bold.nii.gz
@@ -268,19 +267,24 @@ Working off the copy of HBN at ~/RBC_RAWDATA/bidsdatasets/HBN, we checked out an
 /cbica/projects/RBC/RBC_RAWDATA/bidsdatasets/HBN/sub-NDARET332CTB/ses-HBNsiteRU/func/sub-NDARET332CTB_ses-HBNsiteRU_task-movieDM_bold.nii.gz
 /cbica/projects/RBC/RBC_RAWDATA/bidsdatasets/HBN/sub-NDARZH930XTP/ses-HBNsiteCBIC/func/sub-NDARZH930XTP_ses-HBNsiteCBIC_task-movieDM_bold.nii.gz
 /cbica/projects/RBC/RBC_RAWDATA/bidsdatasets/HBN/sub-NDARET949LMU/ses-HBNsiteSI/func/sub-NDARET949LMU_ses-HBNsiteSI_task-rest_bold.nii.gz
+```
 
 We checked out a branch called no-T2s. Then, Lei then merged the defaced, non skull-stripped T2w scans he had stored in a separate directory on cubic into the main branch and uploaded the 6 T1w sidecars we identified as missing. The CMI team used the following script to deface the T2s: https://github.com/PennLINC/RBC/blob/master/PennLINC/HBN_BIDS_Fix/deface_other_image.sh  
 
 We then ran add-nifti-info to add nifti information from the sidecars Lei added (all T2ws and 6 T1ws). 
 
 HBN T1ws that were Missing Jsons (6 scans)
+```
 /cbica/projects/RBC/RBC_RAWDATA/bidsdatasets/HBN/sub-NDARNY023FWG/ses-HBNsiteRU/anat/sub-NDARNY023FWG_ses-HBNsiteRU_acq-HCP_T1w.nii.gz
 /cbica/projects/RBC/RBC_RAWDATA/bidsdatasets/HBN/sub-NDARAP912JK3/ses-HBNsiteCBIC/anat/sub-NDARAP912JK3_ses-HBNsiteCBIC_acq-VNavNorm_T1w.nii.gz
 /cbica/projects/RBC/RBC_RAWDATA/bidsdatasets/HBN/sub-NDARAE877NER/ses-HBNsiteCBIC/anat/sub-NDARAE877NER_ses-HBNsiteCBIC_acq-VNavNorm_run-01_T1w.nii.gz
 /cbica/projects/RBC/RBC_RAWDATA/bidsdatasets/HBN/sub-NDARNY419GR2/ses-HBNsiteCBIC/anat/sub-NDARNY419GR2_ses-HBNsiteCBIC_acq-HCP_run-01_T1w.nii.gz
 /cbica/projects/RBC/RBC_RAWDATA/bidsdatasets/HBN/sub-NDARNY419GR2/ses-HBNsiteCBIC/anat/sub-NDARNY419GR2_ses-HBNsiteCBIC_acq-VNavNorm_run-01_T1w.nii.gz
 /cbica/projects/RBC/RBC_RAWDATA/bidsdatasets/HBN/sub-NDARNY419GR2/ses-HBNsiteCBIC/anat/sub-NDARNY419GR2_ses-HBNsiteCBIC_acq-VNavNorm_run-02_T1w.nii.gz
+```
 
 Next, we identified 7 anat/ scans (2 T2ws and 5 T1ws) with a very low Dimension 1 Size (between 20 and 32 voxels). We decided to purge these scans. 
 
 We also noticed that 137 subjects still had multiple runs of T1ws.
+
+Of the 137 subjects that had multiple T1ws, we used scores from braindr and manual visual checks to decide which T1w would be the single T1w for that subject. The scripts that implemented these changes are `PennLINC/HBN_BIDS_Fix/hbn_anat_fix.sh`. Some multiple scans did not have scores or full testing data (2 vnavs and 2 hcps) and were manually renamed using `PennLINC/HBN_BIDS_Fix/hbn_anat_fix2.sh`. -MC

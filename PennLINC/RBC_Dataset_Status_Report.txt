@@ -1,61 +1,79 @@
 RBC Dataset Status Report (DSR)
 
 CCNP (GONG)
+RIA Store: ssh://sciget.pmacs.upenn.edu/project/RBC/RIA/BIDS/970/4eab1-3320-41f0-9fce-3c6961b4ac96
 Cubic Path: /cbica/projects/RBC/testing/colornest/bidsdatasets
 Final CuBIDS Outputs: https://github.com/PennLINC/RBC/tree/master/PennLINC/CCNP_BIDS_Fix
 Datalad Status: saved, clean
 Git Branch: master
-DSR: Examplars running now on fmriprep. Pushed back to PMACS. Ran new validate on CCNP post apply and got 3 inconsistent subjects, which make sense. We ran fmriprep on acq groups BEFORE we undid and re-applied changes using new clustering.
-Next Steps: Add back README + Authors and run all subjects through fmriprep. 
-RIA Store: /project/RBC/RIA/BIDS (on PMACS)
+DSR: All CCNP subjects ran through fmriprep successfully. Ready for XCP
+Next Steps: Run entire dataset through XCP using bootstrap scripts. Add README + Authors.
 
-HRC
-ISSUE: Need 11 subjects not on GLOBUS, we had empty directories for them on cubic
+HRC (GONG)
+RIA Store: ssh://sciget.pmacs.upenn.edu/project/RBC/RIA/BIDS/98f/55d34-d001-40ac-8056-db2803d3280f
 Cubic Path: /cbica/projects/RBC/HRC/working/HRC_datalad
-Datalad Status: saved, clean
-Git Branch: master
-DSR: Emailed HRC Team list of 11 subjects missing data. Re-group and re-apply changes with HRC_suggest_all.yml
-Next Steps: Wait for Brazil OR save and push to PMACS, run bond-copy-exemplars, and begin acq group testing.
+Datalad Status: unlocked
+Git Branch: main
+DSR: We ran the exemplars through fmriprep using the non-multisession version.
+Next Steps: Run the exemplars with the multi-session version of fmriprep. If it comes out clean, run fmriprep on the entire dataset.
 Data Narrative: https://github.com/PennLINC/HRC/blob/main/working/curation_code/DataNarrative.md
 
-PNC GONG
+PNC (GONG)
+RIA Store: ssh://sciget.pmacs.upenn.edu/project/RBC/RIA/BIDS/6a5/7d847-1441-442d-81d7-04ca51526645
 Cubic Path: /cbica/projects/RBC/RBC_RAWDATA/bidsdatasets/PNC
-Datalad Status: saved? (status came out clean post merge)
+Datalad Status: saved, clean
 Git Branch: master
-DSR: Merged apply1 into main. Running group/validate post merge now. GONGED VERSION saved on apply1 branch! Saved apply1 changes, and validation came out clean.
-Next Steps: Merge apply1 into main branch and PUSH TO PMACS!
+DSR: Fmriprep finished running on the entire dataset. Audit revealed ~30 needed a rerun. All rerun subjects finished except one, who got stuck on autorecon. We just resubmitted that last subject. 
+Next Steps: Merge and rerun audit. Run qsiprep on exemplars and XCP on the entire dataset. 
 Data Narrative: /cbica/projects/RBC/PNC/working/curation_code/DataNarrative.md
 
 HBN
+RIA Store: ssh://sciget.pmacs.upenn.edu/project/RBC/RIA/BIDS/b32/508c1-d2c1-4b40-a3e3-48df49e7fa56
 Cubic Path: /cbica/projects/RBC/RBC_RAWDATA/bidsdatasets/HBN
-Datalad Status: saved
+Datalad Status: saved, clean
 Git Branch: master
-DSR: Reran group + validate with new nifti info (num vols = 1 for 3D scans), Deleted 3 subjects with no more data post T1/T2 purge. Running add-nifti-info now so consistent. Post T1T2 group/validate currently running. Purge ran on the 9 unusable T1s/T2s with super low Dim1Size (20-32 voxels). Check in Imaging Properties of sidecars if moco (motion corrected), compare sidecars for mult. runs, if same, choose which is better (Mike's call, ask in rbc-collab which should keep) (do digging ourselves then propose plan to CMI, ping Ted to text Mike if they don't respond). Check if parameter groups are the same for run1/run2. Post the list of subjects with multiple T1 runs to collab channel. Find Lei's defacing code for T2s (if possible). Purge 7 scans with super low Dim1Size. Identify and keep best run of the 137 subjects with multiple runs of T1w scans.
-Next Steps: SWITCH TO MAIN AND PULL NEW BOND!!!! IF IT WORKS ON HBN THEN TELL JAKE TO PULL AND RERUN GROUP. Then re-run group on HBN and make sure it works! Add events tsvs (have peer, need movieDM and movieTP). Decide on tolerances.
+DSR: Sent CSV outlining info on 36 HBN subjects with at least one abnormally varient scan in rbc-collab. Some of these subjects appear to have been scanned with the abcd protocol. We are meeting with Alex to go over these at 4pm today. 
+Next Steps: Add events tsvs (have peer, need movieDM and movieTP). Use tolerances listed below, apply changes, and push back to PMACS. 
 Data Narrative: https://github.com/PennLINC/RBC/blob/master/PennLINC/HBN_BIDS_Fix/HBN_Data_Narrative.md
 
 NKI
-Datalad Status: untracked changes (deleted all physio .tsv.gz + .json files)
+Datalad Status: untracked changes (Added 22 new subjects + nifti info) 
 Git Branch: main
 Cubic Path: /cbica/projects/RBC/RBC_RAWDATA/bidsdatasets/NKI
-DSR: Decide on config params and truncate subject level events tsvs. 
-Next Steps: Re-validate and re-group after truncating subject level events tsvs. 
+DSR: Sent CMI list of 125 subjects with T2ws that have slice timing. Alex is looking into what happened here, since it is unexpected. Save is running now (qsubbed one job per untracked subject). 
+Next Steps: Purge list of too short bold scans (compiled according to the rules we established with Alex). Truncate subject level events tsvs. Group using config params from meeting with Alex, and apply changes. 
 
 
-HBN ISSUES
-- SiteSI T1ws have no acqusition in their filenames but T1s for all other sites do! 
+NKI BOLD TO DELETE
+(1) task-checkerboard scans with less than the dominant group's quantity of data
+- 19 acq-645 check scans with less than the dominant group's quantity of data: 240*0.645/60 = 2.58 mins of data
+- 8 check acq-1400 check scans with less than the dominant group's quantity of data: 98*1.4/60 = 2.28666666667 mins of data
+- 2 acq-1400RR scans with less than the dominant group's quantity of data: 98*1.4/60 = 2.28666666667 mins of data
+- 2 check acq-65RR scans with less than the dominant group's quantity of data: 240*0.645/60 = 2.58 mins of data
 
-MISSING DATA
+(2) 60 task-rest scans with less than 3 mins of data 
 
-HRC Subjects Missing All Data (11 subjects)
-sub-20425
-sub-20010
-sub-20879
-sub-20866
-sub-20384
-sub-20174
-sub-20829
-sub-10640
-sub-11276
-sub-20636
-sub-20632
+(3) task-breathhold 
+- 3 breath acq-1400RR scans with less than the dominant group's quantity of data: 191*1.4/60 = 4.45666666667 mins of data
+- 20 acq-1400 breathhold scans that have less than the dominant group's quantity of data: 186*1.4/60 = 4.34 mins of data
+The task-breathhold dominant groups have more than 3 mins of data. 
+
+HBN FINAL TOLERNACES 
+ANAT: EchoTime: 0.002, 
+DWI: group 1 = CBIC/CUNY, group 2 = RU, group 3 = SI, EES, TRT, TR 
+FMAP: VoxelSizeDim*:0.05mm, EES:0.0001, TRT: 0.01 
+FUNC: EES:precision=4, TRT:precision=2
+
+HBN ISSUES (OLD)
+- ANAT: Change T1 key group with no acq value to acquisition-SI
+- ANAT: Need to delete some T2s, waiting on CMI for which ones (Mike or Alex)
+- ANAT: RULE FOR T1s: Ideally, keep the VnavNorm scan with the highest rating. If unscored, keep best one (from plot), if can't tell difference, keep first run. If no VnavNorm, keep Vnav. If neither, keep HCP. 
+- DWI + FMAP: tolerate Effective Echo Spacing, Total Readout Time, and Repetition Time
+- FMAP: lots of missing PRFIP and MAF, want this in filename? want separate group because of this? SHORTHAND FOR ACQUISITION (UNSET SUGGEST VARIANT RENAME)! 
+- FMAP: tolerate VoxelSizeDim1 (0.05mm)
+- ADD PixelBandwith to sidecar params!!!!
+- RERUN GROUP WITH SES INCLUDED IN GROUPINGS! 
+
+
+HRC ISSUES
+- VALIDATION: 11 new subs still quick validation failing ('bids dir structure doesn't match' description so maybe just having an issue with ses-3?) using the --sequential flag! Matt and I found nothing wrong with them (likely just need to debug the new flag. They passed validation WITHOUT the sequential flag. 
