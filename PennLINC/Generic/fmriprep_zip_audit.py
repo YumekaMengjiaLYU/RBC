@@ -99,7 +99,6 @@ for row in range(len(audit)):
     # get output branch name for input dir
     # if it doesn't exist, then HasOutput = False!
     subject = sub_id
-
     pdb.set_trace()
     if subject in output_subs:
         audit.at[row, "HasOutput"] = "True"
