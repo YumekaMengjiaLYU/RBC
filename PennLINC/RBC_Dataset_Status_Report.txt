@@ -37,11 +37,11 @@ Next Steps: Upload to cubic 32/55 abcd protocol subjects from aws that are currn
 Data Narrative: https://github.com/PennLINC/RBC/blob/master/PennLINC/HBN_BIDS_Fix/HBN_Data_Narrative.md
 
 NKI
-Datalad Status: SAVED, CLEAN  
+Datalad Status: untracked changes: purged too short bold scans  
 Git Branch: main
 Cubic Path: /cbica/projects/RBC/RBC_RAWDATA/bidsdatasets/NKI
-DSR: Purge is running now on list of too short bold scans (compiled according to the rules we established with Alex). Alex is regenerating the correct jsons for the 125 T2w scans that showed up as having slice timing. 
-Next Steps: Truncate subject level events tsvs. Group using config params from meeting with Alex, and apply changes. 
+DSR: Purged list of too short bold scans (compiled according to the rules we established with Alex). Alex is regenerating the correct jsons for the 125 T2w scans that showed up as having slice timing. Group/validate running now.
+Next Steps: SAVE!!! Truncate subject level events tsvs. Group using config params from meeting with Alex, and apply changes. 
 
 
 NKI BOLD TO DELETE
