@@ -2,7 +2,7 @@ RBC Dataset Status Report (DSR)
 
 CCNP (GONG)
 RIA Store: ssh://sciget.pmacs.upenn.edu/project/RBC/RIA/BIDS/970/4eab1-3320-41f0-9fce-3c6961b4ac96
-Cubic Path: /cbica/projects/RBC/testing/colornest/bidsdatasets
+Cubic Path: /cbica/projects/RBC/RBC_RAWDATA/bidsdatasets
 Final CuBIDS Outputs: https://github.com/PennLINC/RBC/tree/master/PennLINC/CCNP_BIDS_Fix
 Datalad Status: saved, clean
 Git Branch: master
@@ -11,7 +11,7 @@ Next Steps: Delete merge_ds, rerun merge, and rerun the audit. Add README + Auth
 
 HRC (GONG)
 RIA Store: ssh://sciget.pmacs.upenn.edu/project/RBC/RIA/BIDS/98f/55d34-d001-40ac-8056-db2803d3280f
-Cubic Path: /cbica/projects/RBC/HRC/working/HRC_datalad
+Cubic Path: /cbica/projects/RBC/RBC_RAWDATA/bidsdatasets/HRC
 Datalad Status: unlocked
 Git Branch: main
 DSR: We ran the exemplars through fmriprep using the non-multisession version.
