@@ -6,8 +6,8 @@ Cubic Path: /cbica/projects/RBC/testing/colornest/bidsdatasets
 Final CuBIDS Outputs: https://github.com/PennLINC/RBC/tree/master/PennLINC/CCNP_BIDS_Fix
 Datalad Status: saved, clean
 Git Branch: master
-DSR: All CCNP subjects ran through fmriprep successfully. We also ran XCP on the entire CCNP, which finished yesterday.
-Next Steps: Configure the audit for XCP and run on the outputs. Add README + Authors.
+DSR: All CCNP subjects ran through fmriprep successfully. We also ran XCP on the entire CCNP, which finished yesterday. Audit finished running on CCNP XCP, revealed 9 subjects failed on brain_plot/reho, and did not generate output branches. So we reran those 9 subjects.
+Next Steps: Delete merge_ds, rerun merge, and rerun the audit. Add README + Authors.
 
 HRC (GONG)
 RIA Store: ssh://sciget.pmacs.upenn.edu/project/RBC/RIA/BIDS/98f/55d34-d001-40ac-8056-db2803d3280f
