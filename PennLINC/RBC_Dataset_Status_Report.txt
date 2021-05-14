@@ -44,6 +44,9 @@ DSR: Purged list of too short bold scans (compiled according to the rules we est
 Next Steps: SAVE!!! Truncate subject level events tsvs. Group using config params from meeting with Alex, and apply changes. 
 
 
+NKI TOLERANCES (from meeting with Alex)
+DWI: tolerate 2.4-2.8 TR, tolerate all echo time
+
 NKI BOLD TO DELETE
 (1) task-checkerboard scans with less than the dominant group's quantity of data
 - 19 acq-645 check scans with less than the dominant group's quantity of data: 240*0.645/60 = 2.58 mins of data
