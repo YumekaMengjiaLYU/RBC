@@ -41,7 +41,7 @@ Datalad Status: untracked changes: purged too short bold scans
 Git Branch: main
 Cubic Path: /cbica/projects/RBC/RBC_RAWDATA/bidsdatasets/NKI
 DSR: Purged list of too short bold scans (compiled according to the rules we established with Alex). Validate revealed there are now 3 subjects for whom a too short bold scan was their only scan, so those three empty subject directores were deleted. The subjectIDs for those three subjects are the following: sub-A00075231, sub-A00037375, and sub-A00081079. Alex is regenerating the correct jsons for the 125 T2w scasn that showed up as having slice timing and were incorrect. 
-Next Steps: SAVE!!! Replace incorrect jsons once Alex regenerates them. Truncate subject level events tsvs. Group using config tolerances from meeting with Alex, and apply changes. 
+Next Steps: SAVE!!! Replace incorrect jsons once Alex regenerates them and rerun add-nifti-info. Truncate subject level events tsvs. Group using config tolerances from meeting with Alex, and apply changes. 
 
 
 NKI TOLERANCES (from meeting with Alex)
