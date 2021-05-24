@@ -6,16 +6,16 @@ Cubic Path: /cbica/projects/RBC/RBC_RAWDATA/bidsdatasets
 Final CuBIDS Outputs: https://github.com/PennLINC/RBC/tree/master/PennLINC/CCNP_BIDS_Fix
 Datalad Status: saved, clean
 Git Branch: master
-DSR: All CCNP subjects ran through fmriprep successfully. We also ran XCP on the entire CCNP, which finished yesterday. Audit finished running on CCNP XCP, revealed 9 subjects failed on brain_plot/reho, and did not generate output branches. So we reran those 9 subjects.
-Next Steps: Delete merge_ds, rerun merge, and rerun the audit. Add README + Authors.
+DSR: All CCNP subjects ran through fmriprep successfully. We also ran XCP on the entire CCNP, which finished yesterday. Audit finished running on CCNP XCP, revealed 9 subjects failed on brain_plot/reho, and did not generate output branches. Matt then created a fieldmapless fmriprpep bootstrap script, and we reran that on CCNP. 
+Next Steps: Audit fieldmapless fmriprep outputs, and run XCP on fieldmapless. Rerun XCP. Delete merge_ds, rerun merge, and rerun the audit. Add README + Authors.
 
 HRC (GONG)
 RIA Store: ssh://sciget.pmacs.upenn.edu/project/RBC/RIA/BIDS/98f/55d34-d001-40ac-8056-db2803d3280f
 Cubic Path: /cbica/projects/RBC/RBC_RAWDATA/bidsdatasets/HRC
 Datalad Status: unlocked
 Git Branch: main
-DSR: We ran the exemplars through fmriprep using the non-multisession version.
-Next Steps: Run the exemplars with the multi-session version of fmriprep. If it comes out clean, run fmriprep on the entire dataset (using the multi-session version).
+DSR: We ran the exemplars through fmriprep using the fieldmapless AND multisession version.
+Next Steps: Audit the fieldmapless/multi-session fmriprep outputs. Run the entire dataset through fmriprpe. Run the exemplars with the multi-session version of fmriprep. If it comes out clean, run fmriprep on the entire dataset (using the multi-session version).
 Data Narrative: https://github.com/PennLINC/HRC/blob/main/working/curation_code/DataNarrative.md
 
 PNC (GONG)
@@ -24,7 +24,7 @@ Cubic Path: /cbica/projects/RBC/RBC_RAWDATA/bidsdatasets/PNC
 Datalad Status: saved, clean
 Git Branch: master
 DSR: Fmriprep finished running on the entire dataset. 
-Next Steps: Rerun the new, bootstrap version of the audit. Run qsiprep on exemplars and XCP on the entire dataset. 
+Next Steps: Run the new, bootstrap version of the audit. Run qsiprep on exemplars and XCP on the entire dataset. 
 Data Narrative: /cbica/projects/RBC/PNC/working/curation_code/DataNarrative.md
 
 HBN
@@ -32,8 +32,8 @@ RIA Store: ssh://sciget.pmacs.upenn.edu/project/RBC/RIA/BIDS/b32/508c1-d2c1-4b40
 Cubic Path: /cbica/projects/RBC/RBC_RAWDATA/bidsdatasets/HBN
 Datalad Status: saved, clean
 Git Branch: master
-DSR: Some inconsistencies between what we have on cubic, what's in BIDS_CURATED on aws, and the site specific folders on aws. The site-specific folders have scans missing from BIDS_CURATED, including the abcd protocal scans we are missing on cubic from site-CBIC. I will send you the full breadkwon of the inconsistencies present between BIDS_CURATED, the site-specific folders, and what we have on cubic after this meeting.  
-Next Steps: Upload to cubic 32/55 abcd protocol subjects from aws that are currnetly missing from cubic. Upload subjects missing from cubic? Add events tsvs (have peer, need movieDM and movieTP). Use tolerances listed below, apply changes, and push back to PMACS. 
+DSR: Out of the 55 cbic subjects scanned with abcd protocol, we are currently missing 32 from cubic. Alex gave the ok for us to upload those 32 to cubic. We also identified four participants on Cubic who do not exist anywhere on aws––they are in neither /BIDS_CURATED nor any of the /MRI/SITE-* folders. Alex gave us the ok to delete those four subjects, as they each have only one scan. 
+Next Steps: Upload to cubic 32/55 abcd protocol subjects from aws that are currnetly missing from cubic. Delete Add events tsvs (have peer, need movieDM and movieTP). Use tolerances listed below, apply changes, and push back to PMACS. 
 Data Narrative: https://github.com/PennLINC/RBC/blob/master/PennLINC/HBN_BIDS_Fix/HBN_Data_Narrative.md
 
 NKI
@@ -41,25 +41,11 @@ Datalad Status: untracked changes: purged too short bold scans
 Git Branch: main
 Cubic Path: /cbica/projects/RBC/RBC_RAWDATA/bidsdatasets/NKI
 DSR: Purged list of too short bold scans (compiled according to the rules we established with Alex). Alex is regenerating the correct jsons for the 125 T2w scans that showed up as having slice timing. Group/validate running now. Validate revealed there are now 3 subjects for whom a too short bold scan was their only scan, so those three empty subject directores were deleted. The subjectIDs for those three subjects are the following: sub-A00075231, sub-A00037375, and sub-A00081079. Group/Validate is rerunnig now (post deleting the three empty subject directories). 
-Next Steps: SAVE!!! Truncate subject level events tsvs. Group using config params from meeting with Alex, and apply changes. 
+Next Steps: SAVE!!! Truncate subject level events tsvs. Group using config tolerances from meeting with Alex, and apply changes. 
 
 
 NKI TOLERANCES (from meeting with Alex)
 DWI: tolerate 2.4-2.8 TR, tolerate all echo time
-
-NKI BOLD TO DELETE
-(1) task-checkerboard scans with less than the dominant group's quantity of data
-- 19 acq-645 check scans with less than the dominant group's quantity of data: 240*0.645/60 = 2.58 mins of data
-- 8 check acq-1400 check scans with less than the dominant group's quantity of data: 98*1.4/60 = 2.28666666667 mins of data
-- 2 acq-1400RR scans with less than the dominant group's quantity of data: 98*1.4/60 = 2.28666666667 mins of data
-- 2 check acq-65RR scans with less than the dominant group's quantity of data: 240*0.645/60 = 2.58 mins of data
-
-(2) 60 task-rest scans with less than 3 mins of data 
-
-(3) task-breathhold 
-- 3 breath acq-1400RR scans with less than the dominant group's quantity of data: 191*1.4/60 = 4.45666666667 mins of data
-- 20 acq-1400 breathhold scans that have less than the dominant group's quantity of data: 186*1.4/60 = 4.34 mins of data
-The task-breathhold dominant groups have more than 3 mins of data. 
 
 HBN FINAL TOLERNACES 
 ANAT: EchoTime: 0.002, 
@@ -76,6 +62,20 @@ HBN ISSUES (OLD)
 - FMAP: tolerate VoxelSizeDim1 (0.05mm)
 - ADD PixelBandwith to sidecar params!!!!
 - RERUN GROUP WITH SES INCLUDED IN GROUPINGS! 
+
+NKI BOLD (DELETED)
+(1) task-checkerboard scans with less than the dominant group's quantity of data
+- 19 acq-645 check scans with less than the dominant group's quantity of data: 240*0.645/60 = 2.58 mins of data
+- 8 check acq-1400 check scans with less than the dominant group's quantity of data: 98*1.4/60 = 2.28666666667 mins of data
+- 2 acq-1400RR scans with less than the dominant group's quantity of data: 98*1.4/60 = 2.28666666667 mins of data
+- 2 check acq-65RR scans with less than the dominant group's quantity of data: 240*0.645/60 = 2.58 mins of data
+
+(2) 60 task-rest scans with less than 3 mins of data 
+
+(3) task-breathhold 
+- 3 breath acq-1400RR scans with less than the dominant group's quantity of data: 191*1.4/60 = 4.45666666667 mins of data
+- 20 acq-1400 breathhold scans that have less than the dominant group's quantity of data: 186*1.4/60 = 4.34 mins of data
+The task-breathhold dominant groups have more than 3 mins of data. 
 
 
 HRC ISSUES
