@@ -15,7 +15,7 @@ Cubic Path: /cbica/projects/RBC/RBC_RAWDATA/bidsdatasets/HRC
 Datalad Status: unlocked
 Git Branch: main
 DSR: We ran the exemplars through fmriprep using the fieldmapless AND multisession version.
-Next Steps: Audit the fieldmapless/multi-session fmriprep outputs. Run the entire dataset through fmriprpe. Run the exemplars with the multi-session version of fmriprep. If it comes out clean, run fmriprep on the entire dataset (using the multi-session version).
+Next Steps: Audit the fieldmapless/multi-session fmriprep outputs. Run the entire dataset through fmriprep. Run the exemplars with the multi-session version of fmriprep. If it comes out clean, run fmriprep on the entire dataset (using the multi-session version).
 Data Narrative: https://github.com/PennLINC/HRC/blob/main/working/curation_code/DataNarrative.md
 
 PNC (GONG)
