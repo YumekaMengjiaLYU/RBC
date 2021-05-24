@@ -23,8 +23,8 @@ RIA Store: ssh://sciget.pmacs.upenn.edu/project/RBC/RIA/BIDS/6a5/7d847-1441-442d
 Cubic Path: /cbica/projects/RBC/RBC_RAWDATA/bidsdatasets/PNC
 Datalad Status: saved, clean
 Git Branch: master
-DSR: Fmriprep finished running on the entire dataset. 
-Next Steps: Run the new, bootstrap version of the audit. Run qsiprep on exemplars and XCP on the entire dataset. 
+DSR: Fmriprep finished running on the entire dataset. Ran the new bootstrap version of the audit. 
+Next Steps: Concatenate single subject audit outputs and check results. Run qsiprep on exemplars and XCP on the entire dataset. 
 Data Narrative: /cbica/projects/RBC/PNC/working/curation_code/DataNarrative.md
 
 HBN
