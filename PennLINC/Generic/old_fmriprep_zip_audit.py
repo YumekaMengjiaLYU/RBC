@@ -43,25 +43,25 @@ pipeline = 'fmriprep'
 
 # GET LIST OF ALL BRANCH NAMES
 # CREATE DICTIONARY OF SUB_ID/BRANCH_NAME KEY/VALUE PAIRS
-sp = subprocess.Popen(["git", "branch", "-a"], stdout=subprocess.PIPE, cwd=output_dir)
-branches = sp.stdout.readlines()
-sub_branch_names = {}
-for branch in branches:
-    branch_name = branch.strip()
-    branch_name = str(branch_name)
-    branch_name = branch_name[2:len(branch_name)-1]
-    if branch_name.startswith("sub-"):
-        sub_branch_names[branch_name[:-8]] = branch_name
+#sp = subprocess.Popen(["git", "branch", "-a"], stdout=subprocess.PIPE, cwd=output_dir)
+#branches = sp.stdout.readlines()
+#sub_branch_names = {}
+#for branch in branches:
+#    branch_name = branch.strip()
+#    branch_name = str(branch_name)
+#    branch_name = branch_name[2:len(branch_name)-1]
+#    if branch_name.startswith("sub-"):
+#        sub_branch_names[branch_name[:-8]] = branch_name
 
 # save list of branch names
 # save list of subject names
-output_subs = sub_branch_names.keys()
+#output_subs = sub_branch_names.keys()
 
-# df = pd.read_csv(output_dir + '/code/has_results.txt', header=None)
+df = pd.read_csv(output_dir + '/code/has_results.txt', header=None)
 
-# output_subs = []
-# for index, row in df.iterrows():
-#     output_subs.append(row[0][27:])
+output_subs = []
+for index, row in df.iterrows():
+    output_subs.append(row[0][27:])
 
 
 # Get all bids dir subs and add them to the csv
@@ -99,7 +99,7 @@ for row in range(len(audit)):
     # get output branch name for input dir
     # if it doesn't exist, then HasOutput = False!
     subject = sub_id
-
+    pdb.set_trace()
     if subject in output_subs:
         audit.at[row, "HasOutput"] = "True"
         # need to checkout to the subject specific branch!
