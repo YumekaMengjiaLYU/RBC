@@ -35,15 +35,15 @@ RIA Store: ssh://sciget.pmacs.upenn.edu/project/RBC/RIA/BIDS/b32/508c1-d2c1-4b40
 Cubic Path: /cbica/projects/RBC/RBC_RAWDATA/bidsdatasets/HBN
 Datalad Status: saved, clean
 Git Branch: master
-DSR: After doing a little digging through the aws indi bucket, we realized that out of the 55 cbic subjects scanned with abcd protocol, we are currently missing 32 from cubic. These subjects are not in the /BIDS_CURATED folder but are in the /MRI/SITE-CBIC folder. After checking with Alex, we recieved the ok to upload those 32 to cubic. We also identified four participants on Cubic who do not exist anywhere on aws––they are in neither /BIDS_CURATED nor any of the /MRI/SITE-* folders. Alex gave us the ok to delete those four subjects, as they each have only one scan. Downloaded 32 subjects scanned with abcd protocol from aws to dopamine. 
-Next Steps: Upload to cubic 32/55 abcd protocol subjects from dopamine to cubic (scp from dopamine on cubic as RBC user). Run add nift-info. Add events tsvs (have peer, need movieDM and movieTP). Use tolerances listed below, apply changes, and push back to PMACS. 
+DSR: After doing a little digging through the aws indi bucket, we realized that out of the 55 cbic subjects scanned with abcd protocol, we are currently missing 32 from cubic. These subjects are not in the /BIDS_CURATED folder but are in the /MRI/SITE-CBIC folder. After checking with Alex, we recieved the ok to upload those 32 to cubic. We also identified four participants on Cubic who do not exist anywhere on aws––they are in neither /BIDS_CURATED nor any of the /MRI/SITE-* folders. Alex gave us the ok to delete those four subjects, as they each have only one scan. Downloaded 32 subjects scanned with abcd protocol from aws to dopamine. Added the cbic session to make bids valid and ran add-nifti-info.
+Next Steps: Run group/validate and save. Add events tsvs (have peer, need movieDM and movieTP). Use tolerances listed below, apply changes, and push back to PMACS. 
 Data Narrative: https://github.com/PennLINC/RBC/blob/master/PennLINC/HBN_BIDS_Fix/HBN_Data_Narrative.md
 
 NKI
 Datalad Status: untracked changes: purged too short bold scans, exchanged incorrect T2w jsons for correct ones. 
 Git Branch: main
 Cubic Path: /cbica/projects/RBC/RBC_RAWDATA/bidsdatasets/NKI
-DSR: Purged list of too short bold scans (compiled according to the rules we established with Alex). Validate revealed there are now 3 subjects for whom a too short bold scan was their only scan, so those three empty subject directores were deleted. The subjectIDs for those three subjects are the following: sub-A00075231, sub-A00037375, and sub-A00081079. Alex is regenerating the correct jsons for the 125 T2w scasn that showed up as having slice timing and were incorrect. Alex sent us the corret jsons. We replaced the incorrect ones and ran add-nifti-info.
+DSR: Purged list of too short bold scans (compiled according to the rules we established with Alex). Validate revealed there are now 3 subjects for whom a too short bold scan was their only scan, so those three empty subject directores were deleted. The subjectIDs for those three subjects are the following: sub-A00075231, sub-A00037375, and sub-A00081079. Alex is regenerating the correct jsons for the 125 T2w scasn that showed up as having slice timing and were incorrect. Alex sent us the corret jsons. We replaced the incorrect ones and ran add-nifti-info. Group/validate running now.
 Next Steps: Group/validate. SAVE!!! Replace incorrect jsons once Alex regenerates them and rerun add-nifti-info. Truncate subject level events tsvs. Group using config tolerances from meeting with Alex, and apply changes. 
 
 
