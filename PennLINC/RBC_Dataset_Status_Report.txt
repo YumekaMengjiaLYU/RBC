@@ -7,8 +7,8 @@ Cubic Path: /cbica/projects/RBC/RBC_RAWDATA/bidsdatasets
 Final CuBIDS Outputs: https://github.com/PennLINC/RBC/tree/master/PennLINC/CCNP_BIDS_Fix
 Datalad Status: saved, clean
 Git Branch: master
-DSR: All CCNP subjects ran through fmriprep successfully. We also ran XCP on the entire CCNP, which finished yesterday. Audit finished running on CCNP XCP, revealed 9 subjects failed on brain_plot/reho, and did not generate output branches. Matt then created a fieldmapless fmriprpep bootstrap script, and ran that on CCNP. We then ran the audit on the fieldmapless CCNP fmriprep outputs. 
-Next Steps: Concatenate single subject audit outputs and check results. Run XCP on fieldmapless. Add README + Authors.
+DSR: All CCNP subjects ran through fmriprep successfully. We also ran XCP on the entire CCNP, which finished yesterday. Audit finished running on CCNP XCP, revealed 9 subjects failed on brain_plot/reho, and did not generate output branches. Matt then created a fieldmapless fmriprpep bootstrap script, and ran that on CCNP. We then ran the audit on the fieldmapless CCNP fmriprep outputs, which came out clean. 
+Next Steps: Run XCP on fieldmapless. Add README + Authors.
 
 HRC (GONG)
 TODO: DECIDE FIELDMAPLESS OR NO (MATT AND AZEEZ)
@@ -16,7 +16,7 @@ RIA Store: ssh://sciget.pmacs.upenn.edu/project/RBC/RIA/BIDS/98f/55d34-d001-40ac
 Cubic Path: /cbica/projects/RBC/RBC_RAWDATA/bidsdatasets/HRC
 Datalad Status: unlocked
 Git Branch: main
-DSR: We ran the exemplars through fmriprep using the fieldmapless AND multisession version.
+DSR: We ran the exemplars through fmriprep using the fieldmapless AND multisession fmriprep.
 Next Steps: Audit the fieldmapless/multi-session fmriprep outputs. Run the entire dataset through fieldmapless/multi-session fmriprep. Then move onto XCP.
 Data Narrative: https://github.com/PennLINC/HRC/blob/main/working/curation_code/DataNarrative.md
 
@@ -35,16 +35,16 @@ RIA Store: ssh://sciget.pmacs.upenn.edu/project/RBC/RIA/BIDS/b32/508c1-d2c1-4b40
 Cubic Path: /cbica/projects/RBC/RBC_RAWDATA/bidsdatasets/HBN
 Datalad Status: saved, clean
 Git Branch: master
-DSR: After doing a little digging through the aws indi bucket, we realized that out of the 55 cbic subjects scanned with abcd protocol, we are currently missing 32 from cubic. These subjects are not in the /BIDS_CURATED folder but are in the /MRI/SITE-CBIC folder. After checking with Alex, we recieved the ok to upload those 32 to cubic. We also identified four participants on Cubic who do not exist anywhere on aws––they are in neither /BIDS_CURATED nor any of the /MRI/SITE-* folders. Alex gave us the ok to delete those four subjects, as they each have only one scan. Downloaded 32 subjects scanned with abcd protocol from aws to dopamine. Added the cbic session to make bids valid and ran add-nifti-info. Group/validate running now. 
-Next Steps: Save. Add events tsvs (have peer, need movieDM and movieTP). Use tolerances listed below, apply changes, and push back to PMACS. 
+DSR: After doing a little digging through the aws indi bucket, we realized that out of the 55 cbic subjects scanned with abcd protocol, we are currently missing 32 from cubic. These subjects are not in the /BIDS_CURATED folder but are in the /MRI/SITE-CBIC folder. After checking with Alex, we recieved the ok to upload those 32 to cubic. We also identified four participants on Cubic who do not exist anywhere on aws––they are in neither /BIDS_CURATED nor any of the /MRI/SITE-* folders. Alex gave us the ok to delete those four subjects, as they each have only one scan. Downloaded 32 subjects scanned with abcd protocol from aws to dopamine. Added the cbic session to make bids valid and ran add-nifti-info. We then ran group/validate. Group came out clean. Validate revealed that the 32 newly uploaded scans are not at all bids valid. Spoke with Alex, and he asked us to validate them. For the 32 with bids errors, we added a session directory and added the session name to the filepaths. Group/validate running now. 
+Next Steps: Need to deal with weird aquisitions (e.g. acq-MRoff and acq-MRon, no MR key group name!) Delete four site-RU subs with half a functional scan, at Alex's suggestion. Rename 55 subs with crazy protocol to include acq-abcd_protocol in filenamesSave. Add events tsvs (have peer, need movieDM and movieTP). Use tolerances listed below, apply changes, and push back to PMACS. 
 Data Narrative: https://github.com/PennLINC/RBC/blob/master/PennLINC/HBN_BIDS_Fix/HBN_Data_Narrative.md
 
 NKI
 Datalad Status: untracked changes: purged too short bold scans, exchanged incorrect T2w jsons for correct ones. 
 Git Branch: main
 Cubic Path: /cbica/projects/RBC/RBC_RAWDATA/bidsdatasets/NKI
-DSR: Purged list of too short bold scans (compiled according to the rules we established with Alex). Validate revealed there are now 3 subjects for whom a too short bold scan was their only scan, so those three empty subject directores were deleted. The subjectIDs for those three subjects are the following: sub-A00075231, sub-A00037375, and sub-A00081079. Alex is regenerating the correct jsons for the 125 T2w scasn that showed up as having slice timing and were incorrect. Alex sent us the corret jsons. We replaced the incorrect ones and ran add-nifti-info. Group/validate running now.
-Next Steps: Group/validate. SAVE!!! Replace incorrect jsons once Alex regenerates them and rerun add-nifti-info. Truncate subject level events tsvs. Group using config tolerances from meeting with Alex, and apply changes. 
+DSR: Purged list of too short bold scans (compiled according to the rules we established with Alex). Validate revealed there are now 3 subjects for whom a too short bold scan was their only scan, so those three empty subject directores were deleted. The subjectIDs for those three subjects are the following: sub-A00075231, sub-A00037375, and sub-A00081079. Alex regenerated the correct jsons for the 117/125 T2w scans that were incorrect and gave us the go ahead to copy existing T2w sidecars to create the remaining 8 jsons that needed to be replaced, since the T2ws all used the same protocol. We replaced the incorrect sidecars with the new ones and ran add-nifti-info. Group/validate ran overnight. Save is running now. 
+Next Steps: Truncate subject level events tsvs. Group using config tolerances from meeting with Alex, and apply changes. 
 
 
 NKI TOLERANCES (from meeting with Alex)
