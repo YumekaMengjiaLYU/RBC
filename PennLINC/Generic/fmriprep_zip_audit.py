@@ -24,7 +24,7 @@ import subprocess
 import pdb
 import time
 import zipfile
-import pdb 
+#import pdb 
 
 def get_sub_name(path):
     parts = path.parts
@@ -106,7 +106,7 @@ for row in range(len(audit)):
     # get output branch name for input dir
     # if it doesn't exist, then HasOutput = False!
     subject = sub_id
-    pdb.set_trace()
+    #pdb.set_trace()
     if subject in output_subs:
         audit.at[row, "HasOutput"] = "True"
         # need to checkout to the subject specific branch!
@@ -335,28 +335,28 @@ for row in range(len(audit)):
                 audit.at[row, "HasFuncDir"] = "False"
                 audit.at[row, "HasBold"] = "False"
 
-        for ses_path in Path(bids_dir + "/" + audit.iloc[row]["SubjectID"]).glob("ses-*/"):
+        #for ses_path in Path(bids_dir + "/" + audit.iloc[row]["SubjectID"]).glob("ses-*/"):
+           
             # get output dir ses_path
-            o_ses_path = str(ses_path).replace(bids_dir, "fmriprep/")
+            #o_ses_path = str(ses_path).replace(bids_dir, "fmriprep/")
+        has_func = False
+        has_surf_bold = False
+        has_vol_bold = False
+        # for filepath in Path(str(ses_path)).rglob("func/*"):
+        if z != None:
+            for filepath in z.namelist():
 
-            has_func = False
-            has_surf_bold = False
-            has_vol_bold = False
-            # for filepath in Path(str(ses_path)).rglob("func/*"):
-            if z != None:
-                for filepath in z.namelist():
-
-                    if o_ses_path in filepath:
-                        if "/func/" in filepath:
-                            has_func = True
-                        if "/func/" in filepath and "fsLR_den-91k_bold.dtseries" in filepath:
-                            has_surf_bold = True
-                        if "/func/" in filepath and "MNI152NLin6Asym_res-2_desc-preproc_bold" in filepath:
-                            has_vol_bold = True
-                    else:
-                        audit.at[row, "ProducedFuncDir"] = "False"
-                        audit.at[row, "RanSurfBold"] = "False"
-                        audit.at[row, "RanVolBold"] = "False"
+                #if o_ses_path in filepath:
+                if "/func/" in filepath:
+                    has_func = True
+                if "/func/" in filepath and "fsLR_den-91k_bold.dtseries" in filepath:
+                    has_surf_bold = True
+                if "/func/" in filepath and "MNI152NLin6Asym_res-2_desc-preproc_bold" in filepath:
+                    has_vol_bold = True
+                #else:
+                #    audit.at[row, "ProducedFuncDir"] = "False"
+                #        audit.at[row, "RanSurfBold"] = "False"
+                #        audit.at[row, "RanVolBold"] = "False"
 
             if has_func == True:
                 audit.at[row, "ProducedFuncDir"] = "True"
