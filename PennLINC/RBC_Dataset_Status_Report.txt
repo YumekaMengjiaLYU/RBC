@@ -33,8 +33,8 @@ RIA Store: ssh://sciget.pmacs.upenn.edu/project/RBC/RIA/BIDS/b32/508c1-d2c1-4b40
 Cubic Path: /cbica/projects/RBC/RBC_RAWDATA/bidsdatasets/HBN
 Datalad Status: saved, clean
 Git Branch: master
-DSR: After doing a little digging through the aws indi bucket, we realized that out of the 55 cbic subjects scanned with abcd protocol, we are currently missing 32 from cubic. These subjects are not in the /BIDS_CURATED folder but are in the /MRI/SITE-CBIC folder. After checking with Alex, we recieved the ok to upload those 32 to cubic. We also identified four participants on Cubic who do not exist anywhere on aws––they are in neither /BIDS_CURATED nor any of the /MRI/SITE-* folders. Alex gave us the ok to delete those four subjects, as they each have only one scan. Downloaded 32 subjects scanned with abcd protocol from aws to dopamine. Added the cbic session to make bids valid and ran add-nifti-info. We then ran group/validate. Group came out clean. Validate revealed that the 32 newly uploaded scans are not at all bids valid. Spoke with Alex, and he asked us to validate them. For the 32 with bids errors, we added a session directory and added the session name to the filepaths. Group/validate ran. Per Alex's request, deleted the following 4 subjects, since they only have 1/2 a functional scan: sub-NDARCT301RK9, sub-NDARKT032RYR, sub-NDARNF449FMU, sub-NDARYU575CE2.
-Next Steps: Need to deal with weird aquisitions (e.g. acq-MRoff and acq-MRon, no MR key group name!) DELETE EXTRANEOUS T1ws and T2ws (and PD???). RUN TOO SHORT BOLD/DWI CHECK AND PURGE IF NECESSARY! Delete four site-RU subs with half a functional scan, at Alex's suggestion. Rename 55 subs with crazy protocol to include acq-abcd_protocol in filenamesSave. Add events tsvs (have peer, need movieDM and movieTP). Use tolerances listed below, apply changes, and push back to PMACS. 
+DSR: After doing a little digging through the aws indi bucket, we realized that out of the 55 cbic subjects scanned with abcd protocol, we are currently missing 32 from cubic. These subjects are not in the /BIDS_CURATED folder but are in the /MRI/SITE-CBIC folder. After checking with Alex, we recieved the ok to upload those 32 to cubic. We also identified four participants on Cubic who do not exist anywhere on aws––they are in neither /BIDS_CURATED nor any of the /MRI/SITE-* folders. Alex gave us the ok to delete those four subjects, as they each have only one scan. Downloaded 32 subjects scanned with abcd protocol from aws to dopamine. Added the cbic session to make bids valid and ran add-nifti-info. We then ran group/validate. Group came out clean. Validate revealed that the 32 newly uploaded scans are not at all bids valid. Spoke with Alex, and he asked us to validate them. For the 32 with bids errors, we added a session directory and added the session name to the filepaths. Group/validate ran. Per Alex's request, deleted the following 4 subjects, since they only have 1/2 a functional scan: sub-NDARCT301RK9, sub-NDARKT032RYR, sub-NDARNF449FMU, sub-NDARYU575CE2. Qsubbed purge on all PD scans. 
+Next Steps: If keeping new scans, DELETE EXTRANEOUS T1ws and T2ws. Rename 55 subs with crazy protocol to include acq-abcd_protocol in filenamesSave. Add events tsvs (have peer, need movieDM and movieTP). Use tolerances listed below, apply changes, and push back to PMACS. 
 Data Narrative: https://github.com/PennLINC/RBC/blob/master/PennLINC/HBN_BIDS_Fix/HBN_Data_Narrative.md
 
 NKI
@@ -56,6 +56,11 @@ FUNC: EES:precision=4, TRT:precision=2
 
 HBN ISSUES (CURRENT) 
 - 29/32 of the new cbic subjects scanned with abcd protocl Alex asked us to include have the super large slice timing issue. There are 4 subjects with no bold niftis (only sidecars), and 3 out of these 4 are the only 3 subjects that do not have the large slice timing issue. Therefore, each of the 32 new subjects has EITHER the slice timing issue OR no bold niftis. 
+- OPTIONS 
+    - Ask Alex if he has thoughts on the slice timing issue/if those sidecars are incorrect/if new ones can be generated.
+    - Exclude the 29 with the slice timing issue and ask Alex if he has the bold data for the remaining 3 subjects.
+    - Exclude all 32 new cbic subjects scanned with abcd protocol. Note: this does not entail removing all of the cbic abcd subjects.
+    - Keep all the new subjects but remove their func/ dirs (no bold data)
 
 HBN ISSUES (OLD)
 - ANAT: Change T1 key group with no acq value to acquisition-SI
