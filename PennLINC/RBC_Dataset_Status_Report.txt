@@ -1,7 +1,6 @@
 RBC Dataset Status Report (DSR)
 
 CCNP (GONG)
-TODO: DECIDE FIELDMAPLESS OR NO (MATT AND AZEEZ)
 RIA Store: ssh://sciget.pmacs.upenn.edu/project/RBC/RIA/BIDS/970/4eab1-3320-41f0-9fce-3c6961b4ac96
 Cubic Path: /cbica/projects/RBC/RBC_RAWDATA/bidsdatasets
 Final CuBIDS Outputs: https://github.com/PennLINC/RBC/tree/master/PennLINC/CCNP_BIDS_Fix
@@ -11,13 +10,12 @@ DSR: All CCNP subjects ran through fmriprep successfully. We also ran XCP on the
 Next Steps: Rerun the 9 non fieldmapless subjects who failed on XCP, run XCP on all fieldmapless fmriprep outputs, and decide which to use (fieldmapless or non-fieldmapless). Add README + Authors.
 
 HRC (GONG)
-TODO: DECIDE FIELDMAPLESS OR NO (MATT AND AZEEZ)
 RIA Store: ssh://sciget.pmacs.upenn.edu/project/RBC/RIA/BIDS/98f/55d34-d001-40ac-8056-db2803d3280f
 Cubic Path: /cbica/projects/RBC/RBC_RAWDATA/bidsdatasets/HRC
 Datalad Status: unlocked
 Git Branch: main
-DSR: We ran the exemplars through fmriprep using the fieldmapless AND multisession fmriprep.
-Next Steps: Audit the fieldmapless/multi-session fmriprep outputs. Run the entire dataset through fieldmapless/multi-session fmriprep. Then move onto XCP.
+DSR: We ran the entire dataset through multisession fmriprep. Testing/tweaking multisession fmriprep audit now.
+Next Steps: If we decide to use fieldmapless (post running XCP on CCNP fieldmapless fmriprep outputs), audit the fieldmapless/multi-session fmriprep outputs. Run the entire dataset through fieldmapless/multi-session fmriprep. Audit. Then move onto XCP. Audit. 
 Data Narrative: https://github.com/PennLINC/HRC/blob/main/working/curation_code/DataNarrative.md
 
 PNC (GONG)
