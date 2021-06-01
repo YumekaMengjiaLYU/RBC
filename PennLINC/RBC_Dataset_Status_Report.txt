@@ -38,11 +38,11 @@ Next Steps: Need to deal with weird aquisitions (e.g. acq-MRoff and acq-MRon, no
 Data Narrative: https://github.com/PennLINC/RBC/blob/master/PennLINC/HBN_BIDS_Fix/HBN_Data_Narrative.md
 
 NKI
-Datalad Status: untracked changes: purged too short bold scans, exchanged incorrect T2w jsons for correct ones (including 8 we coppied from sub-A00031794_ses-FLU1_T2w.json because we noticed Alex only gave us 117/125 of the correct jsons. Added nifti info.
+Datalad Status: saved, clean!
 Git Branch: main
 Cubic Path: /cbica/projects/RBC/RBC_RAWDATA/bidsdatasets/NKI
-DSR: Purged list of too short bold scans (compiled according to the rules we established with Alex). Validate revealed there are now 3 subjects for whom a too short bold scan was their only scan, so those three empty subject directores were deleted. The subjectIDs for those three subjects are the following: sub-A00075231, sub-A00037375, and sub-A00081079. Alex regenerated the correct jsons for the 117/125 T2w scans that were incorrect and gave us the go ahead to copy existing T2w sidecars to create the remaining 8 jsons that needed to be replaced, since the T2ws all used the same protocol. We replaced the incorrect sidecars with the new ones and ran add-nifti-info. Group/validate ran overnight. Copied sub-A00031794_ses-FLU1_T2w.json to replace the 8 T2w scans with missing sidecars still and ran add nifti info. Group/validate running came out clean! Save running now!
-Next Steps: Truncate subject level events tsvs. Group using config tolerances from meeting with Alex, and apply changes. 
+DSR: Purged list of too short bold scans (compiled according to the rules we established with Alex). Validate revealed there are now 3 subjects for whom a too short bold scan was their only scan, so those three empty subject directores were deleted. The subjectIDs for those three subjects are the following: sub-A00075231, sub-A00037375, and sub-A00081079. Alex regenerated the correct jsons for the 117/125 T2w scans that were incorrect and gave us the go ahead to copy existing T2w sidecars to create the remaining 8 jsons that needed to be replaced, since the T2ws all used the same protocol. We replaced the incorrect sidecars with the new ones and ran add-nifti-info. Group/validate ran overnight. Copied sub-A00031794_ses-FLU1_T2w.json to replace the 8 T2w scans with missing sidecars still and ran add nifti info. Group/validate running came out clean! Save finished. Tinashe is running NKI through his notebook that fixes the subject level events tsv lengh to match the bold scans. 
+Next Steps: Save. Group using config tolerances from meeting with Alex, and apply changes. 
 
 
 NKI TOLERANCES (from meeting with Alex)
