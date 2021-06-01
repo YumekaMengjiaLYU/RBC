@@ -8,7 +8,7 @@ Final CuBIDS Outputs: https://github.com/PennLINC/RBC/tree/master/PennLINC/CCNP_
 Datalad Status: saved, clean
 Git Branch: master
 DSR: All CCNP subjects ran through fmriprep successfully. We also ran XCP on the entire CCNP, which finished yesterday. Audit finished running on CCNP XCP, revealed 9 subjects failed on brain_plot/reho, and did not generate output branches. Matt then created a fieldmapless fmriprpep bootstrap script, and ran that on CCNP. We then ran the audit on the fieldmapless CCNP fmriprep outputs, which came out clean. 
-Next Steps: Run XCP on fieldmapless. Add README + Authors.
+Next Steps: Rerun the 9 non fieldmapless subjects who failed on XCP, run XCP on all fieldmapless fmriprep outputs, and decide which to use (fieldmapless or non-fieldmapless). Add README + Authors.
 
 HRC (GONG)
 TODO: DECIDE FIELDMAPLESS OR NO (MATT AND AZEEZ)
@@ -36,7 +36,7 @@ Cubic Path: /cbica/projects/RBC/RBC_RAWDATA/bidsdatasets/HBN
 Datalad Status: saved, clean
 Git Branch: master
 DSR: After doing a little digging through the aws indi bucket, we realized that out of the 55 cbic subjects scanned with abcd protocol, we are currently missing 32 from cubic. These subjects are not in the /BIDS_CURATED folder but are in the /MRI/SITE-CBIC folder. After checking with Alex, we recieved the ok to upload those 32 to cubic. We also identified four participants on Cubic who do not exist anywhere on aws––they are in neither /BIDS_CURATED nor any of the /MRI/SITE-* folders. Alex gave us the ok to delete those four subjects, as they each have only one scan. Downloaded 32 subjects scanned with abcd protocol from aws to dopamine. Added the cbic session to make bids valid and ran add-nifti-info. We then ran group/validate. Group came out clean. Validate revealed that the 32 newly uploaded scans are not at all bids valid. Spoke with Alex, and he asked us to validate them. For the 32 with bids errors, we added a session directory and added the session name to the filepaths. Group/validate ran. Per Alex's request, deleted the following 4 subjects, since they only have 1/2 a functional scan: sub-NDARCT301RK9, sub-NDARKT032RYR, sub-NDARNF449FMU, sub-NDARYU575CE2.
-Next Steps: Need to deal with weird aquisitions (e.g. acq-MRoff and acq-MRon, no MR key group name!) DELETE EXTRANEOUS T1ws and T2ws (and PD???). RUN TOO SHORT BOLD/DWI CHECK AND PURGE IF NECESSARY!Delete four site-RU subs with half a functional scan, at Alex's suggestion. Rename 55 subs with crazy protocol to include acq-abcd_protocol in filenamesSave. Add events tsvs (have peer, need movieDM and movieTP). Use tolerances listed below, apply changes, and push back to PMACS. 
+Next Steps: Need to deal with weird aquisitions (e.g. acq-MRoff and acq-MRon, no MR key group name!) DELETE EXTRANEOUS T1ws and T2ws (and PD???). RUN TOO SHORT BOLD/DWI CHECK AND PURGE IF NECESSARY! Delete four site-RU subs with half a functional scan, at Alex's suggestion. Rename 55 subs with crazy protocol to include acq-abcd_protocol in filenamesSave. Add events tsvs (have peer, need movieDM and movieTP). Use tolerances listed below, apply changes, and push back to PMACS. 
 Data Narrative: https://github.com/PennLINC/RBC/blob/master/PennLINC/HBN_BIDS_Fix/HBN_Data_Narrative.md
 
 NKI
@@ -55,6 +55,9 @@ ANAT: EchoTime: 0.002,
 DWI: group 1 = CBIC/CUNY, group 2 = RU, group 3 = SI, EES, TRT, TR 
 FMAP: VoxelSizeDim*:0.05mm, EES:0.0001, TRT: 0.01 
 FUNC: EES:precision=4, TRT:precision=2
+
+HBN ISSUES (CURRENT) 
+- 29/32 of the new cbic subjects scanned with abcd protocl Alex asked us to include have the super large slice timing issue. There are 4 subjects with no bold niftis (only sidecars), and 3 out of these 4 are the only 3 subjects that do not have the large slice timing issue. Therefore, each of the 32 new subjects has EITHER the slice timing issue OR no bold niftis. 
 
 HBN ISSUES (OLD)
 - ANAT: Change T1 key group with no acq value to acquisition-SI
