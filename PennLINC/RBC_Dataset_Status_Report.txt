@@ -60,7 +60,7 @@ HBN ISSUES (CURRENT)
     - Ask Alex if he has thoughts on the slice timing issue/if those sidecars are incorrect/if new ones can be generated.
     - Exclude the 29 with the slice timing issue and ask Alex if he has the bold data for the remaining 3 subjects.
     - Exclude all 32 new cbic subjects scanned with abcd protocol. Note: this does not entail removing all of the cbic abcd subjects.
-    - Keep all the new subjects but remove their func/ dirs (no bold data)
+    - Keep all the new subjects but purge their bold data. 
 
 HBN ISSUES (OLD)
 - ANAT: Change T1 key group with no acq value to acquisition-SI
