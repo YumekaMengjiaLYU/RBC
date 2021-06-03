@@ -31,18 +31,18 @@ Data Narrative: /cbica/projects/RBC/PNC/working/curation_code/DataNarrative.md
 HBN
 RIA Store: ssh://sciget.pmacs.upenn.edu/project/RBC/RIA/BIDS/b32/508c1-d2c1-4b40-a3e3-48df49e7fa56
 Cubic Path: /cbica/projects/RBC/RBC_RAWDATA/bidsdatasets/HBN
-Datalad Status: saved, clean
+Datalad Status: untracked changes: removed 32 new subjects, purged 9 acq-dwi unused fmaps, removed 4 site-RU subjects with only 1/2 a functional scan.
 Git Branch: master
-DSR:  Per Alex's request, deleted the following 4 site-RU subjects, since they only have 1/2 a functional scan: sub-NDARCT301RK9, sub-NDARKT032RYR, sub-NDARNF449FMU, sub-NDARYU575CE2. Uploaded the 32 cbic subjects from aws we were missing that were scanned with abcd protocol. Validate revealed the new 32 were not at all bids valid. Spoke with Alex, and he asked us to validate them. Added a session directory and added the session name to the filepaths. Group/validate ran. Qsubbed purge on all PD scans in the 32 new cbic/abcd subjcts. 
-Next Steps: Post to collab channel. Fixed these issues, we don't know how to fix the following issues. Ted will respond saying we can get rid of these 32 subjects and will update later. Remove 32 new subjects.If keeping new scans, delete extraneous T1ws and T2ws. Rename 55 subs with crazy protocol to include acq-abcd_protocol in filenames. Save. Add events tsvs (have peer, need movieDM and movieTP). Use tolerances listed below, apply changes, and push back to PMACS. 
+DSR:  Per Alex's request, deleted the following 4 site-RU subjects, since they only have 1/2 a functional scan: sub-NDARCT301RK9, sub-NDARKT032RYR, sub-NDARNF449FMU, sub-NDARYU575CE2. Uploaded the 32 cbic subjects from aws we were missing that were scanned with abcd protocol. Validate revealed the new 32 were not at all bids valid. Spoke with Alex, and he asked us to validate them. Added a session directory and added the session name to the filepaths. Group/validate ran. Qsubbed purge on all PD scans in the 32 new cbic/abcd subjcts. REMOVED 32 new cbic subjects (decided to add back in round 2 of HBN data). Purge running now on 9 acq-dwi fmap scans no longer being used (their subjects have no dwi data), at Alex's request. 
+Next Steps: Regroup/validate. Save. Add events tsvs (have peer, need movieDM and movieTP). Use tolerances listed below, apply changes, and push back to PMACS. 
 Data Narrative: https://github.com/PennLINC/RBC/blob/master/PennLINC/HBN_BIDS_Fix/HBN_Data_Narrative.md
 
 NKI
-Datalad Status: saved, clean!
+Datalad Status: untracked changes: removed 84 subject level events tsvs 
 Git Branch: main
 Cubic Path: /cbica/projects/RBC/RBC_RAWDATA/bidsdatasets/NKI
-DSR: Alex regenerated the correct jsons for the 117/125 T2w scans that were incorrect and gave us the go ahead to copy existing T2w sidecars to create the remaining 8 jsons that needed to be replaced, since the T2ws all used the same protocol. We replaced the incorrect sidecars with the new ones and ran add-nifti-info. Group/validate ran overnight. Copied sub-A00031794_ses-FLU1_T2w.json to replace the 8 T2w scans with missing sidecars still and ran add nifti info. Group/validate running came out clean! Save finished. Purged 25 task-pCASL (pseudo-continuous ASL) scans. Group/validate came out clean. Saved. We then increased the duration of the task-rest subject level events tsvs to match the lengths of their corresponding scans. Group/validate running now (with config params). 
-Next Steps:  Save. Decide on final config params/summary csv, get Alex and Ted to sign off, and apply changes. 
+DSR: Alex regenerated the correct jsons for the 117/125 T2w scans that were incorrect and gave us the go ahead to copy existing T2w sidecars to create the remaining 8 jsons that needed to be replaced, since the T2ws all used the same protocol. We replaced the incorrect sidecars with the new ones and ran add-nifti-info. Group/validate ran overnight. Copied sub-A00031794_ses-FLU1_T2w.json to replace the 8 T2w scans with missing sidecars still and ran add nifti info. Group/validate running came out clean! Save finished. Purged 25 task-pCASL (pseudo-continuous ASL) scans. Group/validate came out clean. Saved. We then increase the duration of the task-rest subject level events tsvs to match the lengths of their corresponding scans. Group/validate running now (with config params). Removed 84 subject level task-rest tsvs. Group/validate running now with tolerances. 
+Next Steps: Save. Decide on final config params/summary csv, get Alex and Ted to sign off, and apply changes. Push to PMACS.
 
 
 NKI TOLERANCES (from meeting with Alex)
@@ -55,12 +55,8 @@ FMAP: VoxelSizeDim*:0.05mm, EES:0.0001, TRT: 0.01
 FUNC: EES:precision=4, TRT:precision=2
 
 HBN ISSUES (CURRENT) 
-- 29/32 of the new cbic subjects scanned with abcd protocl Alex asked us to include have the super large slice timing issue. There are 4 subjects with no bold niftis (only sidecars), and 3 out of these 4 are the only 3 subjects that do not have the large slice timing issue. Therefore, each of the 32 new subjects has EITHER the slice timing issue OR no bold niftis. 
-- OPTIONS 
-    - Ask Alex if he has thoughts on the slice timing issue/if those sidecars are incorrect/if new ones can be generated.
-    - Exclude the 29 with the slice timing issue and ask Alex if he has the bold data for the remaining 3 subjects.
-    - Exclude all 32 new cbic subjects scanned with abcd protocol. Note: this does not entail removing all of the cbic abcd subjects.
-    - Keep all the new subjects but purge their bold data. 
+- 29/32 of the new cbic subjects scanned with abcd protocl have the slice time greater than TR issue. There are 4 subjects with no bold niftis (only sidecars), and 3 out of these 4 are the only 3 subjects that do not have the large slice timing issue. Therefore, each of the 32 new subjects has EITHER the slice timing issue OR no bold niftis. 
+
 
 
 HBN ISSUES (OLD)
