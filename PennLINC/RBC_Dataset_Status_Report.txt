@@ -32,9 +32,10 @@ HBN
 RIA Store: ssh://sciget.pmacs.upenn.edu/project/RBC/RIA/BIDS/b32/508c1-d2c1-4b40-a3e3-48df49e7fa56
 Cubic Path: /cbica/projects/RBC/RBC_RAWDATA/bidsdatasets/HBN
 Datalad Status: untracked changes: removed 32 new subjects, purged 9 acq-dwi unused fmaps, removed 4 site-RU subjects with only 1/2 a functional scan.
-Git Branch: fix-anats
-DSR:  Per Alex's request, deleted the following 4 site-RU subjects, since they only have 1/2 a functional scan: sub-NDARCT301RK9, sub-NDARKT032RYR, sub-NDARNF449FMU, sub-NDARYU575CE2. Uploaded the 32 cbic subjects from aws we were missing that were scanned with abcd protocol. Validate revealed the new 32 were not at all bids valid. Spoke with Alex, and he asked us to validate them. Added a session directory and added the session name to the filepaths. Group/validate ran. Qsubbed purge on all PD scans in the 32 new cbic/abcd subjcts. REMOVED 32 new cbic subjects (decided to add back in round 2 of HBN data). Purged 9 acq-dwi fmap scans no longer being used (their subjects have no dwi data), at Alex's request. Group/validate running now. Save running now on fix-anats
-Next Steps: DEAL WITH BRANCH PROBLEM! Regroup/validate. Save. Add events tsvs (have peer, need movieDM and movieTP). Use tolerances listed below, apply changes, and push back to PMACS. 
+Git Branch: main
+DSR:  Per Alex's request, deleted the following 4 site-RU subjects, since they only have 1/2 a functional scan: sub-NDARCT301RK9, sub-NDARKT032RYR, sub-NDARNF449FMU, sub-NDARYU575CE2. Uploaded the 32 cbic subjects from aws we were missing that were scanned with abcd protocol. Validate revealed the new 32 were not at all bids valid. Spoke with Alex, and he asked us to validate them. Added a session directory and added the session name to the filepaths. Group/validate ran. Qsubbed purge on all PD scans in the 32 new cbic/abcd subjcts. REMOVED 32 new cbic subjects (decided to add back in round 2 of HBN data). Purged 9 acq-dwi fmap scans no longer being used (their subjects have no dwi data), at Alex's request. Group/validate running now. Save ran on fix-anats. Merged fix-anats into main (cus Matt deleted the extra T1w for sub-NDARXJ973GFA, which had two T1ws that looked like different people, on that branch, and I made the following changes on that branch: removed 32 new subjects, purged 9 acq-dwi unused fmaps, removed 4 site-RU subjects with only 1/2 a functional scan.
+Git Branch: main. Group/validate running now. 
+Next Steps: Save. Add events tsvs (have peer, need movieDM and movieTP). Use tolerances listed below, apply changes, and push back to PMACS. 
 Data Narrative: https://github.com/PennLINC/RBC/blob/master/PennLINC/HBN_BIDS_Fix/HBN_Data_Narrative.md
 
 NKI
@@ -42,7 +43,7 @@ Datalad Status: saved, clean
 Git Branch: apply1
 Cubic Path: /cbica/projects/RBC/RBC_RAWDATA/bidsdatasets/NKI
 DSR: Alex regenerated the correct jsons for the 117/125 T2w scans that were incorrect and gave us the go ahead to copy existing T2w sidecars to create the remaining 8 jsons that needed to be replaced, since the T2ws all used the same protocol. We replaced the incorrect sidecars with the new ones and ran add-nifti-info. Group/validate ran overnight. Copied sub-A00031794_ses-FLU1_T2w.json to replace the 8 T2w scans with missing sidecars still and ran add nifti info. Group/validate running came out clean! Save finished. Purged 25 task-pCASL (pseudo-continuous ASL) scans. Group/validate came out clean. Saved. We then increase the duration of the task-rest subject level events tsvs to match the lengths of their corresponding scans. Group/validate running now (with config params). Removed 84 subject level task-rest tsvs. Group/validate running now with tolerances. Save ran. Checked out apply1 branch and qsubbed apply!
-Next Steps: Create sibling and push to pmacs! Decide on final config params/summary csv, and apply changes. Get Alex and Ted to sign off! Push to PMACS.
+Next Steps: Group/validate. Save. Create sibling and push to pmacs! Merge apply1 into main. Decide on final config params/summary csv, and apply changes. Get Alex and Ted to sign off! Push to PMACS.
 
 
 NKI TOLERANCES (from meeting with Alex)
