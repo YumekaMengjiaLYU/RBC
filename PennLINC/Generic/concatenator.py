@@ -5,8 +5,10 @@ import pandas as pd
 from pathlib import Path 
 import numpy as np 
 import subprocess
+import os
+import sys
 
-csv_dir = '/cbica/projects/RBC/production/PNC/fmriprep-audit/merge_ds/csvs/'
+csv_dir = sys.argv[1]
 
 columns = ["SubjectID", "HasOutput", "HasHTML", "NoErrorsToReport", "HasFuncDir", "HasBold", "ProducedFuncDir", "RanSurfBold", "RanVolBold", "HasErrorFile", "RuntimeErrorDescription", "OSErrorDescription", "CommandErrorDescription", "HadScratchSpace", "HadRAMSpace", "HadDiskSpace", "FinishedSuccessfully"]
 
