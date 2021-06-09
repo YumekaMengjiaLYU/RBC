@@ -19,6 +19,6 @@ for csv_path in Path(csv_dir).rglob('*.csv'):
     sub_df = pd.read_csv(str(csv_path))
     df = pd.concat([df, sub_df])
 
-df.to_csv('/cbica/projects/RBC/Curation/RBC/PennLINC/PNC_BIDS_Fix/PNC_CSVs/00_Ordered/mount/PNC_BOOTSTRAP_AUDIT_2.csv', index=False)
+df.to_csv(sys.argv[2], index=False)
                     
 # THEN RUN THIS THROUGH THE SUMMARY REPORT SCRIPTS! 
