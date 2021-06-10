@@ -44,15 +44,15 @@ for parcel in parcels:
 	for matrix in df.iterrows():
 		matrix = dict(matrix[1])
 		if type(matrix['acq']) == str:
-			matrices.append(nib.load('concat_ds/all_matrices/matrices/sub-{0}_ses-{1}_task-{2}_acq-{5}_run-{3}_space-fsLR_atlas-{4}_den-91k_bold.pconn.nii'.format(matrix['sub'],matrix['ses'],matrix['task'],matrix['run'],parcel,matrix['acq'])).get_fdata())
+			matrices.append(nib.load('concat_ds/all_matrices/matrices/sub-{0}_ses-{1}_task-{2}_acq-{5}_run-{3}_space-fsLR_atlas-{4}_den-91k_bold.ptseries.nii'.format(matrix['sub'],matrix['ses'],matrix['task'],matrix['run'],parcel,matrix['acq'])).get_fdata())
 			continue
 		if np.isnan(matrix['acq']):
-			matrices.append(nib.load('concat_ds/all_matrices/matrices/sub-{0}_ses-{1}_task-{2}_run-{3}_space-fsLR_atlas-{4}_den-91k_bold.pconn.nii'.format(matrix['sub'],matrix['ses'],matrix['task'],matrix['run'],parcel)).get_fdata())
+			matrices.append(nib.load('concat_ds/all_matrices/matrices/sub-{0}_ses-{1}_task-{2}_run-{3}_space-fsLR_atlas-{4}_den-91k_bold.ptseries.nii'.format(matrix['sub'],matrix['ses'],matrix['task'],matrix['run'],parcel)).get_fdata())
 			continue
 		1/0 #should never get here!!
 	matrices = np.array(matrices)
 	assert matrices.shape[0] == df.shape[0]
-	np.save('concat_ds/{0}_group_matrix.npy'.format(parcel),matrices)
+	np.save('concat_ds/{0}_group_ts.npy'.format(parcel),matrices)
 
 
 df.to_csv('concat_ds/group_fc.csv',index=False)
