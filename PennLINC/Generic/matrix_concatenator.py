@@ -4,6 +4,7 @@ import glob
 import pandas as pd
 import numpy as np
 import nibabel as nib
+import h5py
 
 os.makedirs('concat_ds/all_matrices',exist_ok=True)
 subzips = glob.glob('concat_ds/*zip*')
@@ -36,7 +37,9 @@ for parcel in parcels:
 		1/0 #should never get here!!
 	matrices = np.array(matrices)
 	assert matrices.shape[0] == df.shape[0]
-	np.save('concat_ds/{0}_group_matrix.npy'.format(parcel),matrices)
+	hf = h5py.File('concat_ds/{0}_group_fc.h5'.format(parcel), 'w')
+	hf.create_dataset('{0}_group_matrix.h5'.format(parcel),data=matrices)
+
 
 
 for parcel in parcels:
@@ -52,8 +55,8 @@ for parcel in parcels:
 		1/0 #should never get here!!
 	matrices = np.array(matrices)
 	assert matrices.shape[0] == df.shape[0]
-	np.save('concat_ds/{0}_group_ts.npy'.format(parcel),matrices)
+	hf.create_dataset('{0}_group_ts.h5'.format(parcel),data=matrices)
 
-
+hf.close()
 df.to_csv('concat_ds/group_fc.csv',index=False)
 os.system('zip group_matrices.zip concat_ds/*group*')
