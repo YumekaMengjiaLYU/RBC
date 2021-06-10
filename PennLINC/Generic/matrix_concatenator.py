@@ -19,7 +19,7 @@ df = pd.DataFrame()
 for csv in glob.glob('*qc_bold.tsv'):
 	df = df.append(pd.read_csv(csv),ignore_index=True)
 
-df = df.sort_values('sub')
+df = df.sort_values('sub',axis=1)
 
 parcels = ['Gordon','Glasser']
 
