@@ -36,7 +36,7 @@ for parcel in parcels:
 		1/0 #should never get here!!
 	matrices = np.array(matrices)
 	assert matrices.shape[0] == df.shape[0]
-	np.save('{0}_group_matrix.npy'.format(parcel),matrices)
+	np.save('concat_ds/{0}_group_matrix.npy'.format(parcel),matrices)
 
-df.to_csv('group_fc.csv',index=False)
-os.system('zip group_matrices.zip *group*')
+df.to_csv('concat_ds/group_fc.csv',index=False)
+os.system('zip group_matrices.zip concat_ds/*group*')
