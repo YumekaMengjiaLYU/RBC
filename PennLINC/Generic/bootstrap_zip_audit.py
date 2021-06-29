@@ -128,8 +128,10 @@ for row in range(len(audit)):
 
         #subprocess.run(['datalad', 'get', subject + '_fmriprep-20.2.1.zip'], cwd=output_dir)
         #subprocess.run(['datalad', 'unlock', subject + '_fmriprep-20.2.1.zip'], cwd=output_dir)
-        z = zipfile.ZipFile(output_dir + '/' + subject + '_fmriprep-20.2.1.zip')
-
+        if pipeline == 'fmriprep':
+            z = zipfile.ZipFile(output_dir + '/' + subject + '_fmriprep-20.2.1.zip')
+        if pipeline == 'qsiprep':
+            z = zipfile.ZipFile(output_dir + '/' + subject + '_qsiprep-0.13.1.zip')
     # IN THE CASE OF NO ZIP FILE CREATED
     else:
         audit.at[row, "HasOutput"] = "False"
