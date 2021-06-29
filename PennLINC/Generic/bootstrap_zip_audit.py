@@ -78,10 +78,10 @@ sub_path = bids_dir + sub_id
 
 if pipeline == "qsiprep":
     columns = ["SubjectID", "HasOutput", "HasHTML", "NoErrorsToReport",
-            "ProducedPreprocessedDWIs", "ProducedPreprocesedANATs",
-            "RanT1wSpatialNormalization", "HasDwiDir", "HasFmapDir",
+            "HasDwiDir", "HasFmapDir", "HasAnatDir", "ProducedPreprocessedDWIs", "ProducedPreprocesedANATs",
+            "RanT1wSpatialNormalization",
             "AllFmapsHaveIntendedFors", "NoMissingDwiPhaseEncodingDirection",
-            "RuntimeErrorDescription", "OSErrorDescription", "CommandErrorDescription", 
+            "NoMissingFmapPhaseEncodingDirection", "RuntimeErrorDescription", "OSErrorDescription", "CommandErrorDescription", 
             "HadScratchSpace", "HadRAMSpace", "HadDiskSpace", "FinishedSuccessfully"]
 
 if pipeline == "fmriprep":
@@ -226,6 +226,11 @@ for row in range(len(audit)):
         # check if bids_dir has dwi data
 
         for ses_path in Path(bids_dir + "/" + audit.iloc[row]["SubjectID"]).glob("ses-*/"):
+            if Path(str(ses_path) + "/anat/").exists():
+                audit.at[row, 'HasAnatDir'] = "True"
+            else:
+                audit.at[row, 'HasAnatDir'] = "False"
+
             if Path(str(ses_path) + "/dwi/").exists():
                 audit.at[row, 'HasDwiDir'] = "True"
 
@@ -320,28 +325,6 @@ for row in range(len(audit)):
         else:
             audit.at[row, "ProducedPreprocessedDWIs"] = "False"
 
-        #for ses_path in Path(audit.iloc[row]["Path"]).glob("ses-*/"):
-        #    #print(ses_path)
-        #    if Path(str(ses_path) + "/dwi/").exists():
-        #        audit.at[row, "ProducedPreprocessedDWIs"] = "True"
-        #    else:
-        #        audit.at[row, "ProducedPreprocessedDWIs"] = "False"
-
-        # check if qsiprep generated anat
-        #if Path(audit.iloc[row]["Path"] + "/anat/").exists():
-        #    audit.at[row, "ProducedPreprocesedANATs"] = "True"
-        #    # now check for .h5 files
-        #    spacial = False
-        #    for filename in Path(audit.iloc[row]["Path"]).glob("anat/*"):
-        #        if str(filename).endswith(".h5"):
-        #            spacial = True
-        #    if spacial == True:
-        #        audit.at[row, "RanT1wSpatialNormalization"] = "True"
-        #    else:
-        #        audit.at[row, "RanT1wSpatialNormalization"] = "False"
-        #else:
-        #    audit.at[row, "ProducedPreprocesedANATs"] = "False"
-        #    audit.at[row, "RanT1wSpatialNormalization"] = "False"
 
     if pipeline == "fmriprep":
 
