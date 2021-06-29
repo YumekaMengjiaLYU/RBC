@@ -40,7 +40,7 @@ output_dir = sys.argv[3]
 
 error_dir = sys.argv[4]
 
-pipeline = 'fmriprep'
+pipeline = sys.argv[6]
 
 # GET LIST OF ALL BRANCH NAMES
 # CREATE DICTIONARY OF SUB_ID/BRANCH_NAME KEY/VALUE PAIRS
