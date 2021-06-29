@@ -81,9 +81,8 @@ if pipeline == "qsiprep":
             "ProducedPreprocessedDWIs", "ProducedPreprocesedANATs",
             "RanT1wSpatialNormalization", "HasDwiDir", "HasFmapDir",
             "AllFmapsHaveIntendedFors", "NoMissingDwiPhaseEncodingDirection",
-            "NoMissingFmapPhaseEncodingDirection", "RuntimeErrorDescription",
-            "OSErrorDescription", "CommandErrorDescription", "HadScratchSpace",
-            "HadRAMSpace", "HadDiskSpace", "FinishedSuccessfully"]
+            "RuntimeErrorDescription", "OSErrorDescription", "CommandErrorDescription", 
+            "HadScratchSpace", "HadRAMSpace", "HadDiskSpace", "FinishedSuccessfully"]
 
 if pipeline == "fmriprep":
     columns = ["SubjectID", "HasOutput", "HasHTML", "NoErrorsToReport", "HasFuncDir",
@@ -135,10 +134,15 @@ for row in range(len(audit)):
     # IN THE CASE OF NO ZIP FILE CREATED
     else:
         audit.at[row, "HasOutput"] = "False"
-        audit.at[row, "ProducedFuncDir"] = "False"
-        audit.at[row, "RanSurfBold"] = "False"
-        audit.at[row, "RanVolBold"] = "False"
-
+        if pipeline == 'qsiprep':
+            audit.at[row, "ProducedPreprocessedDWIs"] = "False"
+            audit.at[row, "ProducedPreprocessedANATs"] = "False"
+            audit.at[row, "RanT1wSpatialNormalization"] = "False"
+        if pipeline == 'fmriprep':
+            audit.at[row, "RanSurfBold"] = "False"
+            audit.at[row, "RanVolBold"] = "False"
+            audit.at[row, "ProducedFuncDir"] = "False"
+            
     # NON PIPELINE SPECIFIC CHECKS
 
     # NEW CHECK HTML
