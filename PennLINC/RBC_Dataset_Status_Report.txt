@@ -35,7 +35,7 @@ RIA Store: ssh://sciget.pmacs.upenn.edu/project/RBC/RIA/BIDS/b32/508c1-d2c1-4b40
 Cubic Path: /cbica/projects/RBC/RBC_RAWDATA/bidsdatasets/HBN
 Datalad Status: saved, clean
 Git Branch: apply1
-DSR: Added run to RU task-rest scans originally missing it and acq-ABCD to scans collected with abcd protocol. Ran qsiprep on exemplars and audited. Merged apply1 into main.
+DSR: Added run to RU task-rest scans originally missing it and acq-ABCD to scans collected with abcd protocol. Ran qsiprep on exemplars and audited. Resubmitted 2 subjects from the groups whose exemplars had trash scans. Merged apply1 into main. 
 Next Steps: Remove fmap dirs for subjects in exemplar groups with acq-ABCD and all same PED.
 Data Narrative: https://github.com/PennLINC/RBC/blob/master/PennLINC/HBN_BIDS_Fix/HBN_Data_Narrative.md
 
