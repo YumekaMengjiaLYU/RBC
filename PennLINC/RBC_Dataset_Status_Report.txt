@@ -14,7 +14,7 @@ HRC (GONG)
 *PREPS FINISHED:
 RIA Store: ssh://sciget.pmacs.upenn.edu/project/RBC/RIA/BIDS/98f/55d34-d001-40ac-8056-db2803d3280f
 Cubic Path: /cbica/projects/RBC/RBC_RAWDATA/bidsdatasets/HRC
-Datalad Status: unlocked
+Datalad Status: saved, clean 
 Git Branch: main
 DSR: We ran the entire dataset through fieldmapless+multisession fmriprep. 
 Next Steps: Rerun fmriprep on exemplars (multisession, FIELDMAPPED) and audit. Run fmriprep on the entire dataset and audit. 
@@ -30,12 +30,12 @@ DSR: Fmriprep finished running on the entire dataset. Ran the new bootstrap vers
 Next Steps: Run qsiprep on exemplars. Rerun XCP with stable, tagged version (wait for go ahead from Azeez) and audit. 
 Data Narrative: /cbica/projects/RBC/PNC/working/curation_code/DataNarrative.md
 
-HBN
+HBN (GONG)
 *PREPS FINISHED: fmriprep (exemplars)
-RIA Store: ssh://sciget.pmacs.upenn.edu/project/RBC/RIA/BIDS/b32/508c1-d2c1-4b40-a3e3-48df49e7fa56
+BIDS RIA Store: ssh://sciget.pmacs.upenn.edu/project/RBC/RIA/BIDS/b32/508c1-d2c1-4b40-a3e3-48df49e7fa56
 Cubic Path: /cbica/projects/RBC/RBC_RAWDATA/bidsdatasets/HBN
 Datalad Status: saved, clean
-Git Branch: apply1
+Git Branch: main 
 DSR: Added run to RU task-rest scans originally missing it and acq-ABCD to scans collected with abcd protocol. Ran qsiprep on exemplars and audited. Resubmitted 2 subjects from the groups whose exemplars had trash scans. Merged apply1 into main. Qsubbed purge on dwi fmaps for subjects with acq-ABCD64dir dwi scans and subjects where the dwi scan and dwi fmaps all have the same PED (j-). Full list of purged scans found at abcd64dir_samePED_dwi_fmaps_to_delete.txt.
 Next Steps: Group/validate. Save. Audit replacement exemplar qsiprep outputs. Audit hbn fmriprep outputs. 
 Data Narrative: https://github.com/PennLINC/RBC/blob/master/PennLINC/HBN_BIDS_Fix/HBN_Data_Narrative.md
@@ -44,7 +44,7 @@ NKI (GONG)
 *PREPS FINISHED: 
 Datalad Status: saved, clean
 Git Branch: master
-RIA Store: 
+BIDS RIA Store: 
 Cubic Path: /cbica/projects/RBC/RBC_RAWDATA/bidsdatasets/NKI
 DSR: Last few NKI exemplar fmriprep jobs running now.
 Next Steps: Push to PMACS. Audit fmriprep exemplar outputs. Test qsiprep on NKI TRT subs.
