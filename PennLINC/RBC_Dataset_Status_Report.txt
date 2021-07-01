@@ -1,6 +1,7 @@
-RBC Dataset Status Report (DSR)
+Reproducible Brain Chart Dataset Status Report (RBC DSR)
 
 CCNP (GONG)
+*PREPS FINISHED: fmriprep (exemplars + full ds)
 RIA Store: ssh://sciget.pmacs.upenn.edu/project/RBC/RIA/BIDS/970/4eab1-3320-41f0-9fce-3c6961b4ac96
 Cubic Path: /cbica/projects/RBC/RBC_RAWDATA/bidsdatasets
 Final CuBIDS Outputs: https://github.com/PennLINC/RBC/tree/master/PennLINC/CCNP_BIDS_Fix
@@ -10,42 +11,53 @@ DSR: Audit ran successfully on both fieldmapped and fieldmappless fmriprep produ
 Next Steps: Rerun XCP with stable version. Audit. Add README + Authors.
 
 HRC (GONG)
+*PREPS FINISHED:
 RIA Store: ssh://sciget.pmacs.upenn.edu/project/RBC/RIA/BIDS/98f/55d34-d001-40ac-8056-db2803d3280f
 Cubic Path: /cbica/projects/RBC/RBC_RAWDATA/bidsdatasets/HRC
 Datalad Status: unlocked
 Git Branch: main
-DSR: We ran the entire dataset through multisession fmriprep. Testing/tweaking multisession fmriprep audit now.
-Next Steps: If we decide to use fieldmapless (post running XCP on CCNP fieldmapless fmriprep outputs), audit the fmriprep fieldmapless/multi-session fmriprep outputs. Run the entire dataset through fieldmapless/multi-session fmriprep. Audit. Then move onto XCP. Audit. 
+DSR: We ran the entire dataset through fieldmapless+multisession fmriprep. 
+Next Steps: Rerun fmriprep on exemplars (multisession, FIELDMAPPED) and audit. Run fmriprep on the entire dataset and audit. 
 Data Narrative: https://github.com/PennLINC/HRC/blob/main/working/curation_code/DataNarrative.md
 
 PNC (GONG)
-TODO: DECIDE IF WE WANT TO USE NEW OR OLD XCP (AZEEZ AND MAX, CHECK CORRELATION BETWEEN OLD AND NEW ON CCNP BEFORE USING NEW ON PNC)
+*PREPS FINISHED: fmriprep (exemplars + full ds)  
 RIA Store: ssh://sciget.pmacs.upenn.edu/project/RBC/RIA/BIDS/6a5/7d847-1441-442d-81d7-04ca51526645
 Cubic Path: /cbica/projects/RBC/RBC_RAWDATA/bidsdatasets/PNC
 Datalad Status: saved, clean
 Git Branch: master
 DSR: Fmriprep finished running on the entire dataset. Ran the new bootstrap version of the audit + concatenator on the fmriprep outputs, which revealed that all subject succeeded except the 40 with no bold data and one with a garbage T1w scan. Max ran XCP on the fmriprep outputs. Testing the XCP bootstrap audit now.  
-Next Steps: Rerun XCP with stable, tagged version (wait for go ahead from Azeez). Run bootstrap XCP audit on the entire output set. Run qsiprep on exemplars, once Matt is done with run by session. Waiting on patch 2 self (test on NKI!). 
+Next Steps: Run qsiprep on exemplars. Rerun XCP with stable, tagged version (wait for go ahead from Azeez) and audit. 
 Data Narrative: /cbica/projects/RBC/PNC/working/curation_code/DataNarrative.md
 
 HBN
-ISSUE: HBN MIGHT NEED A git gc !!!
-TODO: add to datalad save commit messge retroactively: removed 32 new subjects, purged 9 acq-dwi unused fmaps, removed 4 site-RU subjects with only 1/2 a functional scan.
+*PREPS FINISHED: fmriprep (exemplars)
 RIA Store: ssh://sciget.pmacs.upenn.edu/project/RBC/RIA/BIDS/b32/508c1-d2c1-4b40-a3e3-48df49e7fa56
 Cubic Path: /cbica/projects/RBC/RBC_RAWDATA/bidsdatasets/HBN
 Datalad Status: saved, clean
 Git Branch: apply1
-DSR: Added run to RU task-rest scans originally missing it and acq-ABCD to scans collected with abcd protocol. Ran qsiprep on exemplars and audited. Resubmitted 2 subjects from the groups whose exemplars had trash scans. Merged apply1 into main. 
-Next Steps: Remove fmap dirs for subjects in exemplar groups with acq-ABCD and all same PED.
+DSR: Added run to RU task-rest scans originally missing it and acq-ABCD to scans collected with abcd protocol. Ran qsiprep on exemplars and audited. Resubmitted 2 subjects from the groups whose exemplars had trash scans. Merged apply1 into main. Qsubbed purge on dwi fmaps for subjects with acq-ABCD64dir dwi scans and subjects where the dwi scan and dwi fmaps all have the same PED (j-). Full list of purged scans found at abcd64dir_samePED_dwi_fmaps_to_delete.txt.
+Next Steps: Group/validate. Save. Audit replacement exemplar qsiprep outputs. Audit hbn fmriprep outputs. 
 Data Narrative: https://github.com/PennLINC/RBC/blob/master/PennLINC/HBN_BIDS_Fix/HBN_Data_Narrative.md
 
 NKI (GONG)
+*PREPS FINISHED: 
 Datalad Status: saved, clean
 Git Branch: master
+RIA Store: 
 Cubic Path: /cbica/projects/RBC/RBC_RAWDATA/bidsdatasets/NKI
-DSR: Submitted nki exemplar fmriprep jobs. Merged apply1 into main! Realized ran fmriprep using normal NOT multisite bootstrap. Resubmitted copy-exemplars. Resubmitted the fmriprep exemplar runs using the multistie bootstrap.
-Next Steps: Matt test qsiprep on NKI TRT subs, Sydney run exemplars through fmriprep. Merge apply1 into main. Get Alex and Ted to sign off on post-apply output! Create sibling and push to pmacs! Merge apply1 into main. Push to pmacs again!
+DSR: Last few NKI exemplar fmriprep jobs running now.
+Next Steps: Push to PMACS. Audit fmriprep exemplar outputs. Test qsiprep on NKI TRT subs.
+
+
+
+
+
+
 
 
 HRC ISSUES
 - VALIDATION: 11 new subs still quick validation failing ('bids dir structure doesn't match' description so maybe just having an issue with ses-3?) using the --sequential flag! Matt and I found nothing wrong with them (likely just need to debug the new flag. They passed validation WITHOUT the sequential flag. 
+
+HBN TODO
+TODO: add to datalad save commit messge retroactively: removed 32 new subjects, purged 9 acq-dwi unused fmaps, removed 4 site-RU subjects with only 1/2 a functional scan.
