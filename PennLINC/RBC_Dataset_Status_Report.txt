@@ -1,5 +1,7 @@
 Reproducible Brain Chart Dataset Status Report (RBC DSR)
 
+JOBS TO RUN NEXT: HRC exemplar fmriprep, HBN full dataset fmirprep
+
 CCNP (GONG)
 *PREPS FINISHED: fmriprep (exemplars + full ds)
 RIA Store: ssh://sciget.pmacs.upenn.edu/project/RBC/RIA/BIDS/970/4eab1-3320-41f0-9fce-3c6961b4ac96
