@@ -36,10 +36,10 @@ HBN (GONG)
 *PREPS FINISHED: fmriprep (exemplars)
 BIDS RIA Store: ssh://sciget.pmacs.upenn.edu/project/RBC/RIA/BIDS/b32/508c1-d2c1-4b40-a3e3-48df49e7fa56
 Cubic Path: /cbica/projects/RBC/RBC_RAWDATA/bidsdatasets/HBN
-Datalad Status: untracked changes: purged unusable dwi fmaps
+Datalad Status: untracked changes: purged unusable dwi fmaps and applied changes (key groups changed slightly post purge, 2 new suggest variant renames)
 Git Branch: main 
-DSR: Added 'run-1' to RU task-rest scans originally missing it and acq-ABCD to scans collected with abcd protocol. Ran qsiprep on exemplars and audited. Resubmitted 2 subjects from the groups whose exemplars had trash scans. Merged apply1 into main. Purged dwi fmaps for subjects with acq-ABCD64dir dwi scans and subjects where the dwi scan and dwi fmaps all have the same PED (j-). Full list of purged scans found at /cbica/projects/RBC/Curation/RBC/PennLINC/HBN_BIDS/Fix/abcd64dir_samePED_dwi_fmaps_to_delete.txt. Group/validate running now post purge.
-Next Steps: Save. Audit replacement exemplar qsiprep outputs. Audit hbn fmriprep outputs. 
+DSR: Added 'run-1' to RU task-rest scans originally missing it and acq-ABCD to scans collected with abcd protocol. Ran qsiprep on exemplars and audited. Resubmitted 2 subjects from the groups whose exemplars had trash scans. Merged apply1 into main. Purged dwi fmaps for subjects with acq-ABCD64dir dwi scans and subjects where the dwi scan and dwi fmaps all have the same PED (j-). Full list of purged scans found at /cbica/projects/RBC/Curation/RBC/PennLINC/HBN_BIDS/Fix/abcd64dir_samePED_dwi_fmaps_to_delete.txt. Group/validate running now post purge. Revealed needed to apply variant renames to 2 key groups (slight changes to groups post purge). Applied changes. Group/validate came out clean. Save running now.
+Next Steps: Submit fmriprep on entire ds. Audit replacement exemplar qsiprep outputs. Audit hbn fmriprep outputs. 
 Data Narrative: https://github.com/PennLINC/RBC/blob/master/PennLINC/HBN_BIDS_Fix/HBN_Data_Narrative.md
 
 NKI (GONG)
