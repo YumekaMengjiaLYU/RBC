@@ -1,6 +1,7 @@
 Reproducible Brain Chart Dataset Status Report (RBC DSR)
 
-JOBS TO RUN NEXT: NKI TRT qsiprep, HBN full dataset fmirprep, HRC exemplar fmriprep
+JOBS CURRENTLY RUNNING: Last 2 NKI fmriprep exemplars, 55 HBN fmriprep exemplar reruns
+JOBS TO RUN NEXT: HBN full dataset fmirprep, NKI TRT qsiprep, HRC full ds fmriprep
 
 CCNP (GONG)
 *PREPS FINISHED: fmriprep (exemplars + full ds)
