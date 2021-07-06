@@ -24,7 +24,7 @@ import subprocess
 import pdb
 import time
 import zipfile
-#import pdb 
+#import pdb
 
 def get_sub_name(path):
     parts = path.parts
@@ -81,7 +81,7 @@ if pipeline == "qsiprep":
             "HasDwiDir", "HasFmapDir", "HasAnatDir", "ProducedPreprocessedDWIs", "ProducedPreprocesedANATs",
             "RanT1wSpatialNormalization",
             "AllFmapsHaveIntendedFors", "NoMissingDwiPhaseEncodingDirection",
-            "NoMissingFmapPhaseEncodingDirection", "RuntimeErrorDescription", "OSErrorDescription", "CommandErrorDescription", 
+            "NoMissingFmapPhaseEncodingDirection", "RuntimeErrorDescription", "OSErrorDescription", "CommandErrorDescription",
             "HadScratchSpace", "HadRAMSpace", "HadDiskSpace", "FinishedSuccessfully"]
 
 if pipeline == "fmriprep":
@@ -142,7 +142,7 @@ for row in range(len(audit)):
             audit.at[row, "RanSurfBold"] = "False"
             audit.at[row, "RanVolBold"] = "False"
             audit.at[row, "ProducedFuncDir"] = "False"
-            
+
     # NON PIPELINE SPECIFIC CHECKS
 
     # NEW CHECK HTML
@@ -189,6 +189,9 @@ for row in range(len(audit)):
         audit.at[row, "HadRAMSpace"] = "True"
         audit.at[row, "HadDiskSpace"] = "True"
         audit.at[row, "FinishedSuccessfully"] = "False"
+        audit.at[row, "ValueError"] = "False"
+        audit.at[row, "ConnectionOpenFailError"] = "False"
+        audit.at[row, 'Broken Pipe'] = "False"
 
         with open(e_file) as f:
             for line in f:
@@ -210,6 +213,12 @@ for row in range(len(audit)):
                     audit.at[row, "FinishedSuccessfully"] = "True"
                 if "Disk quota exceeded" in line:
                     audit.at[row, "HadDiskSpace"] = "False"
+                if "ValueError:" in line:
+                    audit.at[row, "ValueError"] = line
+                if "ConnectionOpenFailedError" in line:
+                    audit.at[row, "ConnectionOpenFailError"] = "True"
+            if line == '[INFO] client_loop: send disconnect: Broken pipe':
+                audit.at[row, 'Broken Pipe'] = "True"
     else:
         audit.at[row, "HasErrorFile"] = "False"
         audit.at[row, "RuntimeErrorDescription"] = ""
@@ -218,6 +227,9 @@ for row in range(len(audit)):
         audit.at[row, "HadScratchSpace"] = ""
         audit.at[row, "HadRAMSpace"] = ""
         audit.at[row, "FinishedSuccessfully"] = ""
+        audit.at[row, "ValueError"] = ""
+        audit.at[row, "ConnectionOpenFailError"] = ""
+        audit.at[row, 'Broken Pipe'] = ""
 
     # THE REST OF THE CHECKS ARE PIPELINE DEPENDENT
 
@@ -299,16 +311,16 @@ for row in range(len(audit)):
                 audit.at[row, "HasFmapDir"] = "False"
                 audit.at[row, "AllFmapsHaveIntendedFors"] = "False"
                 audit.at[row, "NoMissingPhaseEncodingDirection"] = "False"
-        
+
         spacial = False
         produced_anat = False
         produced_dwi = False
         # check if qsiprep generated dwi
         if z != None:
             for filepath in z.namelist():
-                if '/dwi/' in filepath: 
+                if '/dwi/' in filepath:
                     produced_dwi = True
-                if '/anat/' in filepath: 
+                if '/anat/' in filepath:
                     produced_anat = True
                 if '/anat/' in filepath and filepath.endswith('.h5'):
                     spacial = True
@@ -330,6 +342,15 @@ for row in range(len(audit)):
 
         # check for bold scans in bids dir and output dir
         for ses_path in Path(bids_dir + "/" + audit.iloc[row]["SubjectID"]).glob("ses-*/"):
+            has_T1 = False
+            if Path(str(ses_path) + "/anat/").exists():
+                for filepath in Path(str(ses_path)).rglob("anat/*"):
+                    if "T1" in str(filepath):
+                        has_T1 = True
+                if has_T1 == True:
+                    audit.at[row, "HasT1"] = "True"
+                else:
+                    audit.ag[row, "HasT1"] = "False"
 
             if Path(str(ses_path) + "/func/").exists():
                 audit.at[row, "HasFuncDir"] = "True"
@@ -348,7 +369,7 @@ for row in range(len(audit)):
                 audit.at[row, "HasBold"] = "False"
 
         #for ses_path in Path(bids_dir + "/" + audit.iloc[row]["SubjectID"]).glob("ses-*/"):
-           
+
             # get output dir ses_path
             #o_ses_path = str(ses_path).replace(bids_dir, "fmriprep/")
         has_func = False
