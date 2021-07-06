@@ -88,7 +88,8 @@ if pipeline == "fmriprep":
     columns = ["SubjectID", "HasOutput", "HasHTML", "NoErrorsToReport", "HasFuncDir",
             "HasBold", "ProducedFuncDir", "RanSurfBold", "RanVolBold", "HasErrorFile",
             "RuntimeErrorDescription", "OSErrorDescription", "CommandErrorDescription",
-            "HadScratchSpace", "HadRAMSpace", "HadDiskSpace", "FinishedSuccessfully"]
+            "HadScratchSpace", "HadRAMSpace", "HadDiskSpace", "FinishedSuccessfully",
+            "ValueError", "ConnectionOpenFailError", "Broken Pipe"]
 
 
 audit = pd.DataFrame(np.nan, index=range(0,1), columns=columns, dtype="string")
@@ -191,7 +192,7 @@ for row in range(len(audit)):
         audit.at[row, "FinishedSuccessfully"] = "False"
         audit.at[row, "ValueError"] = "False"
         audit.at[row, "ConnectionOpenFailError"] = "False"
-        audit.at[row, 'Broken Pipe'] = "False"
+        audit.at[row, "Broken Pipe"] = "False"
 
         with open(e_file) as f:
             for line in f:
@@ -218,7 +219,7 @@ for row in range(len(audit)):
                 if "ConnectionOpenFailedError" in line:
                     audit.at[row, "ConnectionOpenFailError"] = "True"
             if line == '[INFO] client_loop: send disconnect: Broken pipe':
-                audit.at[row, 'Broken Pipe'] = "True"
+                audit.at[row, "Broken Pipe"] = "True"
     else:
         audit.at[row, "HasErrorFile"] = "False"
         audit.at[row, "RuntimeErrorDescription"] = ""
@@ -229,7 +230,7 @@ for row in range(len(audit)):
         audit.at[row, "FinishedSuccessfully"] = ""
         audit.at[row, "ValueError"] = ""
         audit.at[row, "ConnectionOpenFailError"] = ""
-        audit.at[row, 'Broken Pipe'] = ""
+        audit.at[row, "Broken Pipe"] = ""
 
     # THE REST OF THE CHECKS ARE PIPELINE DEPENDENT
 
