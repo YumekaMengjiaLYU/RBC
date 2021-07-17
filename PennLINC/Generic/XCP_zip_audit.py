@@ -394,9 +394,9 @@ for row in range(len(audit)):
                     audit.at[row, "HasBold"] = "True"
                 else:
                     audit.at[row, "HasBold"] = "False"
-             else:
-                 audit.at[row, "HasFuncDir"] = "False"
-                 audit.at[row, "HasBold"] = "False"
+            else:
+                audit.at[row, "HasFuncDir"] = "False"
+                audit.at[row, "HasBold"] = "False"
         
         conn_bold = False
         time_bold = False
