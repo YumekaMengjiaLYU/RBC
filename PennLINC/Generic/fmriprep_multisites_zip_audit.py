@@ -60,7 +60,7 @@ pipeline = 'fmriprep'
 # get output subs list
 output_subs = []
 for path in Path(output_dir).glob('sub-*'):
-    output_subs.append(path.parts[-1].split('_')[0])
+    output_subs.append(path.parts[-1].split('fmriprep')[0])
 
 #output_subs = sub_branch_names.keys()
 #pdb.set_trace()
@@ -74,7 +74,7 @@ for path in Path(output_dir).glob('sub-*'):
 # Get all bids dir subs and add them to the csv
 
 
-sub_path = bids_dir + sub_id
+sub_path = bids_dir + '/' + sub_id.replace('_',  '/')
 
 if pipeline == "qsiprep":
     columns = ["SubjectID", "HasOutput", "HasHTML", "NoErrorsToReport",
@@ -105,8 +105,11 @@ for row in range(len(audit)):
     cntr += 1
     # get output branch name for input dir
     # if it doesn't exist, then HasOutput = False!
-    subject = sub_id
+    #subject = sub_id.replace('_', '-')
     #pdb.set_trace()
+    subject = audit.loc[row, 'SubjectID'].replace('_', '-')
+    print("OUTPUT SUBS: ", output_subs)
+    print("SUBJECT: ", subject)
     if subject in output_subs:
         audit.at[row, "HasOutput"] = "True"
         # need to checkout to the subject specific branch!
@@ -148,7 +151,7 @@ for row in range(len(audit)):
     # MOVE THIS TO PREVIOUS if subject in output_subs if statement!
 
     if subject in output_subs and z != None:
-        if 'fmriprep/' + subject + '.html' in z.namelist():
+        if 'fmriprep/' + subid + '.html' in z.namelist():
 
             html = z.read('fmriprep/' + subject + '.html')
             audit.at[row, 'HasHTML'] = "True"
@@ -168,7 +171,7 @@ for row in range(len(audit)):
 
     # grab the last line of the error file
     try:
-        e_file = sorted(glob.glob('%s/*%s*.e*'%(error_dir,subject)),key=os.path.getmtime)[-1]
+        e_file = sorted(glob.glob('%s/*%s*.e*'%(error_dir, audit.loc[row, 'SubjectID'])),key=os.path.getmtime)[-1]
     except IndexError:
         e_file = ''
 
@@ -219,56 +222,56 @@ for row in range(len(audit)):
 
         # check if bids_dir has dwi data
 
-        for ses_path in Path(bids_dir + "/" + audit.iloc[row]["SubjectID"]).glob("ses-*/"):
-
-            if Path(str(ses_path) + "/dwi/").exists():
-                audit.at[row, 'HasDwiDir'] = "True"
+        #for ses_path in Path(bids_dir + "/" + audit.iloc[row]["SubjectID"].replace('_','/').glob('*'):
+        ses_path = audit.loc[row, 'Path']
+        if Path(ses_path + "/dwi/").exists():
+            audit.at[row, 'HasDwiDir'] = "True"
 
                 # checking for missing PhaseEncodingDirection
+            for filepath in Path(ses_path).rglob("dwi/*.json"):
+                #print(filepath)
+                IntendedForMissing = False
+                MissingdPED = False
 
-                for filepath in Path(str(ses_path)).rglob("dwi/*.json"):
-                    #print(filepath)
-                    IntendedForMissing = False
-                    MissingdPED = False
+                filestr = str(filepath)
+                with open(filestr) as f:
+                    data = json.load(f)
 
-                    filestr = str(filepath)
-                    with open(filestr) as f:
-                        data = json.load(f)
-
-                    # Check for PhaseEncodingDirection
-                    if filestr.endswith("_dwi.json"):
-                        if "PhaseEncodingDirection" not in list(data.keys()):
-                            MissingdPED = True
-                if MissingdPED == False:
-                    audit.at[row, "NoMissingDwiPhaseEncodingDirection"] = "True"
-                else:
-                    audit.at[row, "NoMissingDwiPhaseEncodingDirection"] = "False"
-
+                # Check for PhaseEncodingDirection
+                if filestr.endswith("_dwi.json"):
+                    if "PhaseEncodingDirection" not in list(data.keys()):
+                        MissingdPED = True
+            if MissingdPED == False:
+                audit.at[row, "NoMissingDwiPhaseEncodingDirection"] = "True"
             else:
-                audit.at[row, 'HasDwiDir'] = "False"
                 audit.at[row, "NoMissingDwiPhaseEncodingDirection"] = "False"
 
+        else:
+            audit.at[row, 'HasDwiDir'] = "False"
+            audit.at[row, "NoMissingDwiPhaseEncodingDirection"] = "False"
+
         # now want to check if fmap directories are present in the bids dir
-        for ses_path in Path(bids_dir + "/" + audit.iloc[row]["SubjectID"]).glob("ses-*/"):
-            #print(ses_path)
-            if Path(str(ses_path) + "/fmap/").exists():
-                audit.at[row, "HasFmapDir"] = "True"
+        #for ses_path in Path(bids_dir + "/" + audit.iloc[row]["SubjectID"].replace('_', '/')).glob():
+        
+        #print(ses_path)
+        if Path(ses_path + "/fmap/").exists():
+            audit.at[row, "HasFmapDir"] = "True"
 
-                # checking if fmaps have intended fors
-                IntendedForMissing = False
-                MissingfPED = False
-                for filepath in Path(str(ses_path)).rglob("fmap/*.json"):
+            # checking if fmaps have intended fors
+            IntendedForMissing = False
+            MissingfPED = False
+            for filepath in Path(ses_path).rglob("fmap/*.json"):
 
-                    filestr = str(filepath)
-                    with open(filestr) as f:
-                        data = json.load(f)
-
-                    # Check for IntendedFor
-                    if "IntendedFor" not in list(data.keys()):
-                        IntendedForMissing = True
-                    # empty IntendedFor case
-                    elif len(data["IntendedFor"]) == 0:
-                        IntendedForMissing = True
+                filestr = str(filepath)
+                with open(filestr) as f:
+                    data = json.load(f)
+                
+                # Check for IntendedFor
+                if "IntendedFor" not in list(data.keys()):
+                    IntendedForMissing = True
+                # empty IntendedFor case
+                elif len(data["IntendedFor"]) == 0:
+                    IntendedForMissing = True
 
                     # Check for PhaseEncodingDirection
                     if filestr.endswith("_epi.json"):
@@ -276,27 +279,28 @@ for row in range(len(audit)):
                         if "PhaseEncodingDirection" not in list(data.keys()):
                             MissingfPED = True
 
-                if IntendedForMissing == False:
-                    audit.at[row, "AllFmapsHaveIntendedFors"] = "True"
-                else:
-                    audit.at[row, "AllFmapsHaveIntendedFors"] = "False"
-
-                if MissingfPED == False:
-                    audit.at[row, "NoMissingFmapPhaseEncodingDirection"] = "True"
-                else:
-                    audit.at[row, "NoMissingFmapPhaseEncodingDirection"] = "False"
+            if IntendedForMissing == False:
+                audit.at[row, "AllFmapsHaveIntendedFors"] = "True"
             else:
-                audit.at[row, "HasFmapDir"] = "False"
                 audit.at[row, "AllFmapsHaveIntendedFors"] = "False"
-                audit.at[row, "NoMissingPhaseEncodingDirection"] = "False"
+
+            if MissingfPED == False:
+                audit.at[row, "NoMissingFmapPhaseEncodingDirection"] = "True"
+            else:
+                audit.at[row, "NoMissingFmapPhaseEncodingDirection"] = "False"
+        else:
+            audit.at[row, "HasFmapDir"] = "False"
+            audit.at[row, "AllFmapsHaveIntendedFors"] = "False"
+            audit.at[row, "NoMissingPhaseEncodingDirection"] = "False"
 
         # check if qsiprep generated dwi
-        for ses_path in Path(audit.iloc[row]["Path"]).glob("ses-*/"):
+        #for ses_path in Path(audit.iloc[row]["Path"]).glob():
             #print(ses_path)
-            if Path(str(ses_path) + "/dwi/").exists():
-                audit.at[row, "ProducedPreprocessedDWIs"] = "True"
-            else:
-                audit.at[row, "ProducedPreprocessedDWIs"] = "False"
+            
+        if Path(ses_path + "/dwi/").exists():
+            audit.at[row, "ProducedPreprocessedDWIs"] = "True"
+        else:
+            audit.at[row, "ProducedPreprocessedDWIs"] = "False"
 
         # check if qsiprep generated anat
         if Path(audit.iloc[row]["Path"] + "/anat/").exists():
@@ -317,23 +321,23 @@ for row in range(len(audit)):
     if pipeline == "fmriprep":
 
         # check for bold scans in bids dir and output dir
-        for ses_path in Path(bids_dir + "/" + audit.iloc[row]["SubjectID"]).glob("ses-*/"):
+        #for ses_path in Path(bids_dir + "/" + audit.iloc[row]["SubjectID"].replace('_','/')).glob():
+        ses_path = audit.loc[row, 'Path']
+        if Path(str(ses_path) + "/func/").exists():
+            audit.at[row, "HasFuncDir"] = "True"
 
-            if Path(str(ses_path) + "/func/").exists():
-                audit.at[row, "HasFuncDir"] = "True"
-
-                has_bold = False
-                for filepath in Path(str(ses_path)).rglob("func/*"):
-                    if "bold" in str(filepath):
-                        #print(str(filepath))
-                        has_bold = True
-                if has_bold == True:
-                    audit.at[row, "HasBold"] = "True"
-                else:
-                    audit.at[row, "HasBold"] = "False"
+            has_bold = False
+            for filepath in Path(str(ses_path)).rglob("func/*"):
+                if "bold" in str(filepath):
+                    #print(str(filepath))
+                    has_bold = True
+            if has_bold == True:
+                audit.at[row, "HasBold"] = "True"
             else:
-                audit.at[row, "HasFuncDir"] = "False"
                 audit.at[row, "HasBold"] = "False"
+        else:
+            audit.at[row, "HasFuncDir"] = "False"
+            audit.at[row, "HasBold"] = "False"
 
         #for ses_path in Path(bids_dir + "/" + audit.iloc[row]["SubjectID"]).glob("ses-*/"):
            
