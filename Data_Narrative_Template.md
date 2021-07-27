@@ -6,7 +6,7 @@
 * For which project(s) is it intended (link to project pages, if they exist)? 
 * Who is responsible for processing this data? 
 * What is our goal data format?
-* * i.e. in what form do we want the data by the end of the "Curation" step? BIDS? Something else? 
+  * i.e. in what form do we want the data by the end of the "Curation" step? BIDS? Something else? 
 
 ### Data Acquisition
 
