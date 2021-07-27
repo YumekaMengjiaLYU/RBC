@@ -1,4 +1,4 @@
-# Data Narrative Template 
+### Data Narrative Template 
 
 ## Purpose of the Data 
 
@@ -8,9 +8,9 @@
 
 ## Data Acquisition
 
-### Where was the data acquired? 
+# Where was the data acquired? 
 
-### DUA: 
+# DUA: 
 
 ## Download and Storage 
 
