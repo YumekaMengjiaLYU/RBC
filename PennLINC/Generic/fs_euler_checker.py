@@ -156,5 +156,6 @@ new_non_preordered = sorted(r_gray_vol) + sorted(l_gray_vol) + sorted(r_surf_are
 new_order = preordered + new_non_preordered
 fs_audit = fs_audit.reindex(columns=new_order)
 
-fs_audit.to_csv('/cbica/projects/RBC/Curation/RBC/PennLINC/PNC_BIDS_Fix/PNC_CSVs/00_Ordered/mount/fs_audit.csv', index=False)
+#fs_audit.to_csv('/cbica/projects/RBC/Curation/RBC/PennLINC/PNC_BIDS_Fix/PNC_CSVs/00_Ordered/mount/fs_audit.csv', index=False)
+
 fs_audit.to_csv(audit_path)
