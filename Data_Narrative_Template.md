@@ -1,0 +1,44 @@
+## Data Narrative Template 
+
+### Purpose of the Data 
+
+Why does PennLINC need this data?
+
+For which project(s) is it intended (link to project pages, if they exist)? 
+
+
+### Data Acquisition
+
+Where was the data acquired? 
+
+Do we have a DUA?
+
+### Download and Storage 
+
+From where was the data downloaded?
+
+Where is it currently being stored? 
+
+Is the data backed up in a second location?
+
+### Curation Process (CuBIDS)
+
+Validation Process (initial errors --> final errors)
+
+Additions, Deletions, Metadata Changes
+
+### Preprocessing Pipelines 
+
+Exemplar Testing, include paths to audits/exemplar datasets 
+
+Which pipelines did you run? 
+
+Where did you run them? 
+
+Did you use datalad? 
+
+### Post Processing 
+
+Analyses Run 
+
+Who is using the data/which projects (link to project pages)? 
