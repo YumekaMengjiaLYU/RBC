@@ -3,10 +3,8 @@
 ### Plan for the Data 
 
 * Why does PennLINC need this data?
-
-For which project(s) is it intended (link to project pages, if they exist)? 
-
-Who is responsible for processing this data? 
+* For which project(s) is it intended (link to project pages, if they exist)? 
+* Who is responsible for processing this data? 
 
 ### Data Acquisition
 
