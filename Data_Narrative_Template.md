@@ -2,42 +2,42 @@
 
 ## Purpose of the Data 
 
-# Why does PennLINC need this data?
+### Why does PennLINC need this data?
 
-# For which project(s) is it intended (link to project pages, if they exist)? 
+### For which project(s) is it intended (link to project pages, if they exist)? 
 
 ## Data Acquisition
 
-# Where was the data acquired? 
+### Where was the data acquired? 
 
-# DUA: 
+### Do we have a DUA?
 
 ## Download and Storage 
 
-# From where was the data downloaded?
+### From where was the data downloaded?
 
-# Where is it currently being stored? 
+### Where is it currently being stored? 
 
-# Backups?
+### Is the data backed up in a second location?
 
 ## Curation Process (CuBIDS)
 
-# Validation
+### Validation
 
-# Additions, Deletions, Metadata Changes
+### Additions, Deletions, Metadata Changes
 
-# Preprocessing Pipeline 
+## Preprocessing Pipelines 
 
-# Exemplar Testing, include paths to audits/exemplar datasets 
+### Exemplar Testing, include paths to audits/exemplar datasets 
 
-# Which pipelines did you run? 
+### Which pipelines did you run? 
 
-# Where did you run them? 
+### Where did you run them? 
 
-# Did you use datalad? 
+### Did you use datalad? 
 
 ## Post Processing 
 
-# Analyses Run 
+### Analyses Run 
 
-# Who is using the data/which projects (link to project pages)? 
+### Who is using the data/which projects (link to project pages)? 
