@@ -27,6 +27,7 @@
 ### Curation Process
 
 * Who is responsible for curating this data?
+* Link to Flow Diagram: 
 * Path to curation scripts/heurstics: 
 * Path to final CuBIDS csvs: 
 * Validation Process (initial errors --> final errors)
