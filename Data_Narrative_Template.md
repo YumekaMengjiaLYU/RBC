@@ -22,7 +22,7 @@
 * Is the data backed up in a second location?
 * Are you using Datalad? 
 
-### Curation Process (CuBIDS)
+### Curation Process
 
 * Path to curation scripts/heurstics: 
 * Path to final CuBIDS csvs: 
