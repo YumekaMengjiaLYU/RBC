@@ -2,9 +2,9 @@
 
 ## Purpose of the Data 
 
-### Why does PennLINC need this data?
+Why does PennLINC need this data?
 
-### For which project(s) is it intended (link to project pages, if they exist)? 
+For which project(s) is it intended (link to project pages, if they exist)? 
 
 
 ## Data Acquisition
