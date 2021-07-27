@@ -1,4 +1,4 @@
-### Data Narrative Template 
+# Data Narrative Template 
 
 ## Purpose of the Data 
 
