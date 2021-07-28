@@ -19,7 +19,7 @@ for csv_path in Path(csv_dir).rglob('*.csv'):
     sub_df = pd.read_csv(str(csv_path))
     df = pd.concat([df, sub_df])
 
-final = df.drop['Unnamed: 0']
+final = df.drop('Unnamed: 0', axis=1)
 final.to_csv(sys.argv[2], index=False)
                     
 # THEN RUN THIS THROUGH THE SUMMARY REPORT SCRIPTS! 
