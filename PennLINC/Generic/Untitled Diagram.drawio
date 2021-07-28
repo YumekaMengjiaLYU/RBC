@@ -1,4 +1,4 @@
-<mxfile host="app.diagrams.net" modified="2021-07-28T01:09:34.717Z" agent="5.0 (Macintosh)" etag="NnhvuAQE_gOqmhzNYmtR" version="14.2.7" type="github">
+<mxfile host="app.diagrams.net" modified="2021-07-28T01:13:08.462Z" agent="5.0 (Macintosh)" etag="Yzt8ZQbbPDzMTfY6jhWm" version="14.2.7" type="github">
   <diagram id="JNwxlYpdH0f2OIVfWxtT" name="Page-1">
     <mxGraphModel dx="534" dy="317" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1200" pageHeight="1600" math="0" shadow="0">
       <root>
@@ -102,6 +102,9 @@
         </mxCell>
         <mxCell id="TIXV101uSg5O-Eqi6jPN-12" value="&lt;div&gt;UNITS with&lt;/div&gt;&lt;div&gt;completely processed MOD&lt;/div&gt;&lt;div&gt;n=XXX&lt;br&gt;&lt;/div&gt;" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
           <mxGeometry x="840" y="680" width="160" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="TIXV101uSg5O-Eqi6jPN-13" value="&lt;div&gt;Replace MOD with modality&lt;/div&gt;such as &lt;i&gt;DWI&lt;/i&gt;, &lt;i&gt;BOLD &lt;/i&gt;or &lt;i&gt;ASL&lt;/i&gt;" style="ellipse;shape=cloud;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="840" y="84" width="270" height="136" as="geometry" />
         </mxCell>
       </root>
     </mxGraphModel>
