@@ -2,8 +2,8 @@
 
 ### Important GitHub Links:
 * Data Processing Flow Diagram:
-* Curation DSR:
-* Containerized Pipeline Testing Queue/Status Report 
+* Curation/Validation DSR:
+* Containerized Pipeline Testing Queue/Status Report: 
 
 ### Plan for the Data 
 
