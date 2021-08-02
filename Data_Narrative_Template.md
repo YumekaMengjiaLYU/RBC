@@ -3,10 +3,9 @@
 ### Important Links (should all be on GitHub):
 * Data Processing Flow Diagram:
    * Flow diagram that describes the lifecycle of this dataset 
-* Curation/Validation DSR:
-   * GitHub projects page that helps you track the curation and validation portion of the dataset. This page should be updated every time you perform an action on the data. 
-* Containerized Pipeline Testing Queue/Status Report: 
-   * GitHub projects page that helps you track the progress of containerized pipeline runs on the data. 
+* DSR (Curation/Validation and Processing Queue Status):
+   * GitHub projects page card that helps you track the curation and validation portion of the dataset. This page should be updated every time you perform an action on the data. 
+   * GitHub projects page card that helps you track the progress of containerized pipeline runs on the data. 
    
 ### Plan for the Data 
 
@@ -41,8 +40,8 @@
 ### Curation Process
 
 * Who is responsible for curating this data?
-* Path to curation scripts/heurstics: 
-* Path to final CuBIDS csvs: 
+* GitHub Link to curation scripts/heurstics: 
+* GitHub Link to final CuBIDS csvs: 
 * Describe the Validation Process. Include a list of the initial and final errors and warnings.
 * Describe additions, deletions, and metadata changes (if any).
 
@@ -54,16 +53,19 @@
    * Did you implement exemplar testing? If so, please fill out the information below:
       * Path to exemplar dataset:
       * Path to exemplar outputs:
-      * Path to exemplar audit:
+      * GitHub Link to exemplar audit:
     * For production testing, please fill out the information below:
       * Path to production inputs:
-      * Path to production outputs:
-      * Path to production audit: 
+      * GitHub Link to production outputs:
+      * GitHub Link to production audit: 
 
 ### Post Processing 
 
 * Who is using the data/for which projects are people in the lab using this data?
    * Link to project page(s) here  
-* List all analyses that have been run on this data:
-* Did you use pennlinckit?
-   * https://github.com/PennLINC/PennLINC-Kit/tree/main/pennlinckit  
+* For each post-processing analysis that has been run on this data, fill out the following
+   * Who performed the analysis?
+   * Where it was performed (CUBIC, PMACS, somewhere else)?
+   * GitHub Link(s) to result(s)
+   * Did you use pennlinckit?  
+      * https://github.com/PennLINC/PennLINC-Kit/tree/main/pennlinckit  
