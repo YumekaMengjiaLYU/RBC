@@ -1,10 +1,13 @@
-## Data Narrative Template 
+## Data Narrative Template for [INSERT DATASET NAME HERE]
 
 ### Important Links (should all be on GitHub):
 * Data Processing Flow Diagram:
+   * Flow diagram that describes the lifecycle of this dataset 
 * Curation/Validation DSR:
+   * GitHub projects page that helps you track the curation and validation portion of the dataset. This page should be updated every time you perform an action on the data. 
 * Containerized Pipeline Testing Queue/Status Report: 
-
+   * GitHub projects page that helps you track the progress of containerized pipeline runs on the data. 
+   
 ### Plan for the Data 
 
 * Why does PennLINC need this data?
