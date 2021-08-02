@@ -1,6 +1,6 @@
 ## Data Narrative Template 
 
-### Important GitHub Links:
+### Important Links (should all be on GitHub):
 * Data Processing Flow Diagram:
 * Curation/Validation DSR:
 * Containerized Pipeline Testing Queue/Status Report: 
