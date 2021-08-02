@@ -1,4 +1,4 @@
-## Data Narrative Template for [INSERT DATASET NAME HERE]
+## Data Narrative for [INSERT DATASET NAME HERE]
 
 ### Important Links (should all be on GitHub):
 * Data Processing Flow Diagram:
