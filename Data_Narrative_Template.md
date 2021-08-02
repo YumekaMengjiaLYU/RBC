@@ -3,9 +3,9 @@
 ### Important Links (should all be on GitHub):
 * Data Processing Flow Diagram:
    * Flow diagram that describes the lifecycle of this dataset 
-* DSR (Curation/Validation and Processing Queue Status):
-   * GitHub projects page card that helps you track the curation and validation portion of the dataset. This page should be updated every time you perform an action on the data. 
-   * GitHub projects page card that helps you track the progress of containerized pipeline runs on the data. 
+* DSR GitHub Project Page(Curation/Validation and Processing Queue Status):
+   * Cards for tracking the curation and validation portion of the dataset. This page should be updated every time you perform an action on the data. 
+   * Cards for tracking the progress of containerized pipeline runs on the data. 
    
 ### Plan for the Data 
 
