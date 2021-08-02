@@ -11,7 +11,7 @@
 ### Plan for the Data 
 
 * Why does PennLINC need this data?
-* For which project(s) is it intended (link to project pages, if they exist)? 
+* For which project(s) is it intended? Please link to project pages below:
 * What is our goal data format?
    * i.e. in what form do we want the data by the end of the "Curation" step? BIDS? Something else? 
 
