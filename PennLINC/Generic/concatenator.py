@@ -22,7 +22,7 @@ for csv_path in Path(csv_dir).rglob('*.csv'):
     if cntr == 0: 
         df = sub_df
     else:
-        df = pd.concat([df, sub_df], axis=0)
+        df = pd.concat([df, sub_df], axis=1)
     cntr += 1
 #final = df.drop('Unnamed: 0', axis=1)
 df.to_csv(sys.argv[2], index=False)
