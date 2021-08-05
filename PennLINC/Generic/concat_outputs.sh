@@ -17,7 +17,7 @@ datalad run -i 'csvs/*' -o '~/testing/concat_ds/group_report.csv' --expand input
 # copy report to a directory that isn't getting deleted
 cp ~/testing/concat_ds/group_report.csv ~/testing/pnc_exemplar_new_fmriprep_audit.csv
 
-datald save -m "generated report"
+datalad save -m "generated report"
 # push changes
 datalad push
 
