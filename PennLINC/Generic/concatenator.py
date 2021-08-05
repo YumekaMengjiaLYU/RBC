@@ -19,11 +19,11 @@ cntr = 0
 for csv_path in Path(csv_dir).rglob('*.csv'):
     #subprocess.run(['datalad', 'get', csv_path])
     sub_df = pd.read_csv(str(csv_path))
-    columns = list(sub_df.columns())
+    #columns = list(sub_df.columns())
     if cntr == 0: 
         df = sub_df
     else:
-        df = pd.concat([df, sub_df], columns=columns)
+        df = pd.concat([df, sub_df])
     cntr += 1
 #final = df.drop('Unnamed: 0', axis=1)
 df.to_csv(sys.argv[2], index=False)
