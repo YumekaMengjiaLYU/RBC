@@ -20,7 +20,7 @@ for csv_path in Path(csv_dir).rglob('*.csv'):
     #subprocess.run(['datalad', 'get', csv_path])
     cntr += 1
     sub_df = pd.read_csv(str(csv_path))    
-    columns = list(sub_df.columns())
+    columns = list(sub_df.columns)
     if cntr > 0:
         break 
 
