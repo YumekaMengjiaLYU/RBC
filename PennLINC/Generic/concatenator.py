@@ -25,7 +25,7 @@ for csv_path in Path(csv_dir).rglob('*.csv'):
         break 
 
 df = pd.DataFrame(np.nan, index=range(0,1), columns=columns, dtype="string")
-
+print(df.columns)
 
 for csv_path in Path(csv_dir).rglob('*.csv'):
     sub_df = pd.read_csv(str(csv_path))
