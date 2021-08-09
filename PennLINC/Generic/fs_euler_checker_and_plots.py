@@ -184,8 +184,7 @@ with zipfile.ZipFile(input_zip_dir + '/' + subid +
 '_fmriprep-20.2.3.zip', 'r') as zip_ref_fmri:
     zip_ref_fmri.extractall(unzip_temp_dir)
 
-# test one single subject
-path_t1w = unzip_temp_dir + '/fmriprep/' + subid + '/ses-PNC1/anat/sub-192413932_ses-PNC1_acq-refaced_desc-preproc_T1w.nii.gz'
+path_t1w = unzip_temp_dir + '/fmriprep/' + subid + '/ses-PNC1/anat/%s_ses-PNC1_acq-refaced_desc-preproc_T1w.nii.gz'%(subid)
 image_t1w = nim.load_img(path_t1w)
 
 fig, ax = plt.subplots(nrows=1, ncols=1, figsize=(15,15))
