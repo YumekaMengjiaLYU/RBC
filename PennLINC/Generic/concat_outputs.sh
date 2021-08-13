@@ -1,21 +1,22 @@
 #!/bin/bash 
 
 # create alias 
-mkdir -p ~/testing/pnc_exemplar_test/fmriprep-audit/output_ria/alias
-ln -s ~/testing/pnc_exemplar_test/fmriprep-audit/output_ria/806/01ee0-365c-454f-8372-5692184d59b8 ~/testing/pnc_exemplar_test/fmriprep-audit/output_ria/alias/data
+mkdir -p ~/production/PNC/fmriprep-audit/output_ria/alias
+ln -s ~/production/PNC/fmriprep-audit/output_ria/6ca/52820-a95a-44fd-9538-aef55f44277b ~/production/PNC/fmriprep-audit/output_ria/alias/data
 
 
 # set up concat_ds and run concatenator on it 
 cd ~/testing
-datalad clone ria+file:///cbica/projects/RBC/testing/pnc_exemplar_test/fmriprep-audit/output_ria#~data concat_ds
+datalad clone ria+file:///cbica/projects/RBC/production/PNC/fmriprep-audit/output_ria#~data concat_ds
 cd concat_ds/code
+rm concatenator.*
 wget https://raw.githubusercontent.com/PennLINC/RBC/master/PennLINC/Generic/concatenator.py
 cd ~/testing/concat_ds
 datalad save -m "added concatenator script"
-datalad run -i 'csvs/*' -o '~/testing/concat_ds/group_report.csv' --expand inputs --explicit "python code/concatenator.py ~/testing/concat_ds/csvs ~/testing/concat_ds/group_report.csv"
+datalad run -i 'csvs/*' -o '~/testing/concat_ds/group_report.csv' --expand inputs --explicit "python code/concatenator.py ~/testing/concat_ds/csvs ~/testing/PNC_FMRIPREP_AUDIT.csv"
 
 # copy report to a directory that isn't getting deleted
-cp ~/testing/concat_ds/group_report.csv ~/testing/pnc_exemplar_new_fmriprep_audit.csv
+#cp ~/testing/concat_ds/group_report.csv ~/testing/pnc_exemplar_new_fmriprep_audit.csv
 
 datalad save -m "generated report"
 # push changes
