@@ -1,13 +1,13 @@
-<mxfile host="app.diagrams.net" modified="2021-07-28T02:07:08.693Z" agent="5.0 (Macintosh)" etag="AW4jCRmxBZjo7NPCPE97" version="14.2.7" type="github">
+<mxfile host="app.diagrams.net" modified="2021-08-24T15:02:23.119Z" agent="5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/86.0.4240.111 Safari/537.36" etag="AuxSLGvQhUm4DtlEMksE" version="14.9.5" type="github">
   <diagram id="JNwxlYpdH0f2OIVfWxtT" name="Page-1">
-    <mxGraphModel dx="1110" dy="820" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1200" pageHeight="1600" math="0" shadow="0">
+    <mxGraphModel dx="735" dy="502" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1200" pageHeight="1600" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
         <mxCell id="Sfd0NN9w5Pw_0LikJmXP-1" value="&lt;div&gt;Data Source claims available subjects:&lt;/div&gt;&lt;div&gt;n=XXXX&lt;br&gt;&lt;/div&gt;" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
           <mxGeometry x="240" y="120" width="120" height="60" as="geometry" />
         </mxCell>
-        <mxCell id="Sfd0NN9w5Pw_0LikJmXP-2" value="&lt;div&gt;Downloaded&lt;/div&gt;&lt;div&gt;UNITS on local storage&lt;/div&gt;&lt;div&gt;n=190&lt;br&gt;&lt;/div&gt;" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+        <mxCell id="Sfd0NN9w5Pw_0LikJmXP-2" value="&lt;div&gt;Downloaded&lt;/div&gt;&lt;div&gt;UNITS on local storage&lt;/div&gt;&lt;div&gt;n=196&lt;br&gt;&lt;/div&gt;" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
           <mxGeometry x="210" y="250" width="180" height="80" as="geometry" />
         </mxCell>
         <mxCell id="Sfd0NN9w5Pw_0LikJmXP-4" value="&lt;div&gt;Unavailable subjects (n=0)&lt;/div&gt;&lt;div&gt;Corrupted data subjects (n=0) &lt;br&gt;&lt;/div&gt;" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
@@ -34,7 +34,7 @@
             <mxPoint x="550" y="330" as="targetPoint" />
           </mxGeometry>
         </mxCell>
-        <mxCell id="Sfd0NN9w5Pw_0LikJmXP-12" value="" style="endArrow=classic;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;" parent="1" edge="1" source="Sfd0NN9w5Pw_0LikJmXP-2">
+        <mxCell id="Sfd0NN9w5Pw_0LikJmXP-12" value="" style="endArrow=classic;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;" parent="1" source="Sfd0NN9w5Pw_0LikJmXP-2" edge="1">
           <mxGeometry width="50" height="50" relative="1" as="geometry">
             <mxPoint x="299" y="380" as="sourcePoint" />
             <mxPoint x="299.40999999999997" y="500" as="targetPoint" />
@@ -67,7 +67,7 @@
         <mxCell id="TIXV101uSg5O-Eqi6jPN-7" value="FMRIPrep failed (n=XX)" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
           <mxGeometry x="350" y="589" width="160" height="60" as="geometry" />
         </mxCell>
-        <mxCell id="TIXV101uSg5O-Eqi6jPN-8" value="&lt;div&gt;Subjects with&lt;/div&gt;&lt;div&gt;preprocessed BOLD&lt;/div&gt;&lt;div&gt;n=XXX&lt;br&gt;&lt;/div&gt;" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+        <mxCell id="TIXV101uSg5O-Eqi6jPN-8" value="&lt;div&gt;Subjects with&lt;/div&gt;&lt;div&gt;preprocessed BOLD&lt;/div&gt;&lt;div&gt;n=195&lt;br&gt;&lt;/div&gt;" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
           <mxGeometry x="220" y="680" width="160" height="60" as="geometry" />
         </mxCell>
         <mxCell id="TIXV101uSg5O-Eqi6jPN-9" value="" style="endArrow=classic;html=1;" parent="1" edge="1">
@@ -82,10 +82,10 @@
             <mxPoint x="349.9999999999998" y="799" as="targetPoint" />
           </mxGeometry>
         </mxCell>
-        <mxCell id="TIXV101uSg5O-Eqi6jPN-11" value="XCP failed (n=XX)" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+        <mxCell id="TIXV101uSg5O-Eqi6jPN-11" value="XCP failed (n=0)" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
           <mxGeometry x="350" y="769" width="160" height="60" as="geometry" />
         </mxCell>
-        <mxCell id="TIXV101uSg5O-Eqi6jPN-12" value="&lt;div&gt;Subjects with&lt;/div&gt;&lt;div&gt;completely processed BOLD&lt;/div&gt;&lt;div&gt;n=XXX&lt;br&gt;&lt;/div&gt;" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+        <mxCell id="TIXV101uSg5O-Eqi6jPN-12" value="&lt;div&gt;Subjects with&lt;/div&gt;&lt;div&gt;completely processed BOLD&lt;/div&gt;&lt;div&gt;n=195&lt;br&gt;&lt;/div&gt;" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
           <mxGeometry x="220" y="860" width="160" height="60" as="geometry" />
         </mxCell>
       </root>
