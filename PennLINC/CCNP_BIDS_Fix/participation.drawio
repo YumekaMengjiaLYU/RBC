@@ -1,4 +1,4 @@
-<mxfile host="app.diagrams.net" modified="2021-08-24T15:02:23.119Z" agent="5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/86.0.4240.111 Safari/537.36" etag="AuxSLGvQhUm4DtlEMksE" version="14.9.5" type="github">
+<mxfile host="app.diagrams.net" modified="2021-08-25T15:52:02.966Z" agent="5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/86.0.4240.111 Safari/537.36" etag="e5X6-wi3ko7pIee5OrBD" version="14.9.8" type="github">
   <diagram id="JNwxlYpdH0f2OIVfWxtT" name="Page-1">
     <mxGraphModel dx="735" dy="502" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1200" pageHeight="1600" math="0" shadow="0">
       <root>
@@ -64,7 +64,7 @@
             <mxPoint x="349.9999999999998" y="619" as="targetPoint" />
           </mxGeometry>
         </mxCell>
-        <mxCell id="TIXV101uSg5O-Eqi6jPN-7" value="FMRIPrep failed (n=XX)" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+        <mxCell id="TIXV101uSg5O-Eqi6jPN-7" value="FMRIPrep failed (n=0)" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
           <mxGeometry x="350" y="589" width="160" height="60" as="geometry" />
         </mxCell>
         <mxCell id="TIXV101uSg5O-Eqi6jPN-8" value="&lt;div&gt;Subjects with&lt;/div&gt;&lt;div&gt;preprocessed BOLD&lt;/div&gt;&lt;div&gt;n=195&lt;br&gt;&lt;/div&gt;" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
