@@ -42,7 +42,7 @@
 * Who is responsible for curating this data?
 * GitHub Link to curation scripts/heurstics: 
 * GitHub Link to final CuBIDS csvs: 
-* Describe the Curation Process. Include a list of the initial and final errors and warnings.
+* Describe the Curation Process. Include a list of the initial and final validation errors and warnings.
 * Describe additions, deletions, and metadata changes (if any).
 
 ### Preprocessing Pipelines 
