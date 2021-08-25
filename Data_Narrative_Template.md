@@ -33,7 +33,7 @@
 * From where was the data downloaded?
 * Where is it currently being stored?
 * What form is the data in upon intial download (DICOMS, NIFTIS, something else?)
-* Are you using Datalad? 
+* Are you using Datalad? If so, at which point did you check the data into datalad?
 * Is the data backed up in a second location? If so, please provide the path to the backup location:
 
 
@@ -42,7 +42,7 @@
 * Who is responsible for curating this data?
 * GitHub Link to curation scripts/heurstics: 
 * GitHub Link to final CuBIDS csvs: 
-* Describe the Validation Process. Include a list of the initial and final errors and warnings.
+* Describe the Curation Process. Include a list of the initial and final errors and warnings.
 * Describe additions, deletions, and metadata changes (if any).
 
 ### Preprocessing Pipelines 
