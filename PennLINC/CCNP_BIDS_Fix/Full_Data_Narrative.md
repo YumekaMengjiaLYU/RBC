@@ -77,7 +77,7 @@
       * Path to exemplar outputs: 
       * GitHub Link to exemplar audit: 
     * For production testing, please fill out the information below:
-      * Path to production inputs: /cbica/projects/RBC/RBC_
+      * Path to production inputs: /cbica/projects/RBC/RBC_RAWDATA/bidsdatasets/CCNP
       * GitHub Link to production outputs:
       * GitHub Link to production audit: 
  * Pipeline Name: XCP
@@ -85,11 +85,11 @@
    * Where are you running these pipelines: CUBIC 
    * Did you implement exemplar testing: No
       * Path to exemplar dataset: /cbica/projects/RBC/RBC_EXEMPLARS/ccnp_exemplars 
-      * Path to exemplar outputs: 
+      * Path to exemplar outputs: /cbica/projects/RBC/testing/ccnp_f3
       * GitHub Link to exemplar audit: 
     * For production testing, please fill out the information below:
-      * Path to production inputs: /cbica/projects/RBC/RBC_
-      * GitHub Link to production outputs:
+      * Path to production inputs: /cbica/projects/RBC/RBC_RBC_EXEMPLARS/ccnp_exemplars 
+      * GitHub Link to production outputs: ~/cbica/projects?RBC/
       * GitHub Link to production audit: 
 
 ### Post Processing 
