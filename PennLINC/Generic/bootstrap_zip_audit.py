@@ -91,6 +91,12 @@ if pipeline == "fmriprep":
             "HadScratchSpace", "HadRAMSpace", "HadDiskSpace", "FinishedSuccessfully",
             "ValueError", "ConnectionOpenFailError", "Broken Pipe"]
 
+if pipeline == 'XCP':
+    columns = ["SubjectID", "HasOutput", "HasHTML", "NoErrorsToReport", "HasFuncDir", 
+            "HasBold", "ProducedConnectivityBold", 'ProducedTimeSeriesBold', "HasErrorFile",
+            "RuntimeErrorDescription", "OSErrorDescription","CommandErrorDescription",
+            "HadScratchSpace", "HadRAMSpace","HadDiskSpace","FinishedSuccessfully"]
+
 
 audit = pd.DataFrame(np.nan, index=range(0,1), columns=columns, dtype="string")
 
@@ -132,6 +138,8 @@ for row in range(len(audit)):
             z = zipfile.ZipFile(output_dir + '/' + subject + '_fmriprep-20.2.3.zip')
         if pipeline == 'qsiprep':
             z = zipfile.ZipFile(output_dir + '/' + subject + '_qsiprep-0.13.1.zip')
+        if pipeline == 'xcp':
+            z = zipfile.ZipFile(output_dir + '/' + subject + '_fmriprep-20.2.1.zip')
     # IN THE CASE OF NO ZIP FILE CREATED
     else:
         audit.at[row, "HasOutput"] = "False"
@@ -143,6 +151,9 @@ for row in range(len(audit)):
             audit.at[row, "RanSurfBold"] = "False"
             audit.at[row, "RanVolBold"] = "False"
             audit.at[row, "ProducedFuncDir"] = "False"
+        if pipeline == 'xcp':
+            audit.at[row, "ProducedConnectivityBold"] = "False"
+            audit.at[row, "ProducedTimeSeriesBold"] = "False"
 
     # NON PIPELINE SPECIFIC CHECKS
 
@@ -155,9 +166,10 @@ for row in range(len(audit)):
     # MOVE THIS TO PREVIOUS if subject in output_subs if statement!
 
     if subject in output_subs and z != None:
-        if pipeline + '/' + subject + '.html' in z.namelist():
+        # change back to pipeline
+        if 'xcp_abcd' + '/' + subject + '.html' in z.namelist():
 
-            html = z.read(pipeline + '/' + subject + '.html')
+            html = z.read('xcp_abcd' + '/' + subject + '.html')
             audit.at[row, 'HasHTML'] = "True"
 
             # soup = BeautifulSoup(open(html_filename),"html.parser")
@@ -406,6 +418,45 @@ for row in range(len(audit)):
                 audit.at[row, "RanVolBold"] = "True"
             else:
                 audit.at[row, "RanVolBold"] = "False"
+                
+    if pipeline == "xcp":
+        for ses_path in Path(bids_dir + "/" +
+                audit.iloc[row]["SubjectID"]).glob("ses-*/"):
+            if Path(str(ses_path) + "/func/").exists():
+                audit.at[row, "HasFuncDir"] = "True"
+                
+                has_bold = False
+                for filepath in Path(str(ses_path)).rglob("func/*"):
+                    if "bold" in str(filepath):
+                        has_bold = True
+                if has_bold == True:
+                    audit.at[row, "HasBold"] = "True"
+                else:
+                    audit.at[row, "HasBold"] = "False"
+            else:
+                audit.at[row, "HasFuncDir"] = "False"
+                audit.at[row, "HasBold"] = "False"
+        
+        conn_bold = False
+        time_bold = False
+        #audit.at[row, "ProducedConnectivityBold"] = "False"
+        #audit.at[row, "ProducedTimeSeriesBold"] = "False"
+        # check for 2 output files
+        if z != None:
+            for filepath in z.namelist():
+                if 'atlas-Schaefer407_desc-connectivity_bold.tsv' in filepath:
+                    conn_bold = True
+                if 'atlas-Schaefer407_desc-timeseries_bold.tsv' in filepath:
+                    time_bold = True
+        if conn_bold == True:
+            audit.at[row, "ProducedConnectivityBold"] = "True"
+        else:
+            audit.at[row, "ProducedConnectivityBold"] = "False"
+        if time_bold == "True":
+            audit.at[row, "ProducedTimeSeriesBold"] = "True"
+        else:
+            audit.at[row, "ProducedTimeSeriesBold"] = "False"
+  
 
 # REMOVE PATH
 audit = audit.drop(["Path"], axis=1)
