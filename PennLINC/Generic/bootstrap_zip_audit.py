@@ -73,8 +73,8 @@ for path in Path(output_dir).glob('sub-*'):
 
 # Get all bids dir subs and add them to the csv
 
-print("OUTPUT_SUBS: ", output_subs)
-print("SUBID: ", sub_id)
+#print("OUTPUT_SUBS: ", output_subs)
+#print("SUBID: ", sub_id)
 sub_path = bids_dir + sub_id
 
 if pipeline == "qsiprep":
@@ -92,14 +92,8 @@ if pipeline == "fmriprep":
             "HadScratchSpace", "HadRAMSpace", "HadDiskSpace", "FinishedSuccessfully",
             "ValueError", "ConnectionOpenFailError", "Broken Pipe"]
 
-<<<<<<< HEAD
 if pipeline == 'xcp':
     columns = ["SubjectID", "HasOutput", "HasHTML", "NoErrorsToReport", "ProducedConnectivityBold", 'ProducedTimeSeriesBold', "HasErrorFile",
-=======
-if pipeline == 'XCP':
-    columns = ["SubjectID", "HasOutput", "HasHTML", "NoErrorsToReport", "HasFuncDir", 
-            "HasBold", "ProducedConnectivityBold", 'ProducedTimeSeriesBold', "HasErrorFile",
->>>>>>> ac8cff05a649be281884418e658aad68f1bfb337
             "RuntimeErrorDescription", "OSErrorDescription","CommandErrorDescription",
             "HadScratchSpace", "HadRAMSpace","HadDiskSpace","FinishedSuccessfully"]
 
@@ -145,11 +139,7 @@ for row in range(len(audit)):
         if pipeline == 'qsiprep':
             z = zipfile.ZipFile(output_dir + '/' + subject + '_qsiprep-0.13.1.zip')
         if pipeline == 'xcp':
-<<<<<<< HEAD
             z = zipfile.ZipFile(output_dir + '/' + subject + '_xcp-0-0-4.zip')
-=======
-            z = zipfile.ZipFile(output_dir + '/' + subject + '_fmriprep-20.2.1.zip')
->>>>>>> ac8cff05a649be281884418e658aad68f1bfb337
     # IN THE CASE OF NO ZIP FILE CREATED
     else:
         audit.at[row, "HasOutput"] = "False"
@@ -430,26 +420,6 @@ for row in range(len(audit)):
                 audit.at[row, "RanVolBold"] = "False"
                 
     if pipeline == "xcp":
-<<<<<<< HEAD
-=======
-        for ses_path in Path(bids_dir + "/" +
-                audit.iloc[row]["SubjectID"]).glob("ses-*/"):
-            if Path(str(ses_path) + "/func/").exists():
-                audit.at[row, "HasFuncDir"] = "True"
-                
-                has_bold = False
-                for filepath in Path(str(ses_path)).rglob("func/*"):
-                    if "bold" in str(filepath):
-                        has_bold = True
-                if has_bold == True:
-                    audit.at[row, "HasBold"] = "True"
-                else:
-                    audit.at[row, "HasBold"] = "False"
-            else:
-                audit.at[row, "HasFuncDir"] = "False"
-                audit.at[row, "HasBold"] = "False"
-        
->>>>>>> ac8cff05a649be281884418e658aad68f1bfb337
         conn_bold = False
         time_bold = False
         #audit.at[row, "ProducedConnectivityBold"] = "False"
@@ -457,25 +427,15 @@ for row in range(len(audit)):
         # check for 2 output files
         if z != None:
             for filepath in z.namelist():
-<<<<<<< HEAD
                 if 'atlas-Schaefer417_desc-connectivity_res-2_bold.tsv' in filepath:
                     conn_bold = True
                 if 'atlas-Schaefer417_desc-timeseries_res-2_bold.tsv' in filepath:
-=======
-                if 'atlas-Schaefer407_desc-connectivity_bold.tsv' in filepath:
-                    conn_bold = True
-                if 'atlas-Schaefer407_desc-timeseries_bold.tsv' in filepath:
->>>>>>> ac8cff05a649be281884418e658aad68f1bfb337
                     time_bold = True
         if conn_bold == True:
             audit.at[row, "ProducedConnectivityBold"] = "True"
         else:
             audit.at[row, "ProducedConnectivityBold"] = "False"
-<<<<<<< HEAD
         if time_bold == True:
-=======
-        if time_bold == "True":
->>>>>>> ac8cff05a649be281884418e658aad68f1bfb337
             audit.at[row, "ProducedTimeSeriesBold"] = "True"
         else:
             audit.at[row, "ProducedTimeSeriesBold"] = "False"
