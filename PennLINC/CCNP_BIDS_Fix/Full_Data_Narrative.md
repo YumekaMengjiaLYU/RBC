@@ -60,16 +60,6 @@
   * CCNP was BIDS Valid when it was given to us.  
 * Describe additions, deletions, and metadata changes (if any).
   * CCNP was given to us in a fairly clean state with bids validation passing. After checking the dataset into datalad, we used cubids-add-nifti-info to add volume number, obliquity, and voxel size infomration to each sidecar in the dataset. We were initially missing two subjects' T1w scans. Haoming Dong sent them to us over email once we realized they were missing. Additionally we removed a single bold scan, sub-colornest035/ses-1/func/sub-colornest035_ses-1_task-rest_run-02_bold.nii.gz, due to the fac that it has a PhaseEncodingDirectoin (PED) of "i." Run-01 of sub-colornest035's rest scan remains in the dataset and has the correct PED. 
- * See the Datalad commit history below for a summary of changes that were made to this dataset  
-    * 2d542bc (HEAD -> master, PMACS/master) Saving bond-apply changes with clustering
-    * 4439f96 added 0 to MergeInto column of param group with PhaseEncodingDirection of i, so 1 scan and 1 json got deleted
-    * 5bfbf37 added nifti info to sidecars for sub-colornest115 and sub-colornest181 T1s
-    * f0d34d9 added T1s and their sidecars for sub-colornest115 and sub-colornest181
-    * 9fa29e4 Added nifti info to sidecars
-    * 0fbffc1 [DATALAD] new dataset
-    * d4ee651 Instruct annex to add text files to Git
-    * 3563f23 add bids data
-    * e5230f1 [DATALAD] new dataset
 
 ### Preprocessing Pipelines 
 * For each pipeline (e.g. QSIPrep, fMRIPrep, XCP, C-PAC), please fill out the following information:
