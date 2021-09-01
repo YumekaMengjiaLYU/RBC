@@ -38,14 +38,16 @@
   * Sydney Covitz 
 * From where was the data downloaded?
   * Data was emailed to PennLINC from Haoming Dong. 
+* Is the data checked into Datalad, and if so, is it absent of PHI?
+  * Yes, and yes
 * Where is it currently being stored?
-  * CCNP is a Datalad Dataset on CUBIC and has a sibling (backup copy) on PMACS
+  * CCNP is a Datalad Dataset on CUBIC 
+    * CUBIC PATH: /cbica/projects/RBC/RBC_RAWDATA/bidsdatasets/CCNP 
+* Is the data backed up in a second location? If so, please provide the path to the backup location:
+  * Yes. CCNP has a sibling (backup copy) on PMACS
+    * RIA Store Path: ssh://sciget.pmacs.upenn.edu/project/RBC/RIA/BIDS/970/4eab1-3320-41f0-9fce-3c6961b4ac96
 * What form is the data in upon intial download (DICOMS, NIFTIS, something else?)
   * NIFTIS and Sidecars 
-* Are you using Datalad?
-  * Yes   
-* Is the data backed up in a second location? If so, please provide the path to the backup location:
-  * Yes. The data is backed up on PMACS. 
 
 ### Curation Process
 
