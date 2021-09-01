@@ -4,10 +4,11 @@
 * Data Processing Flow Diagram:
    * https://github.com/PennLINC/RBC/blob/master/PennLINC/CCNP_BIDS_Fix/participation.drawio   
       * Flow diagram that describes the lifecycle of this dataset 
-* DSR GitHub Project Page(Curation/Validation and Processing Queue Status):
+* DSR for Curation/Validation:
    * https://github.com/PennLINC/RBC/blob/master/PennLINC/RBC_Dataset_Status_Report.txt
-      * Cards for tracking the curation and validation portion of the dataset. This page should be updated every time you perform an action on the data. 
-      * Cards for tracking the progress of containerized pipeline runs on the data. 
+      * Doc tracking the curation and validation portion of the dataset. This page should be updated every time you perform an action on the data. 
+   * https://github.com/PennLINC/RBC/projects/1?add_cards_query=is%3Aopen
+      * Doc tracking the progress of containerized pipeline runs on the data. 
    
 ### Plan for the Data 
 
@@ -58,7 +59,8 @@
 * Describe the Validation Process. Include a list of the initial and final errors and warnings.
   * CCNP was BIDS Valid when it was given to us.  
 * Describe additions, deletions, and metadata changes (if any).
-  * CCNP was given to us in a fairly clean state. See the Datalad commit history below for a summary of changes that were made to this dataset  
+  * CCNP was given to us in a fairly clean state with bids validation passing. After checking the dataset into datalad, we used cubids-add-nifti-info to add volume number, obliquity, and voxel size infomration to each sidecar in the dataset. We were initially missing two subjects' T1w scans. Haoming Dong sent them to us over email once we realized they were missing. Additionally we removed a single bold scan, sub-colornest035/ses-1/func/sub-colornest035_ses-1_task-rest_run-02_bold.nii.gz, due to the fac that it has a PhaseEncodingDirectoin (PED) of "i." Run-01 of sub-colornest035's rest scan remains in the dataset and has the correct PED. 
+ * See the Datalad commit history below for a summary of changes that were made to this dataset  
     * 2d542bc (HEAD -> master, PMACS/master) Saving bond-apply changes with clustering
     * 4439f96 added 0 to MergeInto column of param group with PhaseEncodingDirection of i, so 1 scan and 1 json got deleted
     * 5bfbf37 added nifti info to sidecars for sub-colornest115 and sub-colornest181 T1s
