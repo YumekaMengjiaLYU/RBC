@@ -47,7 +47,7 @@
 * Is the data backed up in a second location? If so, please provide the path to the backup location:
   * Yes. CCNP has a sibling (backup copy) on PMACS
     * RIA Store Path: ssh://sciget.pmacs.upenn.edu/project/RBC/RIA/BIDS/970/4eab1-3320-41f0-9fce-3c6961b4ac96
-* What form is the data in upon intial download (DICOMS, NIFTIS, something else?)
+* In what form did PennLINC receive the data (DICOMS, NIFTIS, something else)?
   * NIFTIS and Sidecars 
 
 ### Curation Process
