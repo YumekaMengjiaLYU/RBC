@@ -167,9 +167,9 @@ for row in range(len(audit)):
 
     if subject in output_subs and z != None:
         # change back to pipeline
-        if 'xcp_abcd' + '/' + subject + '.html' in z.namelist():
+        if pipeline + '/' + subject + '.html' in z.namelist():
 
-            html = z.read('xcp_abcd' + '/' + subject + '.html')
+            html = z.read(pipeline + '/' + subject + '.html')
             audit.at[row, 'HasHTML'] = "True"
 
             # soup = BeautifulSoup(open(html_filename),"html.parser")
