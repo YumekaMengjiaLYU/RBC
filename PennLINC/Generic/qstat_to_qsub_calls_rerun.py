@@ -27,13 +27,14 @@ if Path(analysis_dir).exists():
     sp = subprocess.Popen(["ls"], stdout=subprocess.PIPE,
             cwd=analysis_dir + '/logs')
     logs = sp.stdout.readlines()
-   # print(logs[0])
+    # print(logs[0])
+    jobs_to_delete = []
     for log in logs:
         for jid in job_ids:
             if jid in str(log) and '.o' in str(log):
                 subid = 'sub-' + str(log).split('.o')[0].split('sub-')[1]
                 sub_ids.append(subid)
-                
+                jobs_to_delete.append(jid)
     print("NUM SUBIDS", len(sub_ids))
     
     # NOW truncate qsub_calls.sh!
@@ -45,11 +46,14 @@ if Path(analysis_dir).exists():
         
     df = df.reset_index()
     
-    # if you haven't dropped all the qsub calls
-    if len(df) > 1:
+    # if the remaining number of qsub calls is correct
+    print(len(df))
+    print(len(jobs_to_delete))
+    if len(df) == len(jobs_to_delete):
         for jid in job_ids:
             # delete job id
-            subprocess.run(['qdel', '-j', jid])
+            print("YAY GOOD") 
+            #subprocess.run(['qdel', '-j', jid])
     
     # write out qsub_calls_rerun.sh
     l_cmd = []
