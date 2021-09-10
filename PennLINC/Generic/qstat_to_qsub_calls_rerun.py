@@ -32,10 +32,8 @@ if Path(analysis_dir).exists():
         for jid in job_ids:
             if jid in str(log) and '.o' in str(log):
                 subid = 'sub-' + str(log).split('.o')[0].split('sub-')[1]
-                print(subid)
                 sub_ids.append(subid)
-                # delete job id
-                #subprocess.run(['qdel', '-j', jid])
+                
     print("NUM SUBIDS", len(sub_ids))
     
     # NOW truncate qsub_calls.sh!
@@ -45,17 +43,24 @@ if Path(analysis_dir).exists():
             # remove that row 
             df.drop([row], inplace = True)
         
+    df = df.reset_index()
+    
+    # if you haven't dropped all the qsub calls
+    if len(df) > 1:
+        for jid in job_ids:
+            # delete job id
+            subprocess.run(['qdel', '-j', jid])
+    
     # write out qsub_calls_rerun.sh
-    #df = df.reset_index()
-    #l_cmd = []
-    #for row in range(len(df)):
-    #    l_cmd.append(df.loc[row, '#!/bin/bash'])
-    #full_cmd = "\n".join(l_cmd)
-    #fileObject = open(analysis_dir + "/code/qsub_calls_rerun_2.sh","w")
-    #fileObject.write("#!/bin/bash\n")
-    #fileObject.write(full_cmd)
+    l_cmd = []
+    for row in range(len(df)):
+        l_cmd.append(df.loc[row, '#!/bin/bash'])
+    full_cmd = "\n".join(l_cmd)
+    fileObject = open(analysis_dir + "/code/qsub_calls_rerun.sh","w")
+    fileObject.write("#!/bin/bash\n")
+    fileObject.write(full_cmd)
     # Close the file
-    #fileObject.close()
+    fileObject.close()
 else:
     print("PLEASE ENTER A VALID ANALYSIS DIR")
 
