@@ -137,7 +137,7 @@ for row in range(len(audit)):
         if pipeline == 'fmriprep':
             z = zipfile.ZipFile(output_dir + '/' + subject + '_fmriprep-20.2.3.zip')
         if pipeline == 'qsiprep':
-            z = zipfile.ZipFile(output_dir + '/' + subject + '_qsiprep-0.13.1.zip')
+            z = zipfile.ZipFile(output_dir + '/' + subject + '_qsiprep-0.14.2.zip')
         if pipeline == 'xcp':
             z = zipfile.ZipFile(output_dir + '/' + subject + '_xcp-0-0-4.zip')
     # IN THE CASE OF NO ZIP FILE CREATED
