@@ -48,7 +48,7 @@ if Path(analysis_dir).exists():
     
     # if the remaining number of qsub calls is correct, delete currently running jobs 
     if len(df) == len(jobs_to_delete):
-        for jid in job_ids:
+        for jid in jobs_to_delete:
             # delete job id
             subprocess.run(['qdel', '-j', jid])
     
@@ -57,7 +57,7 @@ if Path(analysis_dir).exists():
     for row in range(len(df)):
         l_cmd.append(df.loc[row, '#!/bin/bash'])
     full_cmd = "\n".join(l_cmd)
-    fileObject = open(analysis_dir + "/code/qsub_calls_rerun.sh","w")
+    fileObject = open(analysis_dir + "/code/qsub_calls_rerun_2.sh","w")
     fileObject.write("#!/bin/bash\n")
     fileObject.write(full_cmd)
     # Close the file
