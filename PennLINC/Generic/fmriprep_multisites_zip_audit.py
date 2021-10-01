@@ -322,6 +322,22 @@ for row in range(len(audit)):
         else:
             audit.at[row, "HasFuncDir"] = "False"
             audit.at[row, "HasBold"] = "False"
+        
+        # check if has anat/T1w
+        if Path(str(ses_path) + "/anat/").exists():
+            audit.at[row, "HasAnatDir"] == "True"
+            has_T1 = False
+            for filepath in Path(str(ses_path)).rglob("anat/*"):
+                if "_T1w" in str(filepath):
+                    has_T1 = True
+            if has_T1 == True:
+                audit.at[row, "HasAnatDir"] = "True"
+            else:
+                audit.at[row, "HasT1"] = "False"
+        else:
+            audit.at[row, "HasAnatDir"] = "False"
+            audit.at[row, "HasT1"] = "False"
+
 
         #for ses_path in Path(bids_dir + "/" + audit.iloc[row]["SubjectID"]).glob("ses-*/"):
            
