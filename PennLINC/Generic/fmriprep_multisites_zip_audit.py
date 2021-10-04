@@ -325,13 +325,14 @@ for row in range(len(audit)):
         
         # check if has anat/T1w
         if Path(str(ses_path) + "/anat/").exists():
-            audit.at[row, "HasAnatDir"] == "True"
-            has_T1 = False
-            for filepath in Path(str(ses_path)).rglob("anat/*"):
+            audit.at[row, "HasAnatDir"] = "True"
+            
+	    has_T1 = False
+            for filepath in Path(str(ses_path)).rglob("anat/*.nii.gz"):
                 if "_T1w" in str(filepath):
                     has_T1 = True
             if has_T1 == True:
-                audit.at[row, "HasAnatDir"] = "True"
+                audit.at[row, "HasT1"] = "True"
             else:
                 audit.at[row, "HasT1"] = "False"
         else:
