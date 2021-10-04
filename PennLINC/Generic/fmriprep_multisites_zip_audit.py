@@ -327,11 +327,11 @@ for row in range(len(audit)):
         if Path(str(ses_path) + "/anat/").exists():
             audit.at[row, "HasAnatDir"] = "True"
             
-	    has_T1 = False
+	    has_Tone = False
 	    for filepath in Path(str(ses_path)).rglob("anat/*.nii.gz"):
                 if "_T1w" in str(filepath):
-                    has_T1 = True
-            if has_T1 == True:
+                    has_Tone = True
+            if has_Tone == True:
                 audit.at[row, "HasT1"] = "True"
             else:
                 audit.at[row, "HasT1"] = "False"
