@@ -328,7 +328,7 @@ for row in range(len(audit)):
             audit.at[row, "HasAnatDir"] = "True"
             
 	    has_T1 = False
-            for filepath in Path(str(ses_path)).rglob("anat/*.nii.gz"):
+	    for filepath in Path(str(ses_path)).rglob("anat/*.nii.gz"):
                 if "_T1w" in str(filepath):
                     has_T1 = True
             if has_T1 == True:
