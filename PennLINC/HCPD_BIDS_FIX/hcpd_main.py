@@ -9,31 +9,19 @@ import sys
 
 # Change the current working directory
 """
-Rename the HCP-D data downloaded from NDA S3
+Bidsfy the HCP-D data downloaded from NDA S3 
+for one single subject folder
 
-Please run this first: ::
-    # install HCP-D dataset
-    datalad create -c yoda hcpd-bidify
-   
-    cd hcpd
-
-    datalad clone -d . <HCPD raw directory> inputs/data
-    
-1.Use python code/main.py to run the script:    
-    # you will come across an error with open(fmap_poss[b]) as json_file: FileNotFound
-    # execute commands below to get all fieldmap json files
-    # run the script again
-    datalad save $( find inputs/data -name "*epi.json" )
-    datalad get -J8 $( find inputs/data -name "*epi.json" )
-    datalad unlock $( find inputs/data -name "*epi.json" )
-
-2.Use datalad run to run the script(takes a long time):
-    datalad run -m "rename files" \
-        --input inputs/data \
-        --output participants.tsv \
-        --output problem_fmapjsons.txt \
-        --output inputs/data \
-        "python3 code/main.py"
+Please use datalad run to run the script:
+Example:
+    datalad run -m "rename for 0121719" \
+        -i HCD0121719_V1_MR \
+        --explicit \
+        -o sub-0121719 \
+        -o participants.tsv \
+        -o problem_fmapjsons.txt \
+        "python {path_to_hcpd_main.py} HCD0121719_V1_MR" 
+        
 
 """
 
